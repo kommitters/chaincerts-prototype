@@ -19,16 +19,16 @@ You can install asdf [here](https://asdf-vm.com/guide/getting-started.html)
 
 ## 🚀 Run the app
 
-- `npm install`: Install dependencies
-- `npm run dev`: Runs the project in dev and restarts with each change
-- `npm run build`: Generate production build
-- `npm run preview`: Locally preview production build
+- `yarn install`: Install dependencies
+- `yarn dev`: Runs the project in dev and restarts with each change
+- `yarn build`: Generate production build
+- `yarn preview`: Locally preview production build
 
 ## 🧪 Testing
 
-- `npm test`: Run unit tests with Jest
+- `yarn test`: Run unit tests with Jest
 
 ## 🔦 Linting
 
-- `npm run lint`: Run linter
-- `npm run lint-fix`: Fix lint issues
+- `yarn lint`: Run linter
+- `yarn lint-fix`: Fix lint issues
