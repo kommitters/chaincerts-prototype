@@ -17,17 +17,17 @@ You can install asdf [here](https://asdf-vm.com/guide/getting-started.html)
 
 ## 🚀 Run the app
 
-- `npm install`: Install dependencies
+- `yarn install`: Install dependencies
 - `cp .env.example .env`: Create the environment variables file based on the example template
-- `npm run dev`: Runs the project and restarts with each change
-- `npm run build`: Generate production build
-- `npm run generateCert {certificateRequest}`: Generate certificate from a certificate request
+- `yarn dev`: Runs the project and restarts with each change
+- `yarn build`: Generate production build
+- `yarn generateCert {certificateRequest}`: Generate certificate from a certificate request
 
 ## 🧪 Testing
 
-- `npm run test`: Run unit tests with Jest
+- `yarn test`: Run unit tests with Jest
 
 ## 🔦 Linting
 
-- `npm run lint`: Run linter
-- `npm run lint-fix`: Fix lint issues
+- `yarn lint`: Run linter
+- `yarn lint-fix`: Fix lint issues
