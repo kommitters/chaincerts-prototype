@@ -1,5 +1,7 @@
 {
   "name": "certificates-visualizer",
+  "repository": "https://github.com/kommitters/chaincerts-prototype",
+  "author": "kommitters",
   "private": true,
   "version": "0.0.0",
   "type": "module",
