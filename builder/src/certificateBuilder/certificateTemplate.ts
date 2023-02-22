@@ -21,11 +21,7 @@ export const certificateTemplate: Certificate = {
       type: 'mentor_hours',
       textFormatter: '',
       fontSize: 0.01,
-      position: {
-        x: 2.2,
-        y: 0,
-        z: -0.7
-      },
+      position: { x: 2.2, y: 0, z: -0.7 },
       color: '0xffffff',
       text: ''
     },
