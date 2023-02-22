@@ -1,6 +1,6 @@
 import { Certificate } from './interfaces/Certificate';
 
-export const template: Certificate = {
+export const certificateTemplate: Certificate = {
   material_file: 'mentor-1000h.mtl',
   object_file: 'mentor-1000h.obj',
   model_settings: [
