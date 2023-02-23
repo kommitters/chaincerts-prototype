@@ -1,6 +1,6 @@
-import { Certificate } from './interfaces/Certificate';
+import { Certificate } from '../interfaces';
 
-export const certificateTemplate: Certificate = {
+export const mentorCertificateTemplate: Certificate = {
   material_file: 'mentor-1000h.mtl',
   object_file: 'mentor-1000h.obj',
   model_settings: [
@@ -11,7 +11,7 @@ export const certificateTemplate: Certificate = {
   texts: [
     {
       type: 'username',
-      textFormatter: '',
+      textFormatter: '[value]',
       fontSize: 0.015,
       position: { x: 2.2, y: -0.55, z: -0.7 },
       color: '0xffffff',
@@ -19,7 +19,7 @@ export const certificateTemplate: Certificate = {
     },
     {
       type: 'mentor_hours',
-      textFormatter: '',
+      textFormatter: '[value] hours',
       fontSize: 0.01,
       position: { x: 2.2, y: 0, z: -0.7 },
       color: '0xffffff',
@@ -27,7 +27,7 @@ export const certificateTemplate: Certificate = {
     },
     {
       type: 'stellar_account',
-      textFormatter: 'Stellar Account: ',
+      textFormatter: 'Stellar Account: [value]',
       fontSize: 0.0063,
       position: { x: 3, y: -1.37, z: -0.7 },
       color: '0x97d4ff',
@@ -36,7 +36,7 @@ export const certificateTemplate: Certificate = {
     },
     {
       type: 'certificate_date',
-      textFormatter: '////////',
+      textFormatter: '////////[value]',
       fontSize: 0.0149,
       position: { x: 2.4, y: -1.4, z: -0.7 },
       color: '0x1005f3',

@@ -36,4 +36,4 @@ You can install asdf [here](https://asdf-vm.com/guide/getting-started.html)
 
 
 ## 📜 Example
--  `yarn generateCert '{"username": "John Doe","certificate_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB","mentor_hours": "1000h"}'`
+-  `yarn generateCert '{"username": "John Doe","certificate_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB","mentor_hours": "1000"}'`
