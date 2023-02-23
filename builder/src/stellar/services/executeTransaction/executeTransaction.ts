@@ -1,8 +1,7 @@
 import { Server, TransactionBuilder, Keypair, xdr, Horizon } from 'stellar-sdk';
 
-const STELLAR_HORIZON_TEST_URL = 'https://horizon-testnet.stellar.org';
-
-const server = new Server(STELLAR_HORIZON_TEST_URL);
+const SERVER = new Server('https://horizon-testnet.stellar.org');
+const NETWORK_PASSPHRASE = 'Test SDF Network ; September 2015';
 
 export const executeTransaction = async (
   publicKey: string,
@@ -13,12 +12,12 @@ export const executeTransaction = async (
     secretKeys = convertToArray(secretKeys) as Array<string>;
     operations = convertToArray(operations) as Array<xdr.Operation>;
 
-    const account = await server.loadAccount(publicKey);
-    const fee = String(await server.fetchBaseFee());
+    const account = await SERVER.loadAccount(publicKey);
+    const fee = String(await SERVER.fetchBaseFee());
 
     const transaction = new TransactionBuilder(account, {
       fee,
-      networkPassphrase: process.env.NETWORK_PASSPHRASE
+      networkPassphrase: NETWORK_PASSPHRASE
     });
 
     operations.forEach((operation) => transaction.addOperation(operation));
@@ -27,7 +26,7 @@ export const executeTransaction = async (
 
     secretKeys.forEach((secret) => tx.sign(Keypair.fromSecret(secret)));
 
-    return await server.submitTransaction(tx);
+    return await SERVER.submitTransaction(tx);
   } catch ({ response }) {
     const status = response.status;
     const reason = response.extras?.reason || response.data?.extras?.result_codes?.transaction;

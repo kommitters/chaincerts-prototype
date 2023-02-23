@@ -7,10 +7,6 @@ jest.mock('../../../src/stellar/services/executeTransaction');
 describe('createIssuerAccount', () => {
   const executeTransactionMock = jest.mocked(executeTransaction);
 
-  process.env.STELLAR_PUBLIC_KEY = 'publicKey';
-  process.env.STELLAR_SECRET_KEY = 'secretKey';
-  process.env.STARTING_BALANCE = '1000';
-
   afterEach(() => {
     jest.clearAllMocks();
   });

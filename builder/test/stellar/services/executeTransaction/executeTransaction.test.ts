@@ -45,8 +45,6 @@ describe('executeTransaction', () => {
       })
     );
 
-    await executeTransaction(publickKey, secretKey, []).catch((error) => {
-      expect(error.message).toEqual('Status: 400. Reason: tx_failed');
-    });
+    await expect(executeTransaction(publickKey, secretKey, [])).rejects.toThrow('Status: 400. Reason: tx_failed');
   });
 });

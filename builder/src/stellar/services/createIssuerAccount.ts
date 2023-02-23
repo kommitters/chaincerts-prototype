@@ -1,16 +1,19 @@
 import { Operation, AuthRevocableFlag, AuthClawbackEnabledFlag, AuthFlag, Keypair } from 'stellar-sdk';
 import { KeyPair } from '../interfaces';
 import { executeTransaction } from '../services/executeTransaction';
+import { STELLAR_PUBLIC_KEY, STELLAR_SECRET_KEY } from '../../configs/credentials';
+
+const STARTING_BALANCE = '3';
 
 export const createIssuerAccount = async (): Promise<KeyPair | never> => {
-  const publicStellarKey = process.env.STELLAR_PUBLIC_KEY as string;
-  const secretStellarKey = process.env.STELLAR_SECRET_KEY as string;
-  const startingBalance = process.env.STARTING_BALANCE as string;
+  const publicStellarKey = STELLAR_PUBLIC_KEY;
+  const secretStellarKey = STELLAR_SECRET_KEY;
+
   const { sbtIssuerPublicKey, sbtIssuerSecretKey } = sbtIssuerCreateKeys();
 
   const createAccountOp = Operation.createAccount({
     destination: sbtIssuerPublicKey,
-    startingBalance
+    startingBalance: STARTING_BALANCE
   });
 
   const setOptions = Operation.setOptions({
@@ -19,6 +22,7 @@ export const createIssuerAccount = async (): Promise<KeyPair | never> => {
   });
 
   try {
+    console.log('Creating the Issuer Account ...');
     await executeTransaction(publicStellarKey, [secretStellarKey, sbtIssuerSecretKey], [createAccountOp, setOptions]);
 
     console.log(`IssuerPublicKey: ${sbtIssuerPublicKey}, IssuerSecretKey ${sbtIssuerSecretKey}`);
