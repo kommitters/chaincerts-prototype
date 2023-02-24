@@ -1,0 +1,30 @@
+{
+  "home_info": {
+    "title": "Access and Explore Digital Certificates",
+    "information_paragraph": "Access the Chaincerts certificate display mode by utilizing any of the preconfigured Stellar account public key listed below."
+  },
+  "main_input": {
+    "placeholder": "Insert Stellar public key",
+    "enter": "Enter",
+    "error": "Something happened; Invalid key entered. Please check and try again."
+  },
+  "footer": {
+    "description": "© 2009 - 2023 kommit, All Rights Reserved - Chaincerts powered by kommit"
+  },
+  "profile": {
+    "description": "Stellar Public Key"
+  },
+  "carrousel": {
+    "description": "The certificates displayed on this screen are 3D and interactive, you can explore and view them from different angles, as well as interact with them to obtain more information. Enjoy the experience!",
+    "element": {
+      "title": "Kommit Chaincert",
+      "account": "Stellar account",
+      "created": "Created",
+      "xlm": "XLM reserved",
+      "assets_and_truslines": "Assets and trustlines"
+    }
+  },
+  "button": {
+    "back": "back"
+  }
+}
