@@ -1,9 +1,9 @@
 /* carousel styles */
 .carousel {
-  --carousel-height: 400px;
-  --carousel-width: 1000px;
-  --carousel-item-height: 441.45px;
-  --carousel-item-width: 387.61px;
+  --carousel-height: 25em;
+  --carousel-width: 40em;
+  --carousel-item-height: 27.5em;
+  --carousel-item-width: 24em;
 
   width: 100%;
 }
@@ -45,7 +45,6 @@
 }
 
 .carousel-item-3 {
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
   height: calc(var(--carousel-item-height) * 1.495);
   opacity: 1;
   left: 50%;
@@ -68,18 +67,15 @@
 }
 
 /* carousel button styles */
-.carousel-control {  
+.carousel-control {
   background-color: transparent;
-  border: 2px solid;
-  border-radius: 4px;
-  color: #aaa;
+  border: 0;
+  color: #fff;
   cursor: pointer;
-  height: 22px;
-  margin: 0 20px;
+  height: 100px;
   position: relative;
   transform: scale(1.5);
   transition: transform 0.5s ease-out;
-  width: 22px;
 }
 
 .carousel-control:hover {
@@ -87,57 +83,9 @@
 }
 
 .carousel-control-previous {
-  left: 10%;
+  left: 5%;
 }
 
 .carousel-control-next {
-  left: 85%;
-}
-
-/* previous button */
-.carousel-control-previous::after,
-.carousel-control-previous::before {
-  box-sizing: border-box; 
-  content: '';
-  display: block;
-  height: 8px;
-  position: absolute;
-  top: 5px
-}
-.carousel-control-previous::before {
-  background: currentColor;
-  border-radius: 2px;
-  right: 11px;
-  width: 2px;
-}
-.carousel-control-previous::after {
-  border-bottom: 4px solid transparent;
-  border-right: 5px solid;
-  border-top: 4px solid transparent;
-  right: 5px;
-  width: 0;
-}
-
-/* next button */
-.carousel-control-next::after,
-.carousel-control-next::before {
-  box-sizing: border-box;
-  content: "";
-  display: block;
-  height: 8px;
-  position: absolute;
-  top: 5px
-}
-.carousel-control-next::before {
-  background: currentColor;
-  border-radius: 2px;
-  left: 11px;
-  width: 2px;
-}
-.carousel-control-next::after {
-  border-bottom: 4px solid transparent;
-  border-left: 5px solid;
-  border-top: 4px solid transparent;
-  left: 5px;
-  width: 0;
+  left: 90%;
 }

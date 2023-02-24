@@ -1,3 +1,5 @@
+import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from 'react-icons/ai';
+import { IconContext } from 'react-icons';
 import './styles.css';
 
 interface CarouselProps {
@@ -15,11 +17,7 @@ const Carousel = ({ carouselData }: CarouselProps) => {
 
     const firstElement = carouselInView.shift();
     if (firstElement) carouselInView.push(firstElement);
-
-    const items = document.querySelectorAll('.carousel-item');
-    carouselInView.forEach((item, index) => {
-      items[index].className = `carousel-item carousel-item-${item}`;
-    });
+    moveItems();
   };
 
   const nextControl = (event: React.MouseEvent<Element, MouseEvent>) => {
@@ -29,7 +27,10 @@ const Carousel = ({ carouselData }: CarouselProps) => {
 
     const lastElement = carouselInView.pop();
     if (lastElement) carouselInView.unshift(lastElement);
+    moveItems();
+  };
 
+  const moveItems = () => {
     const items = document.querySelectorAll('.carousel-item');
     carouselInView.forEach((item, index) => {
       items[index].className = `carousel-item carousel-item-${item}`;
@@ -48,12 +49,20 @@ const Carousel = ({ carouselData }: CarouselProps) => {
         })}
       </div>
       <div className="carousel-controls">
-        <button
-          className="carousel-control carousel-control-previous"
-          data-name="previous"
-          onClick={previousControl}
-        ></button>
-        <button className="carousel-control carousel-control-next" data-name="next" onClick={nextControl}></button>
+        <button className="carousel-control carousel-control-previous" data-name="previous" onClick={previousControl}>
+          <IconContext.Provider value={{ size: '3em' }}>
+            <>
+              <AiOutlineDoubleLeft />
+            </>
+          </IconContext.Provider>
+        </button>
+        <button className="carousel-control carousel-control-next" data-name="next" onClick={nextControl}>
+          <IconContext.Provider value={{ size: '3em' }}>
+            <>
+              <AiOutlineDoubleRight />
+            </>
+          </IconContext.Provider>
+        </button>
       </div>
     </div>
   );
