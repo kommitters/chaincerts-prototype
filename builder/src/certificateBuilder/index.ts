@@ -1,18 +1,26 @@
-import { CertificateRequest, Certificate } from './interfaces';
-import { mentorCertificateTemplate } from './mentorCertificateTemplate';
+import { CertificateRequest, Certificate, OptionalRequestData } from './interfaces';
+import { mentorCertificateTemplate } from './certificateTemplates';
 import { validateCertificateRequest } from './validateCertificateRequest';
 
-export const generateCertificate = (certificateRequest: CertificateRequest): Certificate => {
-  const certificateRequestValidation = validateCertificateRequest(certificateRequest);
+const OPTIONAL_KOMMIT_MENTOR_DATA: OptionalRequestData = {
+  mentor_hours: '1000'
+};
 
-  if (!certificateRequestValidation.valid) {
-    throw new Error(certificateRequestValidation.error);
+export const generateCertificate = (certificateRequest: CertificateRequest): Certificate => {
+  const requestValidation = validateCertificateRequest(certificateRequest);
+
+  if (!requestValidation.valid) {
+    throw new Error(requestValidation.error);
   }
 
   const certificate = { ...mentorCertificateTemplate };
 
-  certificate.texts.forEach((text) => {
-    text.text = text.textFormatter.replace('[value]', certificateRequest[text.type as keyof CertificateRequest]);
+  certificate.texts.forEach((certificateText) => {
+    const { type, textFormatter } = certificateText;
+
+    const textValue = certificateRequest[type] ?? certificateRequest.data?.[type] ?? OPTIONAL_KOMMIT_MENTOR_DATA[type];
+
+    certificateText.text = textFormatter.replace('[value]', textValue as string);
   });
 
   return certificate;

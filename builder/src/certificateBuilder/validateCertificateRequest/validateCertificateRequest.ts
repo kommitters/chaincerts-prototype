@@ -2,7 +2,9 @@ import { CertificateRequest } from '../interfaces';
 
 const validStellarAccounts = ['GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB'];
 
-const certificateRequestProps = ['username', 'stellar_account', 'certificate_date', 'mentor_hours'];
+const certificateRequestProps = ['username', 'stellar_account', 'certificate_date', 'certificate_type'];
+
+const validCertificateTypes = ['kommit-mentor'];
 
 export const validateCertificateRequest = (certificateRequest: CertificateRequest) => {
   const missingProperty = getMissingProperty(certificateRequest);
@@ -11,12 +13,16 @@ export const validateCertificateRequest = (certificateRequest: CertificateReques
     return { valid: false, error: `The ${missingProperty} property is missing` };
   }
 
-  if (!validMentorHours(certificateRequest.mentor_hours)) {
-    return { valid: false, error: 'The mentor_hours is not a valid number' };
-  }
-
   if (!validStellarAccount(certificateRequest.stellar_account)) {
     return { valid: false, error: 'The stellar_account is not allowed' };
+  }
+
+  if (!validCertificateType(certificateRequest.certificate_type)) {
+    return { valid: false, error: 'The certificate_type is not allowed' };
+  }
+
+  if (certificateRequest.data?.mentor_hours && !validMentorHours(certificateRequest.data.mentor_hours)) {
+    return { valid: false, error: 'The mentor_hours is not a valid number' };
   }
 
   return { valid: true };
@@ -34,4 +40,8 @@ const validMentorHours = (hoursStr: string) => {
 
 const validStellarAccount = (stellarAccount: string) => {
   return validStellarAccounts.some((validStellarAccount) => validStellarAccount === stellarAccount);
+};
+
+const validCertificateType = (certificateType: string) => {
+  return validCertificateTypes.includes(certificateType);
 };
