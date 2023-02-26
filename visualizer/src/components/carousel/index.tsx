@@ -38,25 +38,40 @@ const Carousel = ({ carouselData }: CarouselProps) => {
   };
 
   return (
-    <div className="carousel">
-      <div className="carousel-container">
+    <div className="carousel" role="group" aria-label="carousel-container">
+      <div className="item-container">
         {carouselData.map((item, index) => {
           return (
-            <div key={index} className={`carousel-item carousel-item-${index + 1}`} data-index={index + 1}>
+            <div
+              key={index}
+              className={`carousel-item carousel-item-${index + 1}`}
+              data-index={index + 1}
+              data-testid={'carousel-item'}
+            >
               {item}
             </div>
           );
         })}
       </div>
       <div className="carousel-controls">
-        <button className="carousel-control carousel-control-previous" data-name="previous" onClick={previousControl}>
+        <button
+          className="carousel-control carousel-control-previous"
+          data-name="previous"
+          onClick={previousControl}
+          aria-label="previous-button"
+        >
           <IconContext.Provider value={{ size: '3em' }}>
             <>
               <AiOutlineDoubleLeft />
             </>
           </IconContext.Provider>
         </button>
-        <button className="carousel-control carousel-control-next" data-name="next" onClick={nextControl}>
+        <button
+          className="carousel-control carousel-control-next"
+          data-name="next"
+          onClick={nextControl}
+          aria-label="next-button"
+        >
           <IconContext.Provider value={{ size: '3em' }}>
             <>
               <AiOutlineDoubleRight />

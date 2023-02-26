@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-.carousel-container {
+.item-container {
   align-items: center;
   display: flex;
   min-height: var(--carousel-height);
