@@ -1,17 +1,12 @@
 import { Server } from 'stellar-sdk';
-
-const SERVER = new Server('https://horizon-testnet.stellar.org');
+import { getStellarServer } from './helper/getStellarServer';
 
 export const fetchAccountBalancesFromCode = async (publicKey: string, assetsCodePattern: string) => {
-  try {
-    const account = await SERVER.loadAccount(publicKey);
-    const assetsFiltered = filterBalancesByAssetCodePattern(account.balances, assetsCodePattern);
-    const assets = formatAssets(assetsFiltered);
+  const account = await getStellarServer().loadAccount(publicKey);
+  const assetsFiltered = filterBalancesByAssetCodePattern(account.balances, assetsCodePattern);
+  const assets = formatAssets(assetsFiltered);
 
-    return assets;
-  } catch (error) {
-    console.error(error);
-  }
+  return assets;
 };
 
 const filterBalancesByAssetCodePattern = (balances: any, assetsCodePattern: string) => {
