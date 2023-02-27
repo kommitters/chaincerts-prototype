@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "generateCert": "yarn install && yarn build && node dist/index.js",
+    "generateCert": "yarn install && yarn build && node --no-warnings dist/index.js",
     "test": "jest test",
     "test-silent": "jest test --silent",
     "dev": "nodemon src/index.ts",
@@ -42,6 +42,7 @@
     ]
   },
   "dependencies": {
-    "stellar-sdk": "^10.4.1"
+    "stellar-sdk": "^10.4.1",
+    "aws-sdk": "^2.1322.0"
   }
 }

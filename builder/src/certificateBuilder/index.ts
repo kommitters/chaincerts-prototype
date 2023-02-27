@@ -1,12 +1,13 @@
-import { CertificateRequest, Certificate, OptionalRequestData } from './interfaces';
+import { Certificate, CertificateRequest, OptionalRequestData } from './interfaces';
 import { mentorCertificateTemplate } from './certificateTemplates';
 import { validateCertificateRequest } from './validateCertificateRequest';
+import { uploadCertToIPFS } from '../ipfs';
 
 const OPTIONAL_KOMMIT_MENTOR_DATA: OptionalRequestData = {
   mentor_hours: '100'
 };
 
-export const generateCertificate = (certificateRequest: CertificateRequest): Certificate => {
+export const generateCertificate = async (certificateRequest: CertificateRequest): Promise<Certificate> => {
   const requestValidation = validateCertificateRequest(certificateRequest);
 
   if (!requestValidation.valid) {
@@ -22,6 +23,13 @@ export const generateCertificate = (certificateRequest: CertificateRequest): Cer
 
     certificateText.text = textFormatter.replace('[value]', textValue as string);
   });
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const CID = await uploadCertToIPFS(certificate);
+
+  console.log(
+    '\n✅ Congratulations! Your certificate has been successfully generated. To access it, simply use your Stellar public key on the Chaincerts visualizer at https://demo.chaincerts.co/.'
+  );
 
   return certificate;
 };
