@@ -1,14 +1,22 @@
 .nav-container {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
+  padding-top:
 }
 
 .logo {
-  
+
 }
 
 .button {
-  border-radius: 20px;
+  border-radius: 44px;
+  width: 154px;
+  height: 48px;
+  padding: 10px;
+}
+
+.textButton {
+  padding: 10px;
 }

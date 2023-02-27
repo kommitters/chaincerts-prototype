@@ -9,12 +9,10 @@ function Navbar() {
       <div className="logo">
         <img src={chaincertsLogo} alt="chaincerts-logo" />
       </div>
-      <div>
-        <button className="button">
-          <img src={leftArrowIcon} alt="left-arrow-icon" />
-          {t('certificates.button.back')}
-        </button>
-      </div>
+      <button className="button">
+        <img src={leftArrowIcon} alt="left-arrow-icon" />
+        <span className="textButton">{t('certificates.button.back')}</span>
+      </button>
     </div>
   );
 }
