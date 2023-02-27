@@ -15,7 +15,7 @@
 
 ## :dart: About ##
 
-The  **Chaincerts prototype** is the code that underpins the first deliverable for [**SCF#12**](https://communityfund.stellar.org/) . The prototype showcases how the issuance of certifications can be simplified by incorporating the properties of security, non-transferability, revocability, and verifiability through Soulbound Tokens on the Stellar network. Moreover, it offers an engaging visualization through interactive 3D renderings.
+The  **Chaincerts prototype** is the code that underpins the first deliverable for [**SCF#12**](https://communityfund.stellar.org/). The prototype showcases how the issuance of certifications can be simplified by incorporating the properties of security, non-transferability, revocability, and verifiability through Soulbound Tokens on the Stellar network. Moreover, it offers an engaging visualization through interactive 3D renderings.
   
   
 
