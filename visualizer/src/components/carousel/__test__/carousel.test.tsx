@@ -1,8 +1,10 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import Carousel from '../index';
 import carouselData from './factory/carouselData';
+import i18n from '../../../i18n';
+import { I18nextProvider } from 'react-i18next';
 
-describe('Carousel component', () => {
+describe('Carousel component when has several items', () => {
   beforeEach(() => {
     render(<Carousel carouselData={carouselData}></Carousel>);
   });
@@ -57,5 +59,25 @@ describe('Carousel component', () => {
     expect(carouselItems[2]).toHaveClass('carousel-item-4');
     expect(carouselItems[3]).toHaveClass('carousel-item-5');
     expect(carouselItems[4]).toHaveClass('carousel-item-1');
+  });
+});
+
+describe('Carousel component when has one or zero items', () => {
+  test('should build a unique item correctly', () => {
+    render(<Carousel carouselData={[<img key={1} />]}></Carousel>);
+    const carouselItems = screen.getAllByTestId('carousel-item', { exact: false });
+
+    expect(carouselItems.length).toEqual(1);
+    expect(carouselItems[0]).toHaveClass('carousel-item-2');
+  });
+
+  test('should show an error mesagge when there are no items', () => {
+    render(
+      <I18nextProvider i18n={i18n}>
+        <Carousel carouselData={[]}></Carousel>
+      </I18nextProvider>
+    );
+
+    expect(screen.getByText('There are no elements to show in the carousel')).toBeInTheDocument();
   });
 });

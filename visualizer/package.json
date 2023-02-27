@@ -62,10 +62,7 @@
     },
     "transform": {
       "^.+\\.tsx?$": [
-        "ts-jest",
-        {
-          "tsconfig": "./test/tsconfig.json"
-        }
+        "ts-jest"
       ]
     },
     "collectCoverage": true,
