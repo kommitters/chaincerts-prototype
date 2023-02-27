@@ -1,4 +1,4 @@
-import { Server, ServerApi } from 'stellar-sdk';
+import { ServerApi } from 'stellar-sdk';
 import { Balance } from './interfaces/Balance';
 import { getStellarServer } from './helper/getStellarServer';
 
@@ -19,7 +19,7 @@ const getPaymentOperation = (
   destinationAccount: string
 ) => {
   const paymentOperation = operations.records.find((operation: ServerApi.OperationRecord) => {
-    return operation.type == PAYMENT && operation.to == destinationAccount && operation.asset_code == assetCode;
+    return operation.type === PAYMENT && operation.to === destinationAccount && operation.asset_code === assetCode;
   });
 
   return paymentOperation;

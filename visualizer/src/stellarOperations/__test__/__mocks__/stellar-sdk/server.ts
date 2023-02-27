@@ -22,10 +22,10 @@ const operations = {
   ]
 };
 
-export const operationsCall = jest.fn().mockResolvedValue(operations);
-export const operationsForAccount = jest.fn().mockReturnValue({ call: operationsCall });
+export const operationsCallFn = jest.fn().mockResolvedValue(operations);
+export const operationsForAccountFn = jest.fn().mockReturnValue({ call: operationsCallFn });
 
-export const operationsFn = jest.fn().mockReturnValue({ forAccount: operationsForAccount });
+export const operationsFn = jest.fn().mockReturnValue({ forAccount: operationsForAccountFn });
 export const loadAccountFn = jest.fn().mockResolvedValue(account);
 
 export class Server {

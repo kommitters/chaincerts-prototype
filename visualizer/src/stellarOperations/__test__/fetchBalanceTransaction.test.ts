@@ -1,5 +1,5 @@
 import { fetchBalanceTransaction } from '../fetchBalanceTransaction';
-import { operationsFn, operationsForAccount, operationsCall } from './__mocks__/stellar-sdk/server';
+import { operationsFn, operationsForAccountFn, operationsCallFn } from './__mocks__/stellar-sdk/server';
 
 describe('fetchBalanceTransaction', () => {
   const BALANCE = { assetIssuer: 'ISSUER', assetCode: 'ASSET_CODE' };
@@ -11,8 +11,8 @@ describe('fetchBalanceTransaction', () => {
 
     expect(transaction).toEqual({ id: 'TRANSACTION_ID' });
     expect(operationsFn).toHaveBeenCalled();
-    expect(operationsForAccount).toHaveBeenCalled();
-    expect(operationsCall).toHaveBeenCalled();
+    expect(operationsForAccountFn).toHaveBeenCalled();
+    expect(operationsCallFn).toHaveBeenCalled();
   });
 
   it('should return an empty array if the destination account is nos related with the balance', async () => {

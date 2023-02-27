@@ -1,5 +1,3 @@
-import { Server } from 'stellar-sdk';
-
 import { getStellarServer } from './helper/getStellarServer';
 
 const CID = 'CID';

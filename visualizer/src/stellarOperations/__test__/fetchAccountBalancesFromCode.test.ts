@@ -8,7 +8,7 @@ describe('fetchAccountBalancesFromCode', () => {
   const ISSUER = 'ISSUER';
   const PUBLIC_KEY = 'PUBLIC_KEY';
 
-  it('should return all the code, name and issuer for each balance with the code', async () => {
+  it('should return all the code, name, and issuer for each balance with the code', async () => {
     const balances = await fetchAccountBalancesFromCode(PUBLIC_KEY, CERTIFICATION_CODE);
 
     expect(balances).toContainEqual({ assetCode: CERTIFICATION_CODE, assetType: ASSET_TYPE, assetIssuer: ISSUER });
