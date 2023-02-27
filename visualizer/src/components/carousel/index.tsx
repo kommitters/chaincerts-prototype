@@ -1,9 +1,10 @@
+import { ReactElement } from 'react';
 import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 import './styles.css';
 
 interface CarouselProps {
-  carouselData: any[];
+  carouselData: ReactElement[];
 }
 
 const Carousel = ({ carouselData }: CarouselProps) => {
@@ -39,46 +40,42 @@ const Carousel = ({ carouselData }: CarouselProps) => {
 
   return (
     <div className="carousel" role="group" aria-label="carousel-container">
-      <div className="item-container">
-        {carouselData.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className={`carousel-item carousel-item-${index + 1}`}
-              data-index={index + 1}
-              data-testid={'carousel-item'}
-            >
-              {item}
-            </div>
-          );
-        })}
-      </div>
-      <div className="carousel-controls">
-        <button
-          className="carousel-control carousel-control-previous"
-          data-name="previous"
-          onClick={previousControl}
-          aria-label="previous-button"
-        >
-          <IconContext.Provider value={{ size: '3em' }}>
-            <>
-              <AiOutlineDoubleLeft />
-            </>
-          </IconContext.Provider>
-        </button>
-        <button
-          className="carousel-control carousel-control-next"
-          data-name="next"
-          onClick={nextControl}
-          aria-label="next-button"
-        >
-          <IconContext.Provider value={{ size: '3em' }}>
-            <>
-              <AiOutlineDoubleRight />
-            </>
-          </IconContext.Provider>
-        </button>
-      </div>
+      {carouselData.map((item, index) => {
+        return (
+          <div
+            key={index}
+            className={`carousel-item carousel-item-${index + 1}`}
+            data-index={index + 1}
+            data-testid={'carousel-item'}
+          >
+            {item}
+          </div>
+        );
+      })}
+      <button
+        className="carousel-control carousel-control-previous"
+        data-name="previous"
+        onClick={previousControl}
+        aria-label="previous-button"
+      >
+        <IconContext.Provider value={{ size: '3em' }}>
+          <>
+            <AiOutlineDoubleLeft />
+          </>
+        </IconContext.Provider>
+      </button>
+      <button
+        className="carousel-control carousel-control-next"
+        data-name="next"
+        onClick={nextControl}
+        aria-label="next-button"
+      >
+        <IconContext.Provider value={{ size: '3em' }}>
+          <>
+            <AiOutlineDoubleRight />
+          </>
+        </IconContext.Provider>
+      </button>
     </div>
   );
 };

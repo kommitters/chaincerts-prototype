@@ -5,10 +5,6 @@
   --carousel-item-height: 27.5em;
   --carousel-item-width: 24em;
 
-  width: 100%;
-}
-
-.item-container {
   align-items: center;
   display: flex;
   min-height: var(--carousel-height);
@@ -34,9 +30,9 @@
 
 .carousel-item-2,
 .carousel-item-4 {
-  height: calc(var(--carousel-item-height) * 1);
+  height: var(--carousel-item-height);
   opacity: 1;
-  width: calc(var(--carousel-item-width) * 1);
+  width: var(--carousel-item-width);
   z-index: 1;
 }
 
@@ -45,10 +41,10 @@
 }
 
 .carousel-item-3 {
-  height: calc(var(--carousel-item-height) * 1.495);
+  height: calc(var(--carousel-item-height) * 1.5);
   opacity: 1;
   left: 50%;
-  width: calc(var(--carousel-item-width) * 1.9787);
+  width: calc(var(--carousel-item-width) * 1.9);
   z-index: 2;
 }
 
@@ -60,14 +56,16 @@
   left: 98%;
 }
 
+/* carousel button styles */
 .carousel-controls {
   position: absolute;
   width: 100%;
   top: 50%;
 }
 
-/* carousel button styles */
 .carousel-control {
+  position: absolute;
+  top: 50%;
   background-color: transparent;
   border: 0;
   color: #fff;
@@ -83,9 +81,9 @@
 }
 
 .carousel-control-previous {
-  left: 5%;
+  left: -50%;
 }
 
 .carousel-control-next {
-  left: 90%;
+  left: 135.5%;
 }
