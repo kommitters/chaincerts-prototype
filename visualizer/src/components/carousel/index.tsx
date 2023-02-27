@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { t } from 'i18next';
 import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 import './styles.css';
@@ -13,9 +14,6 @@ const Carousel = ({ carouselData }: CarouselProps) => {
 
   const previousControl = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
-    const lastElement = carouselData.pop();
-    if (lastElement) carouselData.unshift(lastElement);
-
     const firstElement = carouselInView.shift();
     if (firstElement) carouselInView.push(firstElement);
     moveItems();
@@ -23,24 +21,24 @@ const Carousel = ({ carouselData }: CarouselProps) => {
 
   const nextControl = (event: React.MouseEvent<Element, MouseEvent>) => {
     event.preventDefault();
-    const firstElement = carouselData.shift();
-    if (firstElement) carouselData.push(firstElement);
-
     const lastElement = carouselInView.pop();
     if (lastElement) carouselInView.unshift(lastElement);
+    const items = document.querySelectorAll('.carousel-item');
     moveItems();
   };
 
   const moveItems = () => {
     const items = document.querySelectorAll('.carousel-item');
-    carouselInView.forEach((item, index) => {
-      items[index].className = `carousel-item carousel-item-${item}`;
-    });
+    if (items.length > 1) {
+      carouselInView.forEach((item, index) => {
+        items[index].className = `carousel-item carousel-item-${item}`;
+      });
+    }
   };
 
-  return (
-    <div className="carousel" role="group" aria-label="carousel-container">
-      {carouselData.map((item, index) => {
+  const buildItems = () => {
+    if (carouselData.length > 1) {
+      return carouselData.map((item, index) => {
         return (
           <div
             key={index}
@@ -51,32 +49,50 @@ const Carousel = ({ carouselData }: CarouselProps) => {
             {item}
           </div>
         );
-      })}
-      <button
-        className="carousel-control carousel-control-previous"
-        data-name="previous"
-        onClick={previousControl}
-        aria-label="previous-button"
-      >
-        <IconContext.Provider value={{ size: '3em' }}>
-          <>
-            <AiOutlineDoubleLeft />
-          </>
-        </IconContext.Provider>
-      </button>
-      <button
-        className="carousel-control carousel-control-next"
-        data-name="next"
-        onClick={nextControl}
-        aria-label="next-button"
-      >
-        <IconContext.Provider value={{ size: '3em' }}>
-          <>
-            <AiOutlineDoubleRight />
-          </>
-        </IconContext.Provider>
-      </button>
-    </div>
+      });
+    }
+
+    return (
+      <div className={`carousel-item carousel-item-2`} data-index={1} data-testid={'carousel-item'}>
+        {carouselData[0]}
+      </div>
+    );
+  };
+
+  return (
+    <>
+      {carouselData.length == 0 ? (
+        <div className={`error-message`}>{t('certificates.carousel.error_message')}</div>
+      ) : (
+        <div className="carousel" role="group" aria-label="carousel-container">
+          {buildItems()}
+          <button
+            className="carousel-control carousel-control-previous"
+            data-name="previous"
+            onClick={previousControl}
+            aria-label="previous-button"
+          >
+            <IconContext.Provider value={{ size: '3em' }}>
+              <>
+                <AiOutlineDoubleLeft />
+              </>
+            </IconContext.Provider>
+          </button>
+          <button
+            className="carousel-control carousel-control-next"
+            data-name="next"
+            onClick={nextControl}
+            aria-label="next-button"
+          >
+            <IconContext.Provider value={{ size: '3em' }}>
+              <>
+                <AiOutlineDoubleRight />
+              </>
+            </IconContext.Provider>
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 
