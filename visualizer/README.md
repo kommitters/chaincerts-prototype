@@ -19,6 +19,19 @@ You can install asdf [here](https://asdf-vm.com/guide/getting-started.html)
 
 ## 🚀 Run the app
 
+You can use these accounts to review different scenarios on the visualizer app, the provided accounts already contain multiple certificates generated.
+> **Demo user 1**
+>
+> GB6KONY6F5U3HWSQSPCUX2HJPPENEBP5P77ALW3HPABUHP6YQNZUFZHW
+>
+> SA3ECAXIZU3VMGJSBNQVWTDVIPY5FQP6Y5SARW4MCB5EMQCZC7EDVD3X
+
+> **Demo user 2**
+>
+> GCQXTWFTNV4ILHREYU7OBU3SYBGPF4EXFCI2GEB47CGYENN2AWC4OOBX
+>
+> SBSEIEA3LZCSCJNO66CFLJGLN6J2KDIEVDCN76VRJQ2GSQUZTQVPOB4J
+
 - `yarn install`: Install dependencies
 - `yarn dev`: Runs the project in dev and restarts with each change
 - `yarn build`: Generate production build
