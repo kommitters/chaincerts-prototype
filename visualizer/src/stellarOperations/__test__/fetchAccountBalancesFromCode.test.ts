@@ -20,4 +20,12 @@ describe('fetchAccountBalancesFromCode', () => {
 
     expect(balances).toEqual([]);
   });
+
+  it('should return and empty array if the account was not found', async () => {
+    loadAccountFn.mockReturnValueOnce({});
+
+    const balances = await fetchAccountBalancesFromCode(PUBLIC_KEY, INVALID_CERTIFICATION_CODE);
+
+    expect(balances).toEqual([]);
+  });
 });
