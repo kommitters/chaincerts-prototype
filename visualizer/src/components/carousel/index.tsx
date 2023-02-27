@@ -1,14 +1,14 @@
-import { ReactElement } from 'react';
+import PropTypes, { InferProps } from 'prop-types';
 import { t } from 'i18next';
 import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 import './styles.css';
 
-interface CarouselProps {
-  carouselData: ReactElement[];
-}
+const propTypes = {
+  carouselData: PropTypes.arrayOf(PropTypes.element).isRequired
+};
 
-const Carousel = ({ carouselData }: CarouselProps) => {
+const Carousel = ({ carouselData }: InferProps<typeof propTypes>) => {
   const totalItems = carouselData.length;
   const carouselInView = [...Array(totalItems).keys()].map((x) => ++x);
 
@@ -62,7 +62,7 @@ const Carousel = ({ carouselData }: CarouselProps) => {
   return (
     <>
       {carouselData.length == 0 ? (
-        <div className={`error-message`}>{t('certificates.carousel.error_message')}</div>
+        <div className="error-message">{t('certificates.carousel.error_message')}</div>
       ) : (
         <div className="carousel" role="group" aria-label="carousel-container">
           {buildItems()}
@@ -95,5 +95,7 @@ const Carousel = ({ carouselData }: CarouselProps) => {
     </>
   );
 };
+
+Carousel.propTypes = propTypes;
 
 export default Carousel;
