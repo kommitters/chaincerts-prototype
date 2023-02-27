@@ -1,0 +1,16 @@
+.profile {
+  display: flex;
+  background-color: #1D1429;
+  color: #FFFFFF;
+  gap: 1em;
+  padding: 24px
+}
+
+.avatar {
+  width: 4em;
+  height: 4em;
+}
+
+.profile-content {
+
+}
