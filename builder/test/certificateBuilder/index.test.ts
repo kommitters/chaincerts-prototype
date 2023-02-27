@@ -4,8 +4,8 @@ describe('generateCertificate', () => {
   it('should throw an exception if any property is missing', () => {
     const certificateRequest = {
       username: 'John Doe',
-      certificate_date: '2022-02-21',
-      certificate_type: 'kommit-mentor'
+      cert_date: '2022-02-21',
+      cert_type: 'kommit-mentor'
     };
 
     expect(() => {
@@ -16,9 +16,9 @@ describe('generateCertificate', () => {
   it('should throw an exception if mentor_hours is not a valid number', () => {
     const certificateRequest = {
       username: 'John Doe',
-      certificate_date: '2022-02-21',
+      cert_date: '2022-02-21',
       stellar_account: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
-      certificate_type: 'kommit-mentor',
+      cert_type: 'kommit-mentor',
       data: {
         mentor_hours: 'test'
       }
@@ -32,9 +32,9 @@ describe('generateCertificate', () => {
   it('should throw an exception if the stellar_account is not an allowed account', () => {
     const certificateRequest = {
       username: 'John Doe',
-      certificate_date: '2022-02-21',
+      cert_date: '2022-02-21',
       stellar_account: 'DTHLHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
-      certificate_type: 'kommit-mentor'
+      cert_type: 'kommit-mentor'
     };
 
     expect(() => {
@@ -42,25 +42,25 @@ describe('generateCertificate', () => {
     }).toThrow('The stellar_account is not allowed');
   });
 
-  it('should throw an exception if the certificate_type is not an allowed certificate type', () => {
+  it('should throw an exception if the cert_type is not an allowed certificate type', () => {
     const certificateRequest = {
       username: 'John Doe',
-      certificate_date: '2022-02-21',
+      cert_date: '2022-02-21',
       stellar_account: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
-      certificate_type: 'senior-certificate'
+      cert_type: 'senior-certificate'
     };
 
     expect(() => {
       generateCertificate(certificateRequest as never);
-    }).toThrow('The certificate_type is not allowed');
+    }).toThrow('The cert_type is not allowed');
   });
 
   it('should replace the values in the template if the certificate request is valid', () => {
     const certificateRequest = {
       username: 'John Doe',
-      certificate_date: '2022-02-21',
+      cert_date: '2022-02-21',
       stellar_account: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
-      certificate_type: 'kommit-mentor',
+      cert_type: 'kommit-mentor',
       data: {
         mentor_hours: '2000'
       }
@@ -101,7 +101,7 @@ describe('generateCertificate', () => {
           text: 'Stellar Account: GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB'
         },
         {
-          type: 'certificate_date',
+          type: 'cert_date',
           textFormatter: '////////[value]',
           fontSize: 0.0149,
           position: { x: 2.4, y: -1.4, z: -0.7 },
@@ -120,9 +120,9 @@ describe('generateCertificate', () => {
   it('should add the default mentor_hour data if it is not supplied and generate the certificate', () => {
     const certificateRequest = {
       username: 'John Doe',
-      certificate_date: '2022-02-21',
+      cert_date: '2022-02-21',
       stellar_account: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
-      certificate_type: 'kommit-mentor'
+      cert_type: 'kommit-mentor'
     };
 
     const expectedCertificate = {
@@ -148,7 +148,7 @@ describe('generateCertificate', () => {
           fontSize: 0.01,
           position: { x: 2.2, y: 0, z: -0.7 },
           color: '0xffffff',
-          text: '1000 hours'
+          text: '100 hours'
         },
         {
           type: 'stellar_account',
@@ -160,7 +160,7 @@ describe('generateCertificate', () => {
           text: 'Stellar Account: GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB'
         },
         {
-          type: 'certificate_date',
+          type: 'cert_date',
           textFormatter: '////////[value]',
           fontSize: 0.0149,
           position: { x: 2.4, y: -1.4, z: -0.7 },

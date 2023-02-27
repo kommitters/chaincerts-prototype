@@ -2,7 +2,7 @@ import { CertificateRequest } from '../interfaces';
 
 const validStellarAccounts = ['GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB'];
 
-const certificateRequestProps = ['username', 'stellar_account', 'certificate_date', 'certificate_type'];
+const certificateRequestProps = ['username', 'stellar_account', 'cert_date', 'cert_type'];
 
 const validCertificateTypes = ['kommit-mentor'];
 
@@ -17,8 +17,8 @@ export const validateCertificateRequest = (certificateRequest: CertificateReques
     return { valid: false, error: 'The stellar_account is not allowed' };
   }
 
-  if (!validCertificateType(certificateRequest.certificate_type)) {
-    return { valid: false, error: 'The certificate_type is not allowed' };
+  if (!validCertificateType(certificateRequest.cert_type)) {
+    return { valid: false, error: 'The cert_type is not allowed' };
   }
 
   if (certificateRequest.data?.mentor_hours && !validMentorHours(certificateRequest.data.mentor_hours)) {

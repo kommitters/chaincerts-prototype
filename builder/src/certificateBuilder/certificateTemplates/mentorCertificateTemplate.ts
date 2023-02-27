@@ -35,7 +35,7 @@ export const mentorCertificateTemplate: Certificate = {
       text: ''
     },
     {
-      type: 'certificate_date',
+      type: 'cert_date',
       textFormatter: '////////[value]',
       fontSize: 0.0149,
       position: { x: 2.4, y: -1.4, z: -0.7 },

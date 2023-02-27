@@ -50,31 +50,33 @@ To fix lint issues, use:
 
 # 📜 How to generate your certificate
 
-To generate a certificate, you need to provide some information such as the beneficiary's name, Stellar account, certificate type, and any additional data required for the certificate.
+To obtain a certificate, please provide the following information: the beneficiary's full name, the Stellar account, the type of certificate requested, and any other relevant data necessary for the certification process.
 
 ## Available params:
 
-- `username`: the beneficiary's name.
-- `stellar-account`: the beneficiary's stellar account.
-- `certificate-type`: certificate type you want to generate. Currently, the only available option is "kommit-mentor".
-- `data [optional]`: If required, fill in any additional data needed for the certificate. For the "kommit-mentor" certificate type, you must provide the number of mentored hours. If you don't provide this information, the default number of hours will be set to 1000.
+- `username`: The beneficiary's name.
+- `stellar-account`: The public key of the beneficiary's Stellar account.
+- `cert-type`: Certificate type you want to generate. Currently, the only available option is "kommit-mentor".
+- `cert-date`: The date on which the certificate is issued.
+- `data [optional]`: Providing additional details is necessary for some certificates; otherwise, default information will be used according to their guidelines. For example, the `kommit-mentor` certificate requires the number of mentoring hours. If you do not provide this, the default will be 100 hour.
+
 
 ## Generating a certificate
 
 To generate a kommit-mentor certificate, run the following command:
 
 ```bash
-yarn generateCert '{"username": "John Doe","certificate_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB", "certificate_type": "kommit-mentor"}'
+yarn generateCert '{"username": "John Doe","cert_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB", "cert_type": "kommit-mentor"}'
 ```
 
 To generate a kommit-mentor certificate with additional data, use:
 
 ```bash
-yarn generateCert '{"username": "John Doe","certificate_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB", "certificate_type": "kommit-mentor", "data": {"mentor_hours": 500}}'
+yarn generateCert '{"username": "John Doe","cert_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB", "cert_type": "kommit-mentor", "data": {"mentor_hours": 500}}'
 ```
 
 After running the command, you should see the following output:
 
 ```
-Congratulations! Your certificate has been successfully generated. To access it, simply use your Stellar public key in the Chaincerts visualizer at https://demo.chaincerts.co/.
+Congratulations! Your certificate has been successfully generated. To access it, simply use your Stellar public key on the Chaincerts visualizer at https://demo.chaincerts.co/.
 ```

@@ -3,7 +3,7 @@ import { mentorCertificateTemplate } from './certificateTemplates';
 import { validateCertificateRequest } from './validateCertificateRequest';
 
 const OPTIONAL_KOMMIT_MENTOR_DATA: OptionalRequestData = {
-  mentor_hours: '1000'
+  mentor_hours: '100'
 };
 
 export const generateCertificate = (certificateRequest: CertificateRequest): Certificate => {
