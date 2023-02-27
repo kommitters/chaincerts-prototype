@@ -1,5 +1,5 @@
 import leftArrowIcon from '/icons/leftArrowIcon.svg';
-import chaincertsLogo from '/images/chaincertsLogo.png';
+import chaincertsLogo from '/icons/chaincertsLogo.svg';
 import { t } from 'i18next';
 import './styles.css';
 
