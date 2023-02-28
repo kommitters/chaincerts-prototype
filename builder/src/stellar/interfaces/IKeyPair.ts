@@ -1,4 +1,4 @@
-export interface KeyPair {
+export interface IKeyPair {
   sbtIssuerPublicKey: string;
   sbtIssuerSecretKey: string;
 }
