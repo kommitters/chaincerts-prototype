@@ -5,4 +5,5 @@ export class Operation {
   static manageData = jest.fn();
   static payment = jest.fn();
   static setTrustLineFlags = jest.fn();
+  static clawback = jest.fn();
 }
