@@ -1,0 +1,1 @@
+export { mentorCertificateTemplate } from './mentorCertificateTemplate';
