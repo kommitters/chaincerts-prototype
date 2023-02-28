@@ -23,7 +23,6 @@ const Carousel = ({ carouselData }: InferProps<typeof propTypes>) => {
     event.preventDefault();
     const lastElement = carouselInView.pop();
     if (lastElement) carouselInView.unshift(lastElement);
-    const items = document.querySelectorAll('.carousel-item');
     moveItems();
   };
 
