@@ -1,7 +1,7 @@
-import { createIssuerAccount, sendSBT, saveCID, establishNonTransferableSBT } from './services/';
-import { KeyPair } from './interfaces/';
-import { DISTRIBUTOR_PUBLIC_KEY, DISTRIBUTOR_SECRET_KEY } from '../configs/credentials';
 import { Asset } from 'stellar-sdk';
+import { IKeyPair } from './interfaces/';
+import { DISTRIBUTOR_PUBLIC_KEY, DISTRIBUTOR_SECRET_KEY } from '../configs/credentials';
+import { createIssuerAccount, sendSBT, saveCID, establishNonTransferableSBT } from './services';
 
 export const createSBT = async (
   CID: string,
@@ -14,7 +14,7 @@ export const createSBT = async (
     const distributorPublicKey = DISTRIBUTOR_PUBLIC_KEY;
     const distributorSecretKey = DISTRIBUTOR_SECRET_KEY;
 
-    const { sbtIssuerPublicKey, sbtIssuerSecretKey }: KeyPair = await createIssuerAccount();
+    const { sbtIssuerPublicKey, sbtIssuerSecretKey }: IKeyPair = await createIssuerAccount();
 
     const SBT = new Asset(assetCode, sbtIssuerPublicKey);
 
