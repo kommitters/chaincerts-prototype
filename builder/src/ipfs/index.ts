@@ -1,4 +1,4 @@
-import { S3 } from './providers/S3';
+import { S3 } from './providers';
 import { Certificate } from '../certificateBuilder/interfaces/Certificate';
 import { IPFS_CERTS_BUCKET_NAME } from '../configs/credentials';
 
@@ -18,7 +18,7 @@ export const uploadCertToIPFS = async (certificate: Certificate): Promise<string
     }).promise();
 
     const CID = fileInfo.$response.httpResponse.headers['x-amz-meta-cid'];
-    console.log(`the certificate has been successfully uploaded to Filebase with the following CID: ${CID}`);
+    console.log(`The certificate has been successfully uploaded to Filebase with the following CID: ${CID}`);
 
     return CID;
   } catch (error) {

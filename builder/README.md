@@ -66,13 +66,13 @@ To obtain a certificate, please provide the following information: the beneficia
 To generate a kommit-mentor certificate, run the following command:
 
 ```bash
-yarn generateCert '{"username": "John Doe","cert_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB", "cert_type": "kommit-mentor"}'
+yarn generate-cert '{"username": "John Doe","cert_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB", "cert_type": "kommit-mentor"}'
 ```
 
 To generate a kommit-mentor certificate with additional data, use:
 
 ```bash
-yarn generateCert '{"username": "John Doe","cert_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB", "cert_type": "kommit-mentor", "data": {"mentor_hours": 500}}'
+yarn generate-cert '{"username": "John Doe","cert_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB", "cert_type": "kommit-mentor", "data": {"mentor_hours": 500}}'
 ```
 
 After running the command, you should see the following output:

@@ -7,6 +7,9 @@ const OPTIONAL_KOMMIT_MENTOR_DATA: OptionalRequestData = {
   mentor_hours: '100'
 };
 
+const SUCCESS_MESAGE =
+  '\n✅ Congratulations! Your certificate has been successfully generated. To access it, simply use your Stellar public key on the Chaincerts visualizer at https://demo.chaincerts.co/.';
+
 export const generateCertificate = async (certificateRequest: CertificateRequest): Promise<Certificate> => {
   const requestValidation = validateCertificateRequest(certificateRequest);
 
@@ -27,9 +30,7 @@ export const generateCertificate = async (certificateRequest: CertificateRequest
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const CID = await uploadCertToIPFS(certificate);
 
-  console.log(
-    '\n✅ Congratulations! Your certificate has been successfully generated. To access it, simply use your Stellar public key on the Chaincerts visualizer at https://demo.chaincerts.co/.'
-  );
+  console.log(SUCCESS_MESAGE);
 
   return certificate;
 };

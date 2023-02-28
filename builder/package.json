@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "generateCert": "yarn install && yarn build && node --no-warnings dist/index.js",
+    "generate-cert": "yarn install && yarn build && node --no-warnings dist/index.js",
     "test": "jest test",
     "test-silent": "jest test --silent",
     "dev": "nodemon src/index.ts",
