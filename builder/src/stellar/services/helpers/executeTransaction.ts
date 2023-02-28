@@ -1,7 +1,8 @@
-import { Server, TransactionBuilder, Keypair, xdr, Horizon } from 'stellar-sdk';
+import { TransactionBuilder, Keypair, xdr, Horizon } from 'stellar-sdk';
+import { NETWORK_PASSPHRASE } from '../../../configs/consts';
+import { getStellarServer } from './getStellarServer';
 
-const SERVER = new Server('https://horizon-testnet.stellar.org');
-const NETWORK_PASSPHRASE = 'Test SDF Network ; September 2015';
+const SERVER = getStellarServer();
 
 export const executeTransaction = async (
   publicKey: string,
