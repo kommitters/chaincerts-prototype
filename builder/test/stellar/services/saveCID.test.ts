@@ -1,9 +1,9 @@
 import { Operation } from '../../__mocks__/stellar-sdk';
 import { saveCID } from '../../../src/stellar/services';
-import { executeTransaction } from '../../../src/stellar/services/executeTransaction';
+import { executeTransaction } from '../../../src/stellar/services/helpers';
 import { Horizon } from 'stellar-sdk';
 
-jest.mock('../../../src/stellar/services/executeTransaction');
+jest.mock('../../../src/stellar/services/helpers');
 
 describe('saveCID', () => {
   const executeTransactionMock = jest.mocked(executeTransaction);

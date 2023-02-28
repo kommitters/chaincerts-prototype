@@ -1,4 +1,4 @@
-import { executeTransaction } from '../../../../src/stellar/services/executeTransaction';
+import { executeTransaction } from '../../../../src/stellar/services/helpers';
 import { Operation } from '../../../__mocks__/stellar-sdk';
 import { loadAccountFn, fetchBaseFeeFn, submitTransactionFn } from '../../../__mocks__/stellar-sdk/types/server';
 

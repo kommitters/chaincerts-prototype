@@ -1,11 +1,10 @@
 import { Operation, AuthRevocableFlag, AuthClawbackEnabledFlag, AuthFlag, Keypair } from 'stellar-sdk';
-import { KeyPair } from '../interfaces';
-import { executeTransaction } from '../services/executeTransaction';
+import { IKeyPair } from '../interfaces';
+import { executeTransaction } from './helpers';
 import { STELLAR_PUBLIC_KEY, STELLAR_SECRET_KEY } from '../../configs/credentials';
+import { STARTING_BALANCE } from '../../configs/consts';
 
-const STARTING_BALANCE = '3';
-
-export const createIssuerAccount = async (): Promise<KeyPair | never> => {
+export const createIssuerAccount = async (): Promise<IKeyPair | never> => {
   const publicStellarKey = STELLAR_PUBLIC_KEY;
   const secretStellarKey = STELLAR_SECRET_KEY;
 
@@ -33,7 +32,7 @@ export const createIssuerAccount = async (): Promise<KeyPair | never> => {
   }
 };
 
-const sbtIssuerCreateKeys = (): KeyPair => {
+const sbtIssuerCreateKeys = (): IKeyPair => {
   const sbtIssuerKeyPair = Keypair.random();
   const sbtIssuerPublicKey = sbtIssuerKeyPair.publicKey();
   const sbtIssuerSecretKey = sbtIssuerKeyPair.secret();

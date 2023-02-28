@@ -1,5 +1,5 @@
 import { Asset, Operation } from 'stellar-sdk';
-import { executeTransaction } from './executeTransaction';
+import { executeTransaction } from './helpers';
 
 export const establishNonTransferableSBT = async (
   sbtIssuerPublicKey: string,

@@ -1,7 +1,6 @@
 import { Asset, Operation } from 'stellar-sdk';
-import { executeTransaction } from './executeTransaction';
-
-const AMOUNT = '0.0000001';
+import { AMOUNT } from '../../configs/consts';
+import { executeTransaction } from './helpers';
 
 export const sendSBT = async (
   senderPublicKey: string,
