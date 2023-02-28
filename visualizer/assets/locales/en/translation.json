@@ -19,7 +19,7 @@
       "created": "Created",
       "xlm": "XLM reserved",
       "assets_and_truslines": "Assets and trustlines",
-      "error_message": "There are no elements to show in the carousel"
+      "not_found_message": "There are no certificates associated with the user"
     },
     "profile": {
       "description": "Stellar Public Key"

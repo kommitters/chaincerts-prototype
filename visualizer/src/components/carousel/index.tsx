@@ -62,7 +62,7 @@ const Carousel = ({ carouselData }: InferProps<typeof propTypes>) => {
   return (
     <>
       {carouselData.length == 0 ? (
-        <div className="error-message">{t('certificates.carousel.error_message')}</div>
+        <div className="not-found-message">{t('certificates.carousel.not_found_message')}</div>
       ) : (
         <div className="carousel" role="group" aria-label="carousel-container">
           {buildItems()}

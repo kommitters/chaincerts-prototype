@@ -78,6 +78,6 @@ describe('Carousel component when has one or zero items', () => {
       </I18nextProvider>
     );
 
-    expect(screen.getByText('There are no elements to show in the carousel')).toBeInTheDocument();
+    expect(screen.getByText('There are no certificates associated with the user')).toBeInTheDocument();
   });
 });

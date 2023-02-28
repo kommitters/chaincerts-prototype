@@ -90,10 +90,11 @@
 }
 
 /* Error message styles */
-.error-message {
-  background-color: red;
+.not-found-message {
+  background-color: #1D1429;
   margin: 0 auto;
   text-align: center;
-  width: 24em;
+  width: 30em;
   font-family: 'Poppins', sans-serif;
+  color: #FFFFFF;
 }
