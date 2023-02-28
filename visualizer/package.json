@@ -48,6 +48,7 @@
     "jest": "^29.4.3",
     "jest-environment-jsdom": "^29.4.3",
     "prettier": "^2.8.4",
+    "prop-types": "^15.8.1",
     "react-i18next": "^12.2.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
