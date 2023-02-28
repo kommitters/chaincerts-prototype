@@ -1,0 +1,1 @@
+export { uploadCertToIPFS } from './ipfs';
