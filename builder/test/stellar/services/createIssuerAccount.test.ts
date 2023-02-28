@@ -1,8 +1,8 @@
 import { createIssuerAccount } from '../../../src/stellar/services/index';
-import { executeTransaction } from '../../../src/stellar/services/executeTransaction';
+import { executeTransaction } from '../../../src/stellar/services/helpers';
 import { Horizon } from 'stellar-sdk';
 
-jest.mock('../../../src/stellar/services/executeTransaction');
+jest.mock('../../../src/stellar/services/helpers');
 
 describe('createIssuerAccount', () => {
   const executeTransactionMock = jest.mocked(executeTransaction);
