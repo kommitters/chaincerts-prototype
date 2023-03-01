@@ -1,9 +1,7 @@
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
 
-async function loadMaterial(router) {
+export const loadMaterial = async (router) => {
   const loader = new MTLLoader();
 
   return loader.loadAsync(router);
-}
-
-export { loadMaterial };
+};

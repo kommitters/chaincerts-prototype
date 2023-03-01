@@ -2,7 +2,7 @@ import { Clock } from 'three';
 
 const clock = new Clock();
 
-class Loop {
+export class Loop {
   constructor(camera, scene, renderer) {
     this.camera = camera;
     this.scene = scene;
@@ -33,5 +33,3 @@ class Loop {
     }
   }
 }
-
-export { Loop };

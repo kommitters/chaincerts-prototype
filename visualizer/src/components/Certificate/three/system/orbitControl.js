@@ -1,6 +1,6 @@
 import { OrbitControls as OrbitC } from 'three/examples/jsm/controls/OrbitControls.js';
 
-function createOrbitControl(camera, domElement) {
+export const createOrbitControl = (camera, domElement) => {
   const controls = new OrbitC(camera, domElement);
 
   controls.maxDistance = 20;
@@ -10,6 +10,4 @@ function createOrbitControl(camera, domElement) {
   controls.tick = () => controls.update();
 
   return controls;
-}
-
-export { createOrbitControl };
+};

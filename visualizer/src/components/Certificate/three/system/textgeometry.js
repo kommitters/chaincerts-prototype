@@ -17,7 +17,7 @@
 
 import { ExtrudeGeometry } from 'three';
 
-class TextGeometry extends ExtrudeGeometry {
+export class TextGeometry extends ExtrudeGeometry {
   constructor(text, parameters = {}) {
     const font = parameters.font;
 
@@ -41,5 +41,3 @@ class TextGeometry extends ExtrudeGeometry {
     this.type = 'TextGeometry';
   }
 }
-
-export { TextGeometry };

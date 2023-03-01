@@ -2,6 +2,7 @@ import { FileLoader, Loader, ShapePath } from 'three';
 
 class FontLoader extends Loader {
   load(url, onLoad, onProgress, onError) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const scope = this;
 
     const loader = new FileLoader(this.manager);
