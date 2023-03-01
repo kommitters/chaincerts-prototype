@@ -16,6 +16,9 @@
 
 You can install asdf [here](https://asdf-vm.com/guide/getting-started.html)
 
+## ⚒️ Copy .env file
+
+- `cp .env.example .env` : In the root of the visualizer project
 
 ## 🚀 Run the app
 
