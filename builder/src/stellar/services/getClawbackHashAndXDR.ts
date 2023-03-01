@@ -3,15 +3,14 @@ import { IXDR } from '../interfaces';
 import { NETWORK_PASSPHRASE, AMOUNT } from '../../configs/consts';
 import { getStellarServer } from './helpers';
 
-const SERVER = getStellarServer();
-
 export const getClawbackHashAndXDR = async (
   issuerPublicKey: string,
   recipientPublicKey: string,
   SBT: Asset
 ): Promise<IXDR> => {
-  const account = await SERVER.loadAccount(issuerPublicKey);
-  const fee = String(await SERVER.fetchBaseFee());
+  const server = getStellarServer();
+  const account = await server.loadAccount(issuerPublicKey);
+  const fee = String(await server.fetchBaseFee());
   account.incrementSequenceNumber();
   account.incrementSequenceNumber();
 

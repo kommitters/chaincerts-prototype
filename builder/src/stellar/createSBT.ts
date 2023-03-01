@@ -1,6 +1,6 @@
+import { Asset } from 'stellar-sdk';
 import { IKeyPair } from './interfaces/';
 import { DISTRIBUTOR_PUBLIC_KEY, DISTRIBUTOR_SECRET_KEY } from '../configs/credentials';
-import { Asset } from 'stellar-sdk';
 import {
   createIssuerAccount,
   sendSBT,
