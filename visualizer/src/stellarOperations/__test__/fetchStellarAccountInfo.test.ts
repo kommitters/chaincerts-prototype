@@ -1,10 +1,6 @@
 import { fetchStellarAccountInfo } from '../fetchStellarAccountInfo';
 import { loadAccountFn } from './__mocks__/stellar-sdk/server';
 
-jest.mock('../../constants', () => ({
-  CERT_ASSET: 'CERTIFICATION_CODE'
-}));
-
 describe('fetchStellarAccountInfo', () => {
   const ASSET_TYPE = 'ASSET_TYPE';
   const CERTIFICATION_CODE = 'CERTIFICATION_CODE';
