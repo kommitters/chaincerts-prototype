@@ -1,7 +1,3 @@
-.wrapper > * {
-  font-family: 'Hanken Grotesk', sans-serif;
-}
-
 .main-input-container {
   display: flex;
   justify-content: space-between;
@@ -14,19 +10,19 @@
   background-color: #120D1E;
   border-radius: 0.313em;
   border: solid rgba(255, 255, 255, 0.15);
-  max-width: 35.75em;
-  min-height: 3.75em;
+  width: 100%;
+  height: 100%;
 }
 
 .main-input {
   font-family: 'Hanken Grotesk', sans-serif;
-  flex: 1;
   border: none;
   background-color: #120D1E;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 600;
   font-size: 1.125em;
   line-height: 1.625em;
+  flex: 1;
 }
 
 .main-input::placeholder{
@@ -57,18 +53,16 @@
 .error-alert {
   display: flex;
   justify-content: center;
+  font-family: 'Hanken Grotesk', sans-serif;
   align-items: center;
   margin-top: 1.25em;
+  padding: 5px;
   background-color: #FF025D;
   color: #FFFFFF;
-
   font-size: 1em;
   line-height: 1.375em;
-
-  max-width: 37.063em;
-  min-height: 2.125em;
-
   font-weight: 400;
   border-radius: 0 0 0.313em 0.313em;
+  min-height: 2.125em;
 
 }

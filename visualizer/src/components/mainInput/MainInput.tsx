@@ -36,7 +36,7 @@ const MainInput = () => {
   const placeholder = t('home.stellar_input.placeholder');
 
   return (
-    <div className="wrapper">
+    <>
       <div className="main-input-container">
         <input className="main-input" ref={inputRef} type="text" placeholder={placeholder} aria-label="key-input" />
         <button className="button-input" onClick={handleClick}>
@@ -51,7 +51,7 @@ const MainInput = () => {
         </div>
       )}
       {notFoundCertificates && <div className="error-alert">{t('certificates.not_found_message')}</div>}
-    </div>
+    </>
   );
 };
 
