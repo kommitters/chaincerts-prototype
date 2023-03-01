@@ -2,7 +2,7 @@ import { t } from 'i18next';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchStellarAccountInfo } from '../../stellarOperations';
-import { AccountInfo } from '../../stellarOperations/interfaces/AccountInfo';
+import { IAccountInfo } from '../../stellarOperations/interfaces/IAccountInfo';
 import './styles.css';
 
 function MainInput() {
@@ -17,18 +17,18 @@ function MainInput() {
     const publicKey = inputRef.current;
     if (publicKey) {
       try {
-        const accountInfo: AccountInfo[] = await fetchStellarAccountInfo(publicKey.value);
+        const IAccountInfo: IAccountInfo[] = await fetchStellarAccountInfo(publicKey.value);
 
-        console.log('accountInfo', accountInfo);
+        console.log('IAccountInfo', IAccountInfo);
 
-        if (accountInfo.length !== 0) {
+        if (IAccountInfo.length !== 0) {
           setErrorShow(false);
           setErrorNotFound(false);
           console.log('antes de la navegación-----');
           navigate('/');
           /*
           navigate(`certificates/${publicKey.value}`, {
-            state: accountInfo
+            state: IAccountInfo
           });
           */
         } else {
@@ -53,7 +53,7 @@ function MainInput() {
       {showError && (
         <div className="error-alert">
           <span>
-            <strong>{t('home.stellar_input.error_title')}</strong> {t('home.stellar_input.error_message')}{' '}
+            <strong>{t('home.stellar_input.error_title')}</strong> {t('home.stellar_input.info_message')}{' '}
           </span>
         </div>
       )}
