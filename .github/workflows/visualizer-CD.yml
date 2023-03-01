@@ -1,0 +1,57 @@
+name: OKDOSE CD
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'visualizer/**'
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./visualizer
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      SOURCE_DIR: 'dist'
+      PATHS: "/*"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 8.17.0
+
+      - name: "Clean the build"
+        run: yarn build:clean
+
+      - name: "Install the project"
+        run: yarn install
+
+      - name: "Build the project"
+        run: yarn build
+
+      - name: Deploy to production if branch is main
+        if: github.ref == 'refs/heads/main'
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_PROD_BUCKET }}
+
+      - name: Deploy to staging if branch is develop
+        if: github.ref == 'refs/heads/develop'
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_STAGING_BUCKET }}
