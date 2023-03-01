@@ -2,8 +2,6 @@ import { TransactionBuilder, Keypair, xdr, Horizon } from 'stellar-sdk';
 import { NETWORK_PASSPHRASE } from '../../../configs/consts';
 import { getStellarServer } from './getStellarServer';
 
-const SERVER = getStellarServer();
-
 export const executeTransaction = async (
   publicKey: string,
   secretKeys: string | Array<string>,
@@ -13,8 +11,9 @@ export const executeTransaction = async (
     secretKeys = convertToArray(secretKeys) as Array<string>;
     operations = convertToArray(operations) as Array<xdr.Operation>;
 
-    const account = await SERVER.loadAccount(publicKey);
-    const fee = String(await SERVER.fetchBaseFee());
+    const server = getStellarServer();
+    const account = await server.loadAccount(publicKey);
+    const fee = String(await server.fetchBaseFee());
 
     const transaction = new TransactionBuilder(account, {
       fee,
@@ -27,7 +26,7 @@ export const executeTransaction = async (
 
     secretKeys.forEach((secret) => tx.sign(Keypair.fromSecret(secret)));
 
-    return await SERVER.submitTransaction(tx);
+    return await server.submitTransaction(tx);
   } catch ({ response }) {
     const status = response.status;
     const reason = response.extras?.reason || response.data?.extras?.result_codes?.transaction;

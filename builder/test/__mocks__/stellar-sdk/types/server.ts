@@ -1,3 +1,5 @@
+import { incrementSequenceNumberFn } from './account';
+
 export const loadAccountFn = jest.fn().mockResolvedValue({
   sequence: '1',
   balances: [
@@ -5,7 +7,8 @@ export const loadAccountFn = jest.fn().mockResolvedValue({
       asset_type: 'native',
       balance: '100.0000000'
     }
-  ]
+  ],
+  incrementSequenceNumber: incrementSequenceNumberFn
 });
 
 export const fetchBaseFeeFn = jest.fn().mockResolvedValue(100);

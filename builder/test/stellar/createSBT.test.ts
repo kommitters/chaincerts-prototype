@@ -1,4 +1,12 @@
-import { createIssuerAccount, sendSBT, saveCID, establishNonTransferableSBT } from '../../src/stellar/services';
+import {
+  createIssuerAccount,
+  sendSBT,
+  saveCID,
+  establishNonTransferableSBT,
+  getClawbackHashAndXDR,
+  preAuthorizeClawback,
+  lockIssuerAccount
+} from '../../src/stellar/services';
 import { IKeyPair } from '../../src/stellar/interfaces';
 import { createSBT } from '../../src/stellar';
 import { DISTRIBUTOR_PUBLIC_KEY, DISTRIBUTOR_SECRET_KEY } from '../../src/configs/credentials';
@@ -9,7 +17,10 @@ jest.mock('../../src/stellar/services', () => ({
   createIssuerAccount: jest.fn(),
   sendSBT: jest.fn(),
   saveCID: jest.fn(),
-  establishNonTransferableSBT: jest.fn()
+  establishNonTransferableSBT: jest.fn(),
+  getClawbackHashAndXDR: jest.fn(),
+  preAuthorizeClawback: jest.fn(),
+  lockIssuerAccount: jest.fn()
 }));
 
 describe('createSBT', () => {
@@ -26,10 +37,16 @@ describe('createSBT', () => {
   const mockedEstablishNonTransferableSBT = establishNonTransferableSBT as jest.MockedFunction<
     typeof establishNonTransferableSBT
   >;
+  const mockedGetClawbackHashAndXDR = getClawbackHashAndXDR as jest.MockedFunction<typeof getClawbackHashAndXDR>;
+  const mockedPreAuthorizeClawback = preAuthorizeClawback as jest.MockedFunction<typeof preAuthorizeClawback>;
+  const mockedLockIssuerAccount = lockIssuerAccount as jest.MockedFunction<typeof lockIssuerAccount>;
+
   const asset = { assetCode: 'MentorCert', issuerKey: sbtIssuerPublicKey };
+  const envelope = { hash: 'hash', xdr: 'xdr' };
 
   beforeEach(() => {
     mockedCreateIssuerAccount.mockResolvedValue(keyPair);
+    mockedGetClawbackHashAndXDR.mockResolvedValue(Promise.resolve(envelope));
   });
 
   afterEach(() => {
@@ -37,7 +54,7 @@ describe('createSBT', () => {
   });
 
   it('should create a Stellar SBT asset', async () => {
-    await createSBT(cid, CERTIFICATE_ASSET_CODE, recipientPublicKey, recipientSecretKey);
+    const xdr = await createSBT(cid, CERTIFICATE_ASSET_CODE, recipientPublicKey, recipientSecretKey);
 
     expect(mockedCreateIssuerAccount).toHaveBeenCalled();
     expect(mockedSaveCID).toHaveBeenCalledWith(sbtIssuerPublicKey, sbtIssuerSecretKey, cid);
@@ -61,6 +78,11 @@ describe('createSBT', () => {
       recipientPublicKey,
       asset
     );
+    expect(mockedGetClawbackHashAndXDR).toHaveBeenCalledWith(sbtIssuerPublicKey, recipientPublicKey, asset);
+    expect(mockedPreAuthorizeClawback).toHaveBeenCalledWith(sbtIssuerPublicKey, sbtIssuerSecretKey, envelope.hash);
+    expect(mockedLockIssuerAccount).toBeCalledWith(sbtIssuerPublicKey, sbtIssuerSecretKey);
+
+    expect(xdr).toEqual(envelope.xdr);
   });
 
   it('should show error if any of the underlying functions throw', async () => {

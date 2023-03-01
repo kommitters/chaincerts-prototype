@@ -1,15 +1,22 @@
 import { Asset } from 'stellar-sdk';
 import { IKeyPair } from './interfaces/';
 import { DISTRIBUTOR_PUBLIC_KEY, DISTRIBUTOR_SECRET_KEY } from '../configs/credentials';
-import { createIssuerAccount, sendSBT, saveCID, establishNonTransferableSBT } from './services';
+import {
+  createIssuerAccount,
+  sendSBT,
+  saveCID,
+  establishNonTransferableSBT,
+  getClawbackHashAndXDR,
+  preAuthorizeClawback,
+  lockIssuerAccount
+} from './services';
 
 export const createSBT = async (
   CID: string,
   assetCode: string,
   recipientPublicKey: string,
   recipientSecretKey: string
-): Promise<void | never> => {
-  /*eslint-disable no-useless-catch*/
+): Promise<string | never> => {
   try {
     const distributorPublicKey = DISTRIBUTOR_PUBLIC_KEY;
     const distributorSecretKey = DISTRIBUTOR_SECRET_KEY;
@@ -29,7 +36,17 @@ export const createSBT = async (
 
     // Disable recipient ability to transfer the SBT
     await establishNonTransferableSBT(sbtIssuerPublicKey, sbtIssuerSecretKey, recipientPublicKey, SBT);
+
+    const { hash, xdr } = await getClawbackHashAndXDR(sbtIssuerPublicKey, recipientPublicKey, SBT);
+
+    // Create a Clawback Operation and a pre-authorized sign to execute clawback after locking the issuer account
+    await preAuthorizeClawback(sbtIssuerPublicKey, sbtIssuerSecretKey, hash);
+
+    // Block the issuer account to disallow the possibility of supplying more SBTs and ensure the SBT's uniqueness.
+    await lockIssuerAccount(sbtIssuerPublicKey, sbtIssuerSecretKey);
+
+    return xdr;
   } catch (error) {
-    throw error;
+    throw new Error(error.message);
   }
 };

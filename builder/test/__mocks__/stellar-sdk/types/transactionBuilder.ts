@@ -1,7 +1,25 @@
+import { Account } from './account';
 import { Transaction } from './transaction';
 
+export const addOperationFn = jest.fn().mockReturnThis();
+export const setTimeboundsFn = jest.fn().mockReturnThis();
 export class TransactionBuilder {
-  addOperation = jest.fn().mockReturnThis();
+  account: Account;
+  options: Options;
+
+  addOperation = addOperationFn;
   setTimeout = jest.fn().mockReturnThis();
-  build = jest.fn().mockReturnValue(new Transaction());
+  setTimebounds = setTimeboundsFn;
+  build = jest.fn().mockReturnValue(new Transaction('XDR', 'PHASE'));
+
+  constructor(account: Account, options: Options) {
+    this.account = account;
+    this.options = options;
+    return this;
+  }
+}
+
+interface Options {
+  fee: number;
+  networkPassphrase: string;
 }
