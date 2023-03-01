@@ -1,8 +1,8 @@
+import { t } from 'i18next';
+import { useNavigate } from 'react-router-dom';
 import leftArrowIcon from '/icons/leftArrowIcon.svg';
 import chaincertsLogo from '/icons/chaincertsLogo.svg';
-import { t } from 'i18next';
 import './styles.css';
-import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate();

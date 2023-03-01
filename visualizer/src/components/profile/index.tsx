@@ -1,6 +1,6 @@
-import avatar from '/icons/avatar.svg';
 import PropTypes, { InferProps } from 'prop-types';
 import { t } from 'i18next';
+import avatar from '/icons/avatar.svg';
 import './styles.css';
 
 const propTypes = {
