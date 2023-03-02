@@ -1,4 +1,4 @@
-export interface TextSettings {
+export interface ITextSettings {
   type: string;
   textFormatter: string;
   fontSize: number;

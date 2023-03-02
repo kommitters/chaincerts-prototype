@@ -16,24 +16,21 @@
  */
 
 import { ExtrudeGeometry } from 'three';
+import { ITextParameters } from '../interfaces';
 
 export class TextGeometry extends ExtrudeGeometry {
-  constructor(text, parameters = {}) {
+  constructor(text: string, parameters: ITextParameters) {
     const font = parameters.font;
 
-    if (font === undefined) {
-      super(); // generate default extrude geometry
+    if (!font) {
+      super();
     } else {
       const shapes = font.generateShapes(text, parameters.size);
+      parameters.depth = !parameters.height ? parameters.height : 50;
 
-      // translate parameters to ExtrudeGeometry API
-
-      parameters.depth = parameters.height !== undefined ? parameters.height : 50;
-
-      // defaults
-      if (parameters.bevelThickness === undefined) parameters.bevelThickness = 10;
-      if (parameters.bevelSize === undefined) parameters.bevelSize = 8;
-      if (parameters.bevelEnabled === undefined) parameters.bevelEnabled = false;
+      if (!parameters.bevelThickness) parameters.bevelThickness = 10;
+      if (!parameters.bevelSize) parameters.bevelSize = 8;
+      if (!parameters.bevelEnabled) parameters.bevelEnabled = false;
 
       super(shapes, parameters);
     }

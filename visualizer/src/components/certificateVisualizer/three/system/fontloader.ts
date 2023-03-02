@@ -1,18 +1,16 @@
 import { FileLoader, Loader, ShapePath } from 'three';
+import { IFontData } from '../interfaces';
 
 class FontLoader extends Loader {
-  load(url, onLoad, onProgress, onError) {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const scope = this;
-
+  load(url: string, onLoad: (font: Font) => void, onProgress?: () => void, onError?: () => void) {
     const loader = new FileLoader(this.manager);
     loader.setPath(this.path);
     loader.setRequestHeader(this.requestHeader);
     loader.setWithCredentials(this.withCredentials);
     loader.load(
       url,
-      function (text) {
-        const font = scope.parse(JSON.parse(text));
+      (text) => {
+        const font = this.parse(JSON.parse(text as string));
 
         if (onLoad) onLoad(font);
       },
@@ -21,33 +19,35 @@ class FontLoader extends Loader {
     );
   }
 
-  parse(json) {
-    return new Font(json);
+  parse(data: IFontData) {
+    return new Font(data);
   }
 }
 
 class Font {
-  constructor(data) {
+  isFont: boolean;
+  type: string;
+  data: IFontData;
+
+  constructor(data: IFontData) {
     this.isFont = true;
-
     this.type = 'Font';
-
     this.data = data;
   }
 
-  generateShapes(text, size = 100) {
+  generateShapes(text: string, size = 100) {
     const shapes = [];
     const paths = createPaths(text, size, this.data);
 
     for (let p = 0, pl = paths.length; p < pl; p++) {
-      shapes.push(...paths[p].toShapes());
+      shapes.push(...paths[p].toShapes(false));
     }
 
     return shapes;
   }
 }
 
-function createPaths(text, size, data) {
+const createPaths = (text: string, size: number, data: IFontData) => {
   const chars = Array.from(text);
   const scale = size / data.resolution;
   const line_height = (data.boundingBox.yMax - data.boundingBox.yMin + data.underlineThickness) * scale;
@@ -64,16 +64,16 @@ function createPaths(text, size, data) {
       offsetX = 0;
       offsetY -= line_height;
     } else {
-      const ret = createPath(char, scale, offsetX, offsetY, data);
+      const ret = createPath(char, scale, offsetX, offsetY, data)!;
       offsetX += ret.offsetX;
       paths.push(ret.path);
     }
   }
 
   return paths;
-}
+};
 
-function createPath(char, scale, offsetX, offsetY, data) {
+const createPath = (char: string, scale: number, offsetX: number, offsetY: number, data: IFontData) => {
   const glyph = data.glyphs[char] || data.glyphs['?'];
 
   if (!glyph) {
@@ -138,6 +138,6 @@ function createPath(char, scale, offsetX, offsetY, data) {
   }
 
   return { offsetX: glyph.ha * scale, path: path };
-}
+};
 
 export { FontLoader, Font };

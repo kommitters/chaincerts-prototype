@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes, { InferProps } from 'prop-types';
 import { CertificateCanvas } from './three';
-import { Certificate } from './interfaces';
+import { ICertificate } from './interfaces';
 
 const propTypes = {
   certificate: PropTypes.object.isRequired,
@@ -10,16 +10,21 @@ const propTypes = {
 
 const CertificateVisualizer = ({ certificate, id }: InferProps<typeof propTypes>) => {
   useEffect(() => {
-    loadCertificate();
+    const certificateCanvas = loadCertificateCanvas();
+
+    return () => {
+      certificateCanvas.stop();
+    };
   }, []);
 
-  const loadCertificate = () => {
+  const loadCertificateCanvas = () => {
     const container = document.getElementById(id)!;
-    // the strict mode renders this component twice, so, it's needed to restart it
     container.innerHTML = '';
 
-    const world = new CertificateCanvas(container, certificate as Certificate);
-    world.start();
+    const certificateCanvas = new CertificateCanvas(container, certificate as ICertificate);
+    certificateCanvas.start();
+
+    return certificateCanvas;
   };
 
   return <div id={id} style={{ width: 900, height: 700 }} />;
