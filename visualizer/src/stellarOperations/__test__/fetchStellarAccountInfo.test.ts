@@ -9,9 +9,9 @@ describe('fetchStellarAccountInfo', () => {
   const CID = 'IPFS_CID';
 
   it('should return all the code, name, issuer and CID for each balance', async () => {
-    const stellarIAccountInfo = await fetchStellarAccountInfo(PUBLIC_KEY);
+    const stellarAccountInfo = await fetchStellarAccountInfo(PUBLIC_KEY);
 
-    expect(stellarIAccountInfo).toContainEqual({
+    expect(stellarAccountInfo).toContainEqual({
       assetCode: CERTIFICATION_CODE,
       assetType: ASSET_TYPE,
       assetIssuer: ISSUER,

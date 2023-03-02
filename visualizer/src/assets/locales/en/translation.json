@@ -19,9 +19,9 @@
       "account": "Stellar account",
       "created": "Created",
       "xlm": "XLM reserved",
-      "assets_and_truslines": "Assets and trustlines",
-      "not_found_message": "There are no certificates associated with the user"
+      "assets_and_truslines": "Assets and trustlines"
     },
+    "not_found_message": "There are no certificates associated with the user",
     "profile": {
       "description": "Stellar Public Key"
     },

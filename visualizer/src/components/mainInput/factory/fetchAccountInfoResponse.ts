@@ -26,10 +26,3 @@ export const accountInfo = [
     assetIssuer: 'GCDVVASOCCVVBNCUDZZU5S5VH4FJGWKHRXRTQYTKF5QWUFLYMCXA6O35'
   }
 ];
-
-export async function mockFetchStellarAccountInfo(stellarPublicKey: string) {
-  if (stellarPublicKey != '') {
-    return async () => accountInfo;
-  }
-  throw new Error('bad public key');
-}

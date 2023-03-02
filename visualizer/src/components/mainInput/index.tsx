@@ -5,32 +5,24 @@ import { fetchStellarAccountInfo } from '../../stellarOperations';
 import { IAccountInfo } from '../../stellarOperations/interfaces/IAccountInfo';
 import './styles.css';
 
-function MainInput() {
+const MainInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [showError, setErrorShow] = useState(false);
   const [errorNotFound, setErrorNotFound] = useState(false);
   const navigate = useNavigate();
-  console.log('navigate', navigate);
 
   const handleClick = async () => {
-    //GB6KONY6F5U3HWSQSPCUX2HJPPENEBP5P77ALW3HPABUHP6YQNZUFZHW
     const publicKey = inputRef.current;
     if (publicKey) {
       try {
-        const IAccountInfo: IAccountInfo[] = await fetchStellarAccountInfo(publicKey.value);
+        const accountInfo: IAccountInfo[] = await fetchStellarAccountInfo(publicKey.value);
 
-        console.log('IAccountInfo', IAccountInfo);
-
-        if (IAccountInfo.length !== 0) {
+        if (accountInfo.length !== 0) {
           setErrorShow(false);
           setErrorNotFound(false);
-          console.log('antes de la navegación-----');
-          navigate('/');
-          /*
           navigate(`certificates/${publicKey.value}`, {
-            state: IAccountInfo
+            state: accountInfo
           });
-          */
         } else {
           setErrorNotFound(true);
         }
@@ -53,13 +45,13 @@ function MainInput() {
       {showError && (
         <div className="error-alert">
           <span>
-            <strong>{t('home.stellar_input.error_title')}</strong> {t('home.stellar_input.info_message')}{' '}
+            <strong>{t('home.stellar_input.error_title')}</strong> {t('home.stellar_input.info_message')}
           </span>
         </div>
       )}
-      {errorNotFound && <div className="error-alert">{t('certificates.carousel.not_found_message')}</div>}
+      {errorNotFound && <div className="error-alert">{t('certificates.not_found_message')}</div>}
     </div>
   );
-}
+};
 
 export default MainInput;
