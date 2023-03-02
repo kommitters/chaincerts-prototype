@@ -1,7 +1,38 @@
 import { generateCertificate } from '../index';
 import { kommitMentorCertificate } from './factory/kommitMentorCertificate';
+import { uploadCertToIPFS } from '../../../src/ipfs';
+import { createSBT } from '../../../src/stellar';
+
+jest.mock('../../../src/stellar', () => ({
+  createSBT: jest.fn()
+}));
+
+jest.mock('../../../src/ipfs', () => ({
+  uploadCertToIPFS: jest.fn()
+}));
 
 describe('generateCertificate', () => {
+  const mockedCreateSBT = jest.mocked(createSBT);
+  const mockedUploadCertToIPFS = jest.mocked(uploadCertToIPFS);
+
+  const XDR = 'XDR';
+  const CID = 'CID';
+
+  const correctCertificateRequest = {
+    username: 'John Doe',
+    certDate: '2022-02-21',
+    stellarAccount: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
+    certType: 'CertExample',
+    data: {
+      mentorHours: '2000'
+    }
+  };
+
+  beforeEach(() => {
+    mockedUploadCertToIPFS.mockResolvedValue(Promise.resolve(CID));
+    mockedCreateSBT.mockResolvedValue(Promise.resolve(XDR));
+  });
+
   it('should throw an exception if any property is missing', () => {
     const certificateRequest = {
       certDate: '2022-02-21',
@@ -37,16 +68,6 @@ describe('generateCertificate', () => {
   });
 
   it('should replace the values in the template if the certificate request is valid', async () => {
-    const certificateRequest = {
-      username: 'John Doe',
-      certDate: '2022-02-21',
-      stellarAccount: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
-      certType: 'CertExample',
-      data: {
-        mentorHours: '2000'
-      }
-    };
-
     const expectedCertificate = {
       materialFile: 'mentor-1000h.mtl',
       objectFile: 'mentor-1000h.obj',
@@ -93,7 +114,7 @@ describe('generateCertificate', () => {
       ]
     };
 
-    const certificate = await generateCertificate(certificateRequest);
+    const certificate = await generateCertificate(correctCertificateRequest);
 
     expect(certificate).toStrictEqual(expectedCertificate);
   });
@@ -109,5 +130,22 @@ describe('generateCertificate', () => {
     const certificate = await generateCertificate(certificateRequest);
 
     expect(certificate).toStrictEqual(kommitMentorCertificate);
+  });
+
+  it('Should create the SBT and return clawback XDR', async () => {
+    await generateCertificate(correctCertificateRequest);
+
+    expect(mockedUploadCertToIPFS).toBeCalled();
+    expect(mockedCreateSBT).toHaveBeenCalledWith(CID, correctCertificateRequest.certType);
+  });
+
+  it('should show error on console if the SBT creation fails', async () => {
+    const errorMessage = 'Fails the SBT creation';
+    mockedCreateSBT.mockRejectedValue(new Error(errorMessage));
+
+    console.error = jest.fn();
+    await generateCertificate(correctCertificateRequest).catch(() => {
+      expect((console.error as jest.Mock).mock.calls[0][0]).toBe(`⚠️ Error creating the SBT \n ${errorMessage} \n`);
+    });
   });
 });

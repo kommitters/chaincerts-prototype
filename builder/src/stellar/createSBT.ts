@@ -1,6 +1,5 @@
 import { Asset } from 'stellar-sdk';
 import { IKeyPair } from './interfaces/';
-import { DISTRIBUTOR_PUBLIC_KEY, DISTRIBUTOR_SECRET_KEY } from '../configs/credentials';
 import {
   createIssuerAccount,
   sendSBT,
@@ -10,18 +9,24 @@ import {
   preAuthorizeClawback,
   lockIssuerAccount
 } from './services';
+import { createStellarAccount } from './services/helpers';
 
-export const createSBT = async (
-  CID: string,
-  assetCode: string,
-  recipientPublicKey: string,
-  recipientSecretKey: string
-): Promise<string | never> => {
+export const createSBT = async (CID: string, assetCode: string): Promise<string | never> => {
   try {
-    const distributorPublicKey = DISTRIBUTOR_PUBLIC_KEY;
-    const distributorSecretKey = DISTRIBUTOR_SECRET_KEY;
+    // Create distributor Account
+    const { publicKey: distributorPublicKey, secretKey: distributorSecretKey } = await createStellarAccount();
+    console.log(`\n🔑 Distributor Public Key ${distributorPublicKey} \n`);
 
-    const { sbtIssuerPublicKey, sbtIssuerSecretKey }: IKeyPair = await createIssuerAccount();
+    // Create recipient Account
+    const { publicKey: recipientPublicKey, secretKey: recipientSecretKey } = await createStellarAccount();
+    console.log(`🔑 Recipient Public Key ${recipientPublicKey} \n`);
+
+    // Create Issuer Account and set Flags to make the asset revocable
+    const { publicKey: sbtIssuerPublicKey, secretKey: sbtIssuerSecretKey }: IKeyPair = await createIssuerAccount(
+      distributorPublicKey,
+      distributorSecretKey
+    );
+    console.log(`🔑 Issuer Public Key ${sbtIssuerPublicKey} \n`);
 
     const SBT = new Asset(assetCode, sbtIssuerPublicKey);
 

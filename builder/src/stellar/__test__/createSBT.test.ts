@@ -9,9 +9,9 @@ import {
 } from '../services';
 import { IKeyPair } from '../interfaces';
 import { createSBT } from '../index';
-import { DISTRIBUTOR_PUBLIC_KEY, DISTRIBUTOR_SECRET_KEY } from '../../configs/credentials';
+import { createStellarAccount } from '../services/helpers';
 
-const CERTIFICATE_ASSET_CODE = 'MentorCert';
+const CERTIFICATE_ASSET_CODE = 'mentorCert';
 
 jest.mock('../services', () => ({
   createIssuerAccount: jest.fn(),
@@ -23,14 +23,27 @@ jest.mock('../services', () => ({
   lockIssuerAccount: jest.fn()
 }));
 
+jest.mock('../services/helpers', () => ({
+  createStellarAccount: jest.fn()
+}));
+
 describe('createSBT', () => {
   const cid = 'some-cid';
+
   const sbtIssuerPublicKey = 'sbt-issuer-public-key';
   const sbtIssuerSecretKey = 'sbt-issuer-secret-key';
+
+  const distribuitorPublicKey = 'distribuitor-public-key';
+  const distribuitorSecretKey = 'distribuitor-secret-key';
+
   const recipientPublicKey = 'recipient-public-key';
   const recipientSecretKey = 'recipient-secret-key';
 
-  const keyPair: IKeyPair = { sbtIssuerPublicKey, sbtIssuerSecretKey };
+  const issuerKeyPair: IKeyPair = { publicKey: sbtIssuerPublicKey, secretKey: sbtIssuerSecretKey };
+  const distribuitorKeyPair: IKeyPair = { publicKey: distribuitorPublicKey, secretKey: distribuitorSecretKey };
+  const recipientKeyPair: IKeyPair = { publicKey: recipientPublicKey, secretKey: recipientSecretKey };
+
+  const mockedCreateStellarAccount = createStellarAccount as jest.MockedFunction<typeof createStellarAccount>;
   const mockedCreateIssuerAccount = createIssuerAccount as jest.MockedFunction<typeof createIssuerAccount>;
   const mockedSaveCID = saveCID as jest.MockedFunction<typeof saveCID>;
   const mockedSendSBT = sendSBT as jest.MockedFunction<typeof sendSBT>;
@@ -41,12 +54,13 @@ describe('createSBT', () => {
   const mockedPreAuthorizeClawback = preAuthorizeClawback as jest.MockedFunction<typeof preAuthorizeClawback>;
   const mockedLockIssuerAccount = lockIssuerAccount as jest.MockedFunction<typeof lockIssuerAccount>;
 
-  const asset = { assetCode: 'MentorCert', issuerKey: sbtIssuerPublicKey };
+  const asset = { assetCode: CERTIFICATE_ASSET_CODE, issuerKey: sbtIssuerPublicKey };
   const envelope = { hash: 'hash', xdr: 'xdr' };
 
   beforeEach(() => {
-    mockedCreateIssuerAccount.mockResolvedValue(keyPair);
     mockedGetClawbackHashAndXDR.mockResolvedValue(Promise.resolve(envelope));
+    mockedCreateIssuerAccount.mockResolvedValue(issuerKeyPair);
+    mockedCreateStellarAccount.mockResolvedValueOnce(distribuitorKeyPair).mockResolvedValueOnce(recipientKeyPair);
   });
 
   afterEach(() => {
@@ -54,20 +68,21 @@ describe('createSBT', () => {
   });
 
   it('should create a Stellar SBT asset', async () => {
-    const xdr = await createSBT(cid, CERTIFICATE_ASSET_CODE, recipientPublicKey, recipientSecretKey);
+    const xdr = await createSBT(cid, CERTIFICATE_ASSET_CODE);
 
+    expect(mockedCreateStellarAccount).toHaveBeenCalledTimes(2);
     expect(mockedCreateIssuerAccount).toHaveBeenCalled();
     expect(mockedSaveCID).toHaveBeenCalledWith(sbtIssuerPublicKey, sbtIssuerSecretKey, cid);
     expect(mockedSendSBT).toHaveBeenCalledWith(
       sbtIssuerPublicKey,
       sbtIssuerSecretKey,
-      DISTRIBUTOR_PUBLIC_KEY,
-      DISTRIBUTOR_SECRET_KEY,
+      distribuitorPublicKey,
+      distribuitorSecretKey,
       asset
     );
     expect(mockedSendSBT).toHaveBeenCalledWith(
-      DISTRIBUTOR_PUBLIC_KEY,
-      DISTRIBUTOR_SECRET_KEY,
+      distribuitorPublicKey,
+      distribuitorSecretKey,
       recipientPublicKey,
       recipientSecretKey,
       asset
@@ -89,7 +104,7 @@ describe('createSBT', () => {
     const errorMessage = 'Failed saving the CID: Status: 400. Reason: tx_failed';
     mockedSaveCID.mockReturnValue(Promise.reject({ error: { message: errorMessage } }));
 
-    await createSBT(cid, CERTIFICATE_ASSET_CODE, recipientPublicKey, recipientSecretKey).catch((error) => {
+    await createSBT(cid, CERTIFICATE_ASSET_CODE).catch((error) => {
       expect(error.message).toBeUndefined;
     });
   });
