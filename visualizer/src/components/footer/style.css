@@ -1,0 +1,19 @@
+.footer {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.813em;
+  padding: 0.313em;
+}
+
+.kommit-logo {
+  max-width:  4.988em;
+  min-height: 1.065em;
+}
+
+.footer-description {
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #FFFFFF;
+  font-weight: 400;
+  line-height: 0.9em;
+}
