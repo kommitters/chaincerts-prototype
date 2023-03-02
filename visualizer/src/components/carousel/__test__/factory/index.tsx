@@ -1,0 +1,1 @@
+export { carouselData } from './carouselData';

@@ -1,0 +1,19 @@
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Poppins', sans-serif;
+  background-color: #1D1429;
+  color: #FFFFFF;
+  gap: 1em;
+  padding: 1.5em;
+  font-size: 0.875em;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1em;
+  align-items: center;
+}
+
+.avatar {
+  width: 4em;
+  height: 4em;
+}

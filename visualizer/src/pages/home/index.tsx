@@ -1,5 +1,1 @@
-const Home = () => {
-  return <></>;
-};
-
-export default Home;
+export { default } from './Home';

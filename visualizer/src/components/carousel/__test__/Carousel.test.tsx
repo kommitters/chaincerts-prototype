@@ -1,6 +1,6 @@
 import { render, fireEvent, screen } from '@testing-library/react';
-import Carousel from '../index';
-import carouselData from './factory/carouselData';
+import Carousel from '../';
+import { carouselData } from './factory';
 import i18n from '../../../i18n';
 import { I18nextProvider } from 'react-i18next';
 

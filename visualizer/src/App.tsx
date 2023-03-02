@@ -12,7 +12,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/certificates/:stellar_key" element={<Certificates />} />
           <Route path="/*" element={<Navigate replace to="/" />} />
-          <Route />
         </Routes>
       </Router>
     </div>

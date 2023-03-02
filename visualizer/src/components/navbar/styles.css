@@ -1,0 +1,43 @@
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.875em;
+  padding-left: 1.875em;
+  padding-right: 3.75em;
+  padding-bottom: 0.625em;
+}
+
+.logo {
+  width: 14.61em;
+  height: 2.455em;
+}
+
+.button {
+  border-radius: 2.75em;
+  border-style: solid;
+  border-color: #FFFFFF;
+  background-color: transparent;
+
+  width: 9em;
+  height: 3em;
+  padding: 0.625em;
+  gap: 0.625em;
+  padding: 0.625em;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.text-button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1em;
+  line-height: 1.5em;
+  letter-spacing: 0.003em;
+  color: #FFFFFF;
+}
