@@ -1,5 +1,1 @@
-const Certificates = () => {
-  return <></>;
-};
-
-export default Certificates;
+export { default } from './Certificates';

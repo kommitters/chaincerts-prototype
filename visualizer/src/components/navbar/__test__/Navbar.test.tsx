@@ -5,7 +5,6 @@ import { I18nextProvider } from 'react-i18next';
 import * as router from 'react-router';
 
 const navigate = jest.fn();
-
 describe('NavBar component', () => {
   beforeEach(() => {
     jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
