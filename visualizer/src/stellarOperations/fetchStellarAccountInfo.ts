@@ -1,4 +1,4 @@
-import { CERT_ASSET } from '../../utils/constants';
+import { CERT_ASSET } from '../utils/constants';
 import { fetchAccountBalancesFromCode } from './fetchAccountBalancesFromCode';
 import { fetchIssuerCID } from './fetchIssuerCID';
 import { Balance } from './interfaces/Balance';
