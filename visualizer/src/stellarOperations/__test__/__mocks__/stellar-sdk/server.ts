@@ -1,9 +1,10 @@
 const account = {
   balances: [
     {
-      asset_code: 'CERTIFICATION_CODE',
-      asset_type: 'ASSET_TYPE',
-      asset_issuer: 'ISSUER'
+      asset_code: 'ASSET_CODE',
+      asset_issuer: 'ISSUER_ACCOUNT',
+      is_authorized_to_maintain_liabilities: true,
+      is_clawback_enabled: true
     }
   ],
   data_attr: {
@@ -12,11 +13,23 @@ const account = {
 };
 
 const payments = {
+  next: jest.fn().mockResolvedValue({ records: [] }),
   records: [
     {
-      asset_issuer: 'DISTRIBUTOR_ACCOUNT',
+      amount: 1,
+      to: 'DESTINATION_ACCOUNT',
+      asset_issuer: 'ISSUER_ACCOUNT',
+      source_account: 'SOURCE_ACCOUNT',
       asset_code: 'ASSET_CODE',
-      transaction: jest.fn().mockResolvedValue({ id: 'TRANSACTION_ID' })
+      created_at: 'CREATE_AT_DATE'
+    },
+    {
+      amount: 1,
+      to: 'SOURCE_ACCOUNT',
+      asset_issuer: 'ISSUER_ACCOUNT',
+      source_account: 'ISSUER_ACCOUNT',
+      asset_code: 'ASSET_CODE',
+      created_at: 'CREATE_AT_DATE'
     }
   ]
 };
