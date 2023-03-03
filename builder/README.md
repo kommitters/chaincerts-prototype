@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://kommit.co">
-    <img src="https://user-images.githubusercontent.com/84339390/219978514-ed0cc873-a9d5-4007-922d-ba6ead5c9206.png" width="700px" alt="kommit logo"/>
+    <img  src="https://user-images.githubusercontent.com/2568221/222775281-f9528c19-9eb5-48c3-85ac-ff5bede8cab7.png"  alt="Chaincerts Prototype" />
   </a>
 </p>
 
@@ -8,7 +8,7 @@
   Chaincerts Builder
 </h1>
 
-### This project generates and distributes virtual certificates based on the Souldbound Token - SBT concept. When a certificate request is received, the project creates the certificate, uploads it to the IPFS storage platform Filebase, and creates an SBT on the Stellar network representing the certificate's delivery to the recipient.
+#### This project generates and distributes virtual certificates based on the Souldbound Token - SBT concept. When a certificate request is received, the project creates the certificate, uploads it to the IPFS storage platform Filebase, and creates an SBT on the Stellar network representing the certificate's delivery to the recipient.
 
 # ⚒️ Prerequisites
 
