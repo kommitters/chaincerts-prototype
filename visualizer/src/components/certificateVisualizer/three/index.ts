@@ -1,0 +1,1 @@
+export { CertificateCanvas } from './CertificateCanvas';

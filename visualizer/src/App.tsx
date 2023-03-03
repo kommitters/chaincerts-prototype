@@ -2,8 +2,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Certificates from './pages/certificates';
 import Home from './pages/home';
 
-// test cd
-
 function App() {
   return (
     <div className="App">
