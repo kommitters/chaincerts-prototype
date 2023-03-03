@@ -3,7 +3,7 @@ import { I18nextProvider } from 'react-i18next';
 import * as router from 'react-router';
 
 import * as fetchAccount from '../../../stellarOperations/fetchStellarAccountInfo';
-import { accountInfo } from '../factory/fetchAccountInfoResponse';
+import { accountInfo } from './factory';
 import i18n from '../../../i18n';
 import MainInput from '..';
 
