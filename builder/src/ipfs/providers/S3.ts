@@ -1,11 +1,10 @@
 import * as AWS from 'aws-sdk';
-import { IPFS_ACCESS_KEY_ID, IPFS_ENDPOINT, IPFS_REGION, IPFS_SECRET_ACCESS_KEY } from '../../configs/credentials';
 
 export const S3 = new AWS.S3({
   apiVersion: '2006-03-01',
-  accessKeyId: IPFS_ACCESS_KEY_ID,
-  secretAccessKey: IPFS_SECRET_ACCESS_KEY,
-  endpoint: IPFS_ENDPOINT,
-  region: IPFS_REGION,
+  accessKeyId: process.env.IPFS_ACCESS_KEY_ID as string,
+  secretAccessKey: process.env.IPFS_SECRET_ACCESS_KEY as string,
+  endpoint: process.env.IPFS_ENDPOINT as string,
+  region: process.env.IPFS_REGION as string,
   s3ForcePathStyle: true
 });
