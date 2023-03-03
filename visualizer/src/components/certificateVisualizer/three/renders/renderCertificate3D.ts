@@ -11,13 +11,13 @@ const KM_CETIFICATE_ASSETS_PATH = 'kommit-mentor-assets';
 
 export const renderCertificate3D = async (certificate: ICertificate) => {
   const loader = new OBJLoader();
-  const material = await loadMaterial(formatCertificateAssetPath(certificate.material_file));
+  const material = await loadMaterial(formatCertificateAssetPath(certificate.materialFile));
   loader.setMaterials(material);
 
-  const certificate3D = loader.loadAsync(formatCertificateAssetPath(certificate.object_file)).then((blenderObject) => {
+  const certificate3D = loader.loadAsync(formatCertificateAssetPath(certificate.objectFile)).then((blenderObject) => {
     const textureLoader = new TextureLoader();
 
-    certificate.model_settings.forEach((mesh_data: IModelSettings) => {
+    certificate.modelSettings.forEach((mesh_data: IModelSettings) => {
       const mesh = blenderObject.children.find((mesh) => mesh.name === mesh_data.name)! as THREE.Mesh;
       mesh.visible = mesh_data.visible;
       const texture = textureLoader.load(formatCertificateAssetPath(mesh_data.texture));
