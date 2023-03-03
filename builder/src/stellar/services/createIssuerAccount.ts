@@ -1,14 +1,13 @@
-import { Operation, AuthRevocableFlag, AuthClawbackEnabledFlag, AuthFlag, Keypair } from 'stellar-sdk';
+import { Operation, AuthRevocableFlag, AuthClawbackEnabledFlag, AuthFlag } from 'stellar-sdk';
 import { IKeyPair } from '../interfaces';
-import { executeTransaction } from './helpers';
-import { STELLAR_PUBLIC_KEY, STELLAR_SECRET_KEY } from '../../configs/credentials';
+import { executeTransaction, getKeyPair } from './helpers';
 import { STARTING_BALANCE } from '../../configs/consts';
 
-export const createIssuerAccount = async (): Promise<IKeyPair | never> => {
-  const publicStellarKey = STELLAR_PUBLIC_KEY;
-  const secretStellarKey = STELLAR_SECRET_KEY;
-
-  const { sbtIssuerPublicKey, sbtIssuerSecretKey } = sbtIssuerCreateKeys();
+export const createIssuerAccount = async (
+  publicStellarKey: string,
+  secretStellarKey: string
+): Promise<IKeyPair | never> => {
+  const { publicKey: sbtIssuerPublicKey, secretKey: sbtIssuerSecretKey } = getKeyPair();
 
   const createAccountOp = Operation.createAccount({
     destination: sbtIssuerPublicKey,
@@ -23,19 +22,8 @@ export const createIssuerAccount = async (): Promise<IKeyPair | never> => {
   try {
     console.log('Creating the Issuer Account ...');
     await executeTransaction(publicStellarKey, [secretStellarKey, sbtIssuerSecretKey], [createAccountOp, setOptions]);
-
-    console.log(`IssuerPublicKey: ${sbtIssuerPublicKey}, IssuerSecretKey ${sbtIssuerSecretKey}`);
-
-    return { sbtIssuerPublicKey, sbtIssuerSecretKey };
+    return { publicKey: sbtIssuerPublicKey, secretKey: sbtIssuerSecretKey };
   } catch (error) {
     throw new Error(`Failed creating the issuer account: ${error.message}`);
   }
-};
-
-const sbtIssuerCreateKeys = (): IKeyPair => {
-  const sbtIssuerKeyPair = Keypair.random();
-  const sbtIssuerPublicKey = sbtIssuerKeyPair.publicKey();
-  const sbtIssuerSecretKey = sbtIssuerKeyPair.secret();
-
-  return { sbtIssuerPublicKey, sbtIssuerSecretKey };
 };
