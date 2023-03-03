@@ -1,4 +1,4 @@
-import { getStellarServer } from '../../../services/helpers';
+import { getStellarServer } from '../../../operations/helpers';
 
 describe('getStellarServer', () => {
   afterEach(() => {

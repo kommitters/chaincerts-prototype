@@ -1,6 +1,6 @@
 import { Transaction } from 'stellar-sdk';
-import { NETWORK_PASSPHRASE } from '../configs/consts';
-import { getStellarServer } from './services/helpers';
+import { NETWORK_PASSPHRASE } from '../resources/consts';
+import { getStellarServer } from './operations/helpers';
 
 export const executeClawback = async (XDR: string) => {
   const transaction = new Transaction(XDR, NETWORK_PASSPHRASE);

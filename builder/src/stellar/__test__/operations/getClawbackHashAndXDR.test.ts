@@ -1,6 +1,6 @@
-import { getClawbackHashAndXDR } from '../../services';
+import { getClawbackHashAndXDR } from '../../operations';
 import { Operation } from '../__mocks__/stellar-sdk';
-import { AMOUNT } from '../../../configs/consts';
+import { AMOUNT } from '../../../resources/consts';
 import { loadAccountFn, fetchBaseFeeFn } from '../__mocks__/stellar-sdk/types/server';
 import { incrementSequenceNumberFn } from '../__mocks__/stellar-sdk/types/account';
 import { hashFn, toEnvelopeFn } from '../__mocks__/stellar-sdk/types/transaction';

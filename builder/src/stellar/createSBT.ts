@@ -8,8 +8,8 @@ import {
   getClawbackHashAndXDR,
   preAuthorizeClawback,
   lockIssuerAccount
-} from './services';
-import { createStellarAccount } from './services/helpers';
+} from './operations';
+import { createStellarAccount } from './operations/helpers';
 
 export const createSBT = async (CID: string, assetCode: string): Promise<string | never> => {
   try {

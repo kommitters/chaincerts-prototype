@@ -1,9 +1,9 @@
-import { lockIssuerAccount } from '../../services';
+import { lockIssuerAccount } from '../../operations';
 import { Operation } from 'stellar-sdk';
-import { executeTransaction } from '../../services/helpers';
+import { executeTransaction } from '../../operations/helpers';
 
 jest.mock('stellar-sdk');
-jest.mock('../../services/helpers');
+jest.mock('../../operations/helpers');
 
 describe('lockIssuerAccount', () => {
   const issuerPublicKey = 'issuerPublicKey';

@@ -1,6 +1,6 @@
-import { createStellarAccount, getKeyPair } from '../../../services/helpers';
+import { createStellarAccount, getKeyPair } from '../../../operations/helpers';
 
-jest.mock('../../../services/helpers/getKeyPair', () => ({
+jest.mock('../../../operations/helpers/getKeyPair', () => ({
   getKeyPair: jest.fn(() => ({
     publicKey: 'public_key',
     secretKey: 'secret_key'

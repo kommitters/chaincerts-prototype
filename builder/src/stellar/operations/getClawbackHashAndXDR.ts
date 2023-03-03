@@ -1,6 +1,6 @@
 import { TransactionBuilder, Operation, Asset } from 'stellar-sdk';
 import { IXDR } from '../interfaces';
-import { NETWORK_PASSPHRASE, AMOUNT } from '../../configs/consts';
+import { NETWORK_PASSPHRASE, AMOUNT } from '../../resources/consts';
 import { getStellarServer } from './helpers';
 
 export const getClawbackHashAndXDR = async (

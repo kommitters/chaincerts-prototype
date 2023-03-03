@@ -1,4 +1,4 @@
-import { FRIENDBOT_ENDPOINT } from '../../../configs/consts';
+import { FRIENDBOT_ENDPOINT } from '../../../resources/consts';
 import { IKeyPair } from '../../interfaces';
 import { getKeyPair } from './getKeyPair';
 

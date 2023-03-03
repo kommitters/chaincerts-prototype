@@ -1,4 +1,4 @@
-import { getKeyPair } from '../../../services/helpers';
+import { getKeyPair } from '../../../operations/helpers';
 import { publicKeyFn, secretFn } from '../../__mocks__/stellar-sdk/types/keypair';
 
 describe('getKeyPair', () => {
