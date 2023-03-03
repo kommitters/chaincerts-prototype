@@ -1,34 +1,47 @@
 const account = {
   balances: [
     {
-      asset_code: 'CERTIFICATION_CODE',
-      asset_type: 'ASSET_TYPE',
-      asset_issuer: 'ISSUER'
+      asset_code: 'ASSET_CODE',
+      asset_issuer: 'ISSUER_ACCOUNT',
+      is_authorized_to_maintain_liabilities: true,
+      is_clawback_enabled: true
     }
   ],
   data_attr: {
-    CID: 'IPFS_CID'
+    CID: Buffer.from('IPFS_CID').toString('base64')
   }
 };
 
-const operations = {
+const payments = {
+  next: jest.fn().mockResolvedValue({ records: [] }),
   records: [
     {
-      type: 'payment',
+      amount: 1,
       to: 'DESTINATION_ACCOUNT',
+      asset_issuer: 'ISSUER_ACCOUNT',
+      source_account: 'SOURCE_ACCOUNT',
       asset_code: 'ASSET_CODE',
-      transaction: jest.fn().mockResolvedValue({ id: 'TRANSACTION_ID' })
+      created_at: 'CREATE_AT_DATE'
+    },
+    {
+      amount: 1,
+      to: 'SOURCE_ACCOUNT',
+      asset_issuer: 'ISSUER_ACCOUNT',
+      source_account: 'ISSUER_ACCOUNT',
+      asset_code: 'ASSET_CODE',
+      created_at: 'CREATE_AT_DATE'
     }
   ]
 };
 
-export const operationsCallFn = jest.fn().mockResolvedValue(operations);
-export const operationsForAccountFn = jest.fn().mockReturnValue({ call: operationsCallFn });
+export const paymentsCallFn = jest.fn().mockResolvedValue(payments);
+export const paymentsLimitFn = jest.fn().mockReturnValue({ call: paymentsCallFn });
+export const paymentsForAccountFn = jest.fn().mockReturnValue({ limit: paymentsLimitFn });
 
-export const operationsFn = jest.fn().mockReturnValue({ forAccount: operationsForAccountFn });
+export const paymentsFn = jest.fn().mockReturnValue({ forAccount: paymentsForAccountFn });
 export const loadAccountFn = jest.fn().mockResolvedValue(account);
 
 export class Server {
   loadAccount = loadAccountFn;
-  operations = operationsFn;
+  payments = paymentsFn;
 }

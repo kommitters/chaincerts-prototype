@@ -4,7 +4,8 @@ const CID = 'CID';
 
 export const fetchIssuerCID = async (issuerPublicKey: string) => {
   const account = await getStellarServer().loadAccount(issuerPublicKey);
-  const cid = account.data_attr[CID];
+  const encodedCid = account.data_attr[CID];
+  const cid = Buffer.from(encodedCid, 'base64').toString();
 
   return { CID: cid };
 };
