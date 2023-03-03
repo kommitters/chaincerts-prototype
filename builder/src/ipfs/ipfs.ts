@@ -1,8 +1,8 @@
 import { S3 } from './providers';
-import { Certificate } from '../certificateBuilder/interfaces/Certificate';
+import { ICertificate } from '../certificateBuilder/interfaces/ICertificate';
 import { IPFS_CERTS_BUCKET_NAME } from '../configs/credentials';
 
-export const uploadCertToIPFS = async (certificate: Certificate): Promise<string> => {
+export const uploadCertToIPFS = async (certificate: ICertificate): Promise<string> => {
   console.log('Uploading certificate to Filebase...');
 
   const certificateBuffer = Buffer.from(JSON.stringify(certificate));

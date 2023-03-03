@@ -4,12 +4,11 @@ import { kommitMentorCertificate } from './factory/kommitMentorCertificate';
 describe('generateCertificate', () => {
   it('should throw an exception if any property is missing', () => {
     const certificateRequest = {
-      username: 'John Doe',
       certDate: '2022-02-21',
       certType: 'CertExample'
     };
 
-    expect(generateCertificate(certificateRequest as never)).rejects.toThrow('The stellarAccount property is missing');
+    expect(generateCertificate(certificateRequest as never)).rejects.toThrow('The username property is missing');
   });
 
   it('should throw an exception if mentorHours is not a valid number', () => {
@@ -24,17 +23,6 @@ describe('generateCertificate', () => {
     };
 
     expect(generateCertificate(certificateRequest)).rejects.toThrow('The mentorHours is not a valid number');
-  });
-
-  it('should throw an exception if the stellarAccount is not an allowed account', () => {
-    const certificateRequest = {
-      username: 'John Doe',
-      certDate: '2022-02-21',
-      stellarAccount: 'DTHLHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
-      certType: 'CertExample'
-    };
-
-    expect(generateCertificate(certificateRequest)).rejects.toThrow('The stellarAccount is not allowed');
   });
 
   it('should throw an exception if the certType is not an allowed certificate type', () => {
