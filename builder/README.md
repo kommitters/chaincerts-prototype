@@ -58,6 +58,24 @@ To obtain a certificate, please provide the following information: the beneficia
 - `certType`: Certificate type you want to generate. Currently, the only available option is `CertExample`.
 - `certDate`: The date on which the certificate is issued.
 
+## Pre requisites
+* A Filebase account
+* A Distributor account
+* An Issuer account
+* A Destination account
+
+The builder will generate for you all of the required accounts automatically, while it executes the certificate creation process, but you will need to create the Filebase account to configure the environment file.
+
+### Filebase Account
+1. Head over to https://filebase.com
+2. Click on the Try for Free button to set up your account.
+3. Complete the sign-up form and verify your new account via email.
+4. Log in and create a bucket with a unique name to begin uploading your files.
+5. Navigate to the Access Keys section to retrieve your Access Key and Secret.
+    * Replace IPFS_ACCESS_KEY_ID with the provided key on the env file.
+    * Replace IPFS_SECRET_ACCESS_KEY with the provided secret on the env file.
+6. With your settings in place, proceed to triggering the generation of your SBT and receive your public key for easy validation using the visualizer.
+
 
 ## Generating a certificate
 
