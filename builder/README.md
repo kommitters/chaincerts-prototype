@@ -72,3 +72,13 @@ After running the command, you should see the following output:
 ```
 Congratulations! Your certificate has been successfully generated. To access it, simply use your Stellar public key on the Chaincerts visualizer at https://demo.chaincerts.co/.
 ```
+
+## Executing a clawback
+
+To perform a clawback, execute the following command with the XDR returned in the `yarn generate-cert` command:
+
+```bash
+yarn clawback '{"xdr": "[XDR]"}'
+```
+
+Replace `XDR` and remove the brackets `[` `]`
