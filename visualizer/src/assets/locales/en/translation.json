@@ -5,7 +5,7 @@
     "stellar_input": {
       "placeholder": "Insert Stellar public key",
       "enter": "Enter",
-      "error_title": "Something happened;",
+      "info_title": "Something happened;",
       "info_message": "Invalid key entered. Please check and try again."
     }
   },

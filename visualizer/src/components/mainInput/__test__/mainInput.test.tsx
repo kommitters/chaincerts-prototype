@@ -28,15 +28,16 @@ describe('<MainInput />', () => {
   it('Redirect to Certificates component when the public key is correct and has certificates', async () => {
     const spy = jest.spyOn(fetchAccount, 'fetchStellarAccountInfo').mockImplementation(async () => accountInfo);
     const inputKey = screen.getByLabelText('key-input');
-
     fireEvent.change(inputKey, { target: { value: stellarPublicKey } });
     const enterButton = screen.getByText('Enter');
     fireEvent.click(enterButton);
 
     expect(spy).toBeCalled();
 
-    await waitFor(() => {
-      expect(navigate).toHaveBeenLastCalledWith(`certificates/${stellarPublicKey}`, { state: accountInfo });
+    await waitFor(async () => {
+      expect(navigate).toHaveBeenLastCalledWith(`certificates/${stellarPublicKey}`, {
+        state: await Promise.all(accountInfo)
+      });
     });
   });
 

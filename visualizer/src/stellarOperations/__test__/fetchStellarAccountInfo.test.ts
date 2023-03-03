@@ -10,8 +10,8 @@ describe('fetchStellarAccountInfo', () => {
 
   it('should return all the code, name, issuer and CID for each balance', async () => {
     const stellarAccountInfo = await fetchStellarAccountInfo(PUBLIC_KEY);
-
-    expect(stellarAccountInfo).toContainEqual({
+    const resolvedStellarAccountInfo = await Promise.all(stellarAccountInfo);
+    expect(resolvedStellarAccountInfo).toContainEqual({
       assetCode: CERTIFICATION_CODE,
       assetType: ASSET_TYPE,
       assetIssuer: ISSUER,
@@ -39,6 +39,7 @@ describe('fetchStellarAccountInfo', () => {
     };
     loadAccountFn.mockReturnValueOnce(IncompleteAccount);
     const balances = await fetchStellarAccountInfo(PUBLIC_KEY);
-    expect(balances).toEqual([]);
+    const resolvedValuesArray = await Promise.all(balances);
+    expect(resolvedValuesArray).toEqual([]);
   });
 });

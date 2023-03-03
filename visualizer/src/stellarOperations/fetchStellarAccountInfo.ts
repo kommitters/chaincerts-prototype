@@ -7,15 +7,14 @@ const asset = CERT_ASSET;
 
 export const fetchStellarAccountInfo = async (publicKey: string) => {
   const balances: Balance[] = await fetchAccountBalancesFromCode(publicKey, asset);
-  const stellarAccountInfo = [];
+  let stellarAccountInfo = [];
 
-  for (let i = 0; i < balances.length; i++) {
-    if (balances[i].assetIssuer) {
-      const { CID } = await fetchIssuerCID(balances[i].assetIssuer);
-      const balanceInfo = { CID, ...balances[i] };
-      stellarAccountInfo.push(balanceInfo);
+  stellarAccountInfo = balances.map(async (ele) => {
+    if (ele.assetIssuer) {
+      const { CID } = await fetchIssuerCID(ele.assetIssuer);
+      return Promise.resolve({ CID, ...ele });
     }
-  }
+  });
 
   return stellarAccountInfo;
 };
