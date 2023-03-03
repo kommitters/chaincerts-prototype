@@ -7,7 +7,7 @@ import i18n from './i18n';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <I18nextProvider i18n={i18n}>
         <Router>
           <Routes>

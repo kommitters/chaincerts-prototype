@@ -1,16 +1,6 @@
 .home-container{
-  background-image:
-    url('/static/icons/backgrounImage.svg');
-  background-size: cover;
-  background-position: center center;
-  margin: 0;
-  color: #FFFFFF;
-  text-align: center;
   height: 100%;
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .wrapper-home {
@@ -32,7 +22,7 @@
 .chaincerts-logo {
   width: 17.339em;
   height: 2.962em;
-  margin-top: 8.5%;
+  margin-top: 7.5%;
   margin-bottom: 5em;
 }
 
