@@ -55,3 +55,15 @@ jobs:
           args: --acl public-read --follow-symlinks --delete
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_STAGING_BUCKET }}
+
+      - name: Invalidate Production CloudFront
+        if: github.ref == 'refs/heads/main'
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.PROD_DISTRIBUTION }}
+
+      - name: Invalidate Staging CloudFront
+        if: github.ref == 'refs/heads/develop'
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.STAGING_DISTRIBUTION }}
