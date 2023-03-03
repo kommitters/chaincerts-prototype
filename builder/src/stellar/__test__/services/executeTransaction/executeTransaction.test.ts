@@ -1,6 +1,6 @@
-import { executeTransaction } from '../../../../src/stellar/services/helpers';
-import { Operation } from '../../../__mocks__/stellar-sdk';
-import { loadAccountFn, fetchBaseFeeFn, submitTransactionFn } from '../../../__mocks__/stellar-sdk/types/server';
+import { executeTransaction } from '../../../services/helpers';
+import { Operation } from '../../__mocks__/stellar-sdk';
+import { loadAccountFn, fetchBaseFeeFn, submitTransactionFn } from '../../__mocks__/stellar-sdk/types/server';
 
 describe('executeTransaction', () => {
   const publickKey = 'GD4J7VCL65DB44ADDPDUTBPGFFTODGUCPZRSDHAKVVE56YXTOGSTMS2M';

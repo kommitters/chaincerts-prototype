@@ -1,6 +1,6 @@
-import { uploadCertToIPFS } from '../../src/ipfs';
-import { createBucketPromiseResponse, putObjectPromiseResponse } from '../__mocks__/aws-sdk/S3';
-import { kommitMentorCertificate } from '../factory/kommitMentorCertificate';
+import { uploadCertToIPFS } from '../index';
+import { createBucketPromiseResponse, putObjectPromiseResponse } from './__mocks__/aws-sdk/S3';
+import { kommitMentorCertificate } from './factory/kommitMentorCertificate';
 describe('uploadCertToIPFS lambda', () => {
   afterEach(() => {
     jest.clearAllMocks();

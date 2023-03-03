@@ -1,10 +1,10 @@
-import { getClawbackHashAndXDR } from '../../../src/stellar/services';
-import { Operation } from '../../__mocks__/stellar-sdk';
-import { AMOUNT } from '../../../src/configs/consts';
-import { loadAccountFn, fetchBaseFeeFn } from '../../__mocks__/stellar-sdk/types/server';
-import { incrementSequenceNumberFn } from '../../__mocks__/stellar-sdk/types/account';
-import { hashFn, toEnvelopeFn } from '../../__mocks__/stellar-sdk/types/transaction';
-import { addOperationFn, setTimeboundsFn } from '../../__mocks__/stellar-sdk/types/transactionBuilder';
+import { getClawbackHashAndXDR } from '../../services';
+import { Operation } from '../__mocks__/stellar-sdk';
+import { AMOUNT } from '../../../configs/consts';
+import { loadAccountFn, fetchBaseFeeFn } from '../__mocks__/stellar-sdk/types/server';
+import { incrementSequenceNumberFn } from '../__mocks__/stellar-sdk/types/account';
+import { hashFn, toEnvelopeFn } from '../__mocks__/stellar-sdk/types/transaction';
+import { addOperationFn, setTimeboundsFn } from '../__mocks__/stellar-sdk/types/transactionBuilder';
 import { Asset } from 'stellar-sdk';
 
 describe('getClawbackHashAndXDR', () => {

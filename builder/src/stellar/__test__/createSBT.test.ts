@@ -6,14 +6,14 @@ import {
   getClawbackHashAndXDR,
   preAuthorizeClawback,
   lockIssuerAccount
-} from '../../src/stellar/services';
-import { IKeyPair } from '../../src/stellar/interfaces';
-import { createSBT } from '../../src/stellar';
-import { DISTRIBUTOR_PUBLIC_KEY, DISTRIBUTOR_SECRET_KEY } from '../../src/configs/credentials';
+} from '../services';
+import { IKeyPair } from '../interfaces';
+import { createSBT } from '../index';
+import { DISTRIBUTOR_PUBLIC_KEY, DISTRIBUTOR_SECRET_KEY } from '../../configs/credentials';
 
 const CERTIFICATE_ASSET_CODE = 'MentorCert';
 
-jest.mock('../../src/stellar/services', () => ({
+jest.mock('../services', () => ({
   createIssuerAccount: jest.fn(),
   sendSBT: jest.fn(),
   saveCID: jest.fn(),

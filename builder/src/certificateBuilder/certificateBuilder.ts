@@ -1,16 +1,16 @@
-import { Certificate, CertificateRequest, OptionalRequestData } from './interfaces';
+import { ICertificate, ICertificateRequest, IOptionalRequestData } from './interfaces';
 import { mentorCertificateTemplate } from './certificateTemplates';
 import { validateCertificateRequest } from './validateCertificateRequest';
 import { uploadCertToIPFS } from '../ipfs';
 
-const OPTIONAL_KOMMIT_MENTOR_DATA: OptionalRequestData = {
-  mentor_hours: '100'
+const OPTIONAL_KOMMIT_MENTOR_DATA: IOptionalRequestData = {
+  mentorHours: '100'
 };
 
 const SUCCESS_MESAGE =
   '\n✅ Congratulations! Your certificate has been successfully generated. To access it, simply use your Stellar public key on the Chaincerts visualizer at https://demo.chaincerts.co/.';
 
-export const generateCertificate = async (certificateRequest: CertificateRequest): Promise<Certificate> => {
+export const generateCertificate = async (certificateRequest: ICertificateRequest): Promise<ICertificate> => {
   const requestValidation = validateCertificateRequest(certificateRequest);
 
   if (!requestValidation.valid) {

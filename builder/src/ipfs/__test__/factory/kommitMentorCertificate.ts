@@ -1,6 +1,4 @@
-import { ICertificate } from '../interfaces';
-
-export const mentorCertificateTemplate: ICertificate = {
+export const kommitMentorCertificate = {
   materialFile: 'mentor-1000h.mtl',
   objectFile: 'mentor-1000h.obj',
   modelSettings: [
@@ -15,7 +13,7 @@ export const mentorCertificateTemplate: ICertificate = {
       fontSize: 0.015,
       position: { x: 2.5, y: -1.05, z: -0.7 },
       color: '0xffffff',
-      text: ''
+      text: 'John Doe'
     },
     {
       type: 'mentorHours',
@@ -23,7 +21,7 @@ export const mentorCertificateTemplate: ICertificate = {
       fontSize: 0.01,
       position: { x: 2.5, y: -0.5, z: -0.7 },
       color: '0xffffff',
-      text: ''
+      text: '• 100 hours •'
     },
     {
       type: 'stellarAccount',
@@ -32,7 +30,7 @@ export const mentorCertificateTemplate: ICertificate = {
       position: { x: 3.0, y: -1.87, z: 0.5 },
       color: '0x97d4ff',
       vertical: true,
-      text: ''
+      text: 'Stellar Account: GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB'
     },
     {
       type: 'certDate',
@@ -41,7 +39,7 @@ export const mentorCertificateTemplate: ICertificate = {
       position: { x: 2.5, y: -1.65, z: -0.7 },
       color: '0x1005f3',
       bold: true,
-      text: ''
+      text: '////////2022-02-21'
     }
   ]
 };
