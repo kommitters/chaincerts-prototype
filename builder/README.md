@@ -50,29 +50,21 @@ To fix lint issues, use:
 
 # 📜 How to generate your certificate
 
-To obtain a certificate, please provide the following information: the beneficiary's full name, the Stellar account, the type of certificate requested, and any other relevant data necessary for the certification process.
+To obtain a certificate, please provide the following information: the beneficiary's full name,  the type of certificate requested, and the certificate date.
 
 ## Available params:
 
 - `username`: The beneficiary's name.
-- `stellar-account`: The public key of the beneficiary's Stellar account.
-- `cert-type`: Certificate type you want to generate. Currently, the only available option is "kommit-mentor".
-- `cert-date`: The date on which the certificate is issued.
-- `data [optional]`: Providing additional details is necessary for some certificates; otherwise, default information will be used according to their guidelines. For example, the `kommit-mentor` certificate requires the number of mentoring hours. If you do not provide this, the default will be 100 hour.
+- `certType`: Certificate type you want to generate. Currently, the only available option is `CertExample`.
+- `certDate`: The date on which the certificate is issued.
 
 
 ## Generating a certificate
 
-To generate a kommit-mentor certificate, run the following command:
+To generate a `CertExample` certificate, run the following command:
 
 ```bash
-yarn generate-cert '{"username": "John Doe","cert_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB", "cert_type": "kommit-mentor"}'
-```
-
-To generate a kommit-mentor certificate with additional data, use:
-
-```bash
-yarn generate-cert '{"username": "John Doe","cert_date": "2022-10-01","stellar_account": "GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB", "cert_type": "kommit-mentor", "data": {"mentor_hours": 500}}'
+yarn generate-cert '{"username": "John Doe","certDate": "2022-10-01", "certType": "CertExample"}'
 ```
 
 After running the command, you should see the following output:
