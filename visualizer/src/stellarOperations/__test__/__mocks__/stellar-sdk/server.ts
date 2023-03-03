@@ -7,28 +7,28 @@ const account = {
     }
   ],
   data_attr: {
-    CID: 'IPFS_CID'
+    CID: Buffer.from('IPFS_CID').toString('base64')
   }
 };
 
-const operations = {
+const payments = {
   records: [
     {
-      type: 'payment',
-      to: 'DESTINATION_ACCOUNT',
+      asset_issuer: 'DISTRIBUTOR_ACCOUNT',
       asset_code: 'ASSET_CODE',
       transaction: jest.fn().mockResolvedValue({ id: 'TRANSACTION_ID' })
     }
   ]
 };
 
-export const operationsCallFn = jest.fn().mockResolvedValue(operations);
-export const operationsForAccountFn = jest.fn().mockReturnValue({ call: operationsCallFn });
+export const paymentsCallFn = jest.fn().mockResolvedValue(payments);
+export const paymentsLimitFn = jest.fn().mockReturnValue({ call: paymentsCallFn });
+export const paymentsForAccountFn = jest.fn().mockReturnValue({ limit: paymentsLimitFn });
 
-export const operationsFn = jest.fn().mockReturnValue({ forAccount: operationsForAccountFn });
+export const paymentsFn = jest.fn().mockReturnValue({ forAccount: paymentsForAccountFn });
 export const loadAccountFn = jest.fn().mockResolvedValue(account);
 
 export class Server {
   loadAccount = loadAccountFn;
-  operations = operationsFn;
+  payments = paymentsFn;
 }
