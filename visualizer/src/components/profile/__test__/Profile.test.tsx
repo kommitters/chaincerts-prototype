@@ -10,7 +10,7 @@ describe('Profile component', () => {
     i18n.changeLanguage('en');
     render(
       <I18nextProvider i18n={i18n}>
-        <Profile stellar_key={stellarPublicKey} />
+        <Profile stellarKey={stellarPublicKey} />
       </I18nextProvider>
     );
   });
