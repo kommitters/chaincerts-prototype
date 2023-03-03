@@ -1,10 +1,10 @@
-import { Operation } from '../../__mocks__/stellar-sdk';
+import { Operation } from '../__mocks__/stellar-sdk';
 import { Asset } from 'stellar-sdk';
-import { sendSBT } from '../../../src/stellar/services';
-import { executeTransaction } from '../../../src/stellar/services/helpers';
+import { sendSBT } from '../../services';
+import { executeTransaction } from '../../services/helpers';
 import { Horizon } from 'stellar-sdk';
 
-jest.mock('../../../src/stellar/services/helpers');
+jest.mock('../../services/helpers');
 
 describe('sendSBT', () => {
   const executeTransactionMock = jest.mocked(executeTransaction);

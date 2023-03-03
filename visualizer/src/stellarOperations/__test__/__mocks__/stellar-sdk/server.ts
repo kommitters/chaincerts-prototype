@@ -1,7 +1,7 @@
 const account = {
   balances: [
     {
-      asset_code: 'CERTIFICATION_CODE',
+      assetCode: 'CERTIFICATION_CODE',
       asset_type: 'ASSET_TYPE',
       asset_issuer: 'ISSUER'
     }
@@ -16,7 +16,7 @@ const operations = {
     {
       type: 'payment',
       to: 'DESTINATION_ACCOUNT',
-      asset_code: 'ASSET_CODE',
+      assetCode: 'assetCode',
       transaction: jest.fn().mockResolvedValue({ id: 'TRANSACTION_ID' })
     }
   ]
