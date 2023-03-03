@@ -2,7 +2,7 @@ import { fetchBalanceTransaction } from '../fetchBalanceTransaction';
 import { operationsFn, operationsForAccountFn, operationsCallFn } from './__mocks__/stellar-sdk/server';
 
 describe('fetchBalanceTransaction', () => {
-  const BALANCE = { assetIssuer: 'ISSUER', assetCode: 'assetCode' };
+  const BALANCE = { assetIssuer: 'ISSUER', assetCode: 'ASSET_CODE' };
   const DESTINATION_ACCOUNT = 'DESTINATION_ACCOUNT';
   const UNRELATED_DESTINATION_ACCOUNT = 'UNRELATED_DESTINATION_ACCOUNT';
 
