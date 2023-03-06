@@ -49,11 +49,15 @@ const Carousel = ({ carouselData }: InferProps<typeof propTypes>) => {
   };
 
   const showAssetInformation = (component: Element) => {
-    component.getElementsByClassName('asset-card')[0].className = 'asset-card show';
+    const assetCard = component?.getElementsByClassName('asset-card')[0];
+
+    if (assetCard) assetCard.className = 'asset-card show';
   };
 
   const hideAssetInformation = (component: Element) => {
-    component.getElementsByClassName('asset-card')[0].className = 'asset-card';
+    const assetCard = component?.getElementsByClassName('asset-card')[0];
+
+    if (assetCard) assetCard.className = 'asset-card';
   };
 
   const buildItems = () => {
