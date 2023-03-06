@@ -4,7 +4,6 @@
 .app {
   background-image:
     url('/static/images/backgroundImage.svg');
-  background-attachment: fixed;
   background-size: cover;
   background-repeat: repeat;
   background-position: center center;
