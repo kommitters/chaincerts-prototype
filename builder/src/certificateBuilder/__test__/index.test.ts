@@ -2,6 +2,7 @@ import { generateCertificate } from '../index';
 import { kommitMentorCertificate } from './factory/kommitMentorCertificate';
 import { uploadCertToIPFS } from '../../../src/ipfs';
 import { createSBT } from '../../../src/stellar';
+import { createStellarAccount } from '../../stellar/operations/helpers';
 
 jest.mock('../../../src/stellar', () => ({
   createSBT: jest.fn()
@@ -11,9 +12,17 @@ jest.mock('../../../src/ipfs', () => ({
   uploadCertToIPFS: jest.fn()
 }));
 
+jest.mock('../../stellar/operations/helpers', () => ({
+  createStellarAccount: jest.fn()
+}));
+
 describe('generateCertificate', () => {
   const mockedCreateSBT = jest.mocked(createSBT);
   const mockedUploadCertToIPFS = jest.mocked(uploadCertToIPFS);
+  const mockedCreateStellarAccount = jest.mocked(createStellarAccount);
+
+  const recipientPublicKey = 'stellar_public_key';
+  const recipientSecretKey = 'stellar_secret_key';
 
   const XDR = 'XDR';
   const CID = 'CID';
@@ -21,8 +30,8 @@ describe('generateCertificate', () => {
   const correctCertificateRequest = {
     username: 'John Doe',
     certDate: '2022-02-21',
-    stellarAccount: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
-    certType: 'CertExample',
+    stellarAccount: recipientPublicKey,
+    certType: 'CERTEXAMPLE',
     data: {
       mentorHours: '2000'
     }
@@ -31,6 +40,9 @@ describe('generateCertificate', () => {
   beforeEach(() => {
     mockedUploadCertToIPFS.mockResolvedValue(Promise.resolve(CID));
     mockedCreateSBT.mockResolvedValue(Promise.resolve(XDR));
+    mockedCreateStellarAccount.mockResolvedValue(
+      Promise.resolve({ publicKey: recipientPublicKey, secretKey: recipientSecretKey })
+    );
   });
 
   it('should throw an exception if any property is missing', () => {
@@ -46,8 +58,8 @@ describe('generateCertificate', () => {
     const certificateRequest = {
       username: 'John Doe',
       certDate: '2022-02-21',
-      stellarAccount: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
-      certType: 'CertExample',
+      stellarAccount: recipientPublicKey,
+      certType: 'CERTEXAMPLE',
       data: {
         mentorHours: 'test'
       }
@@ -60,7 +72,7 @@ describe('generateCertificate', () => {
     const certificateRequest = {
       username: 'John Doe',
       certDate: '2022-02-21',
-      stellarAccount: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
+      stellarAccount: recipientPublicKey,
       certType: 'senior-certificate'
     };
 
@@ -100,14 +112,14 @@ describe('generateCertificate', () => {
           position: { x: 3.0, y: -1.87, z: 0.5 },
           color: '0x97d4ff',
           vertical: true,
-          text: 'Stellar Account: GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB'
+          text: 'Stellar Account: ' + recipientPublicKey
         },
         {
           type: 'certDate',
           textFormatter: '////////[value]',
           fontSize: 0.0149,
           position: { x: 2.5, y: -1.65, z: -0.7 },
-          color: '0x1005f3',
+          color: '0x1085f3',
           bold: true,
           text: '////////2022-02-21'
         }
@@ -123,8 +135,8 @@ describe('generateCertificate', () => {
     const certificateRequest = {
       username: 'John Doe',
       certDate: '2022-02-21',
-      stellarAccount: 'GCFXHS4GXL6BVUCXBWXGTITROWLVYXQKQLF4YH5O5JT3YZXCYPAFBJZB',
-      certType: 'CertExample'
+      stellarAccount: recipientPublicKey,
+      certType: 'CERTEXAMPLE'
     };
 
     const certificate = await generateCertificate(certificateRequest);
@@ -136,7 +148,12 @@ describe('generateCertificate', () => {
     await generateCertificate(correctCertificateRequest);
 
     expect(mockedUploadCertToIPFS).toBeCalled();
-    expect(mockedCreateSBT).toHaveBeenCalledWith(CID, correctCertificateRequest.certType);
+    expect(mockedCreateSBT).toHaveBeenCalledWith(
+      recipientPublicKey,
+      recipientSecretKey,
+      CID,
+      correctCertificateRequest.certType
+    );
   });
 
   it('should show error on console if the SBT creation fails', async () => {

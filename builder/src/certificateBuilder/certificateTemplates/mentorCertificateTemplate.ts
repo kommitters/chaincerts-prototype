@@ -39,7 +39,7 @@ export const mentorCertificateTemplate: ICertificate = {
       textFormatter: '////////[value]',
       fontSize: 0.0149,
       position: { x: 2.5, y: -1.65, z: -0.7 },
-      color: '0x1005f3',
+      color: '0x1085f3',
       bold: true,
       text: ''
     }

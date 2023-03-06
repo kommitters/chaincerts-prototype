@@ -4,6 +4,7 @@ import { validateCertificateRequest } from './validateCertificateRequest';
 import { uploadCertToIPFS } from '../ipfs';
 import { createSBT } from '../stellar';
 import { CLAWABACK_MESSAGE, FAILED_MESSAGE, SUCCESS_MESSAGE } from '../resources/consts';
+import { createStellarAccount } from '../stellar/operations/helpers';
 
 const OPTIONAL_KOMMIT_MENTOR_DATA: IOptionalRequestData = {
   mentorHours: '100'
@@ -15,6 +16,12 @@ export const generateCertificate = async (certificateRequest: ICertificateReques
   if (!requestValidation.valid) {
     throw new Error(requestValidation.error);
   }
+
+  // Create recipient Account
+  const { publicKey: recipientPublicKey, secretKey: recipientSecretKey } = await createStellarAccount();
+  console.log(`🔑 Recipient Public Key ${recipientPublicKey} \n`);
+
+  certificateRequest.stellarAccount = recipientPublicKey;
 
   const certificate = { ...mentorCertificateTemplate };
 
@@ -29,7 +36,7 @@ export const generateCertificate = async (certificateRequest: ICertificateReques
   const CID = await uploadCertToIPFS(certificate);
 
   try {
-    const XDR = await createSBT(CID, certificateRequest.certType);
+    const XDR = await createSBT(recipientPublicKey, recipientSecretKey, CID, certificateRequest.certType);
     console.log(CLAWABACK_MESSAGE + `${XDR} \n`);
 
     console.log(SUCCESS_MESSAGE);

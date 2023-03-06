@@ -1,8 +1,8 @@
 import { ICertificateRequest } from '../interfaces';
 
-const certificateRequestProps = ['username', 'stellarAccount', 'certDate', 'certType'];
+const certificateRequestProps = ['username', 'certDate', 'certType'];
 
-const validCertificateTypes = ['CertExample'];
+const validCertificateTypes = ['CERTEXAMPLE'];
 
 export const validateCertificateRequest = (certificateRequest: ICertificateRequest) => {
   const missingProperty = getMissingProperty(certificateRequest);
