@@ -23,7 +23,7 @@ export const sendSBT = async (
   });
 
   try {
-    console.log(`Sending the SBT from ${senderPublicKey} to ${recipientPublicKey}`);
+    console.log(`\n📤 Sending the Chaincert \n    from ${senderPublicKey} to ${recipientPublicKey} \n`);
     await executeTransaction(senderPublicKey, [senderSecretKey, recipientSecretKey], [changeTrustOp, paymentOp]);
   } catch (error) {
     throw new Error(`Failed sending the SBT from ${senderPublicKey} to ${recipientPublicKey}: ${error.message}`);

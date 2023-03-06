@@ -10,7 +10,7 @@ export const preAuthorizeClawback = async (issuerPublicKey: string, issuerSecret
   });
 
   try {
-    console.log('Pre-authorizing clawback .... ');
+    console.log('\n🖊️  Pre-authorizing clawback... \n');
     await executeTransaction(issuerPublicKey, issuerSecretKey, setOptionsOp);
   } catch (error) {
     throw new Error(`Failed Pre-authorizing clawback: ${error.message}`);

@@ -18,16 +18,16 @@ export const createSBT = async (
   assetCode: string
 ): Promise<string | never> => {
   try {
-    // Create distributor Account
+    console.log(`\nSetting up a distributor account for the delivery of the Chaincert...`);
     const { publicKey: distributorPublicKey, secretKey: distributorSecretKey } = await createStellarAccount();
-    console.log(`\n🔑 Distributor Public Key ${distributorPublicKey} \n`);
+    console.log(`🔑 Distributor Public Key: ${distributorPublicKey} \n`);
 
     // Create Issuer Account and set Flags to make the asset revocable
     const { publicKey: sbtIssuerPublicKey, secretKey: sbtIssuerSecretKey }: IKeyPair = await createIssuerAccount(
       distributorPublicKey,
       distributorSecretKey
     );
-    console.log(`🔑 Issuer Public Key ${sbtIssuerPublicKey} \n`);
+    console.log(`🔑 Issuer Public Key: ${sbtIssuerPublicKey} \n`);
 
     const SBT = new Asset(assetCode, sbtIssuerPublicKey);
 

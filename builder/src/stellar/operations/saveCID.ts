@@ -9,7 +9,7 @@ export const saveCID = async (sbtIssuerPublicKey: string, sbtIssuerSecretKey: st
   });
 
   try {
-    console.log('Saving the CID in the Issuer Account ... ');
+    console.log('\n🔗 Storing the CID in the Issuer Account for easy retrieval of the Chaincert... \n');
     await executeTransaction(sbtIssuerPublicKey, sbtIssuerSecretKey, manageDataOp);
   } catch (error) {
     throw new Error(`Failed saving the CID: ${error.message}`);
