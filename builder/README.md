@@ -59,13 +59,7 @@ To obtain a certificate, please provide the following information: the beneficia
 - `certDate`: The date on which the certificate is issued.
 
 ## Pre requisites
-Before proceeding with the certificate creation process, ensure that you have the following accounts set up:
-
-* A Filebase account: You need to create a Filebase account to configure the environment file.
-* A Distributor account: This account is used to distribute the certificates to the end-users.
-* An Issuer account: This account is used to issue and sign the certificates.
-* A Destination account: This account is used to receive the clawback funds.
-Note that the builder will automatically generate the required accounts during the certificate creation process, except for the Filebase account.
+Before proceeding with the certificate creation process, you need to create a Filebase account to configure the environment file.
 
 ### Setting up a Filebase Account
 To set up a Filebase account, follow these steps:
