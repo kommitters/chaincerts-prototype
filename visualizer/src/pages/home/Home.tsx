@@ -13,8 +13,8 @@ const Home = () => {
         <div className="wrapper-main-home">
           <span className="home-title">{t('home.title')}</span>
           <p className="home-info">{t('home.info')}</p>
-          <span className="home-key">GB6KONY6F5U3HWSQSPCUX2HJPPENEBP5P77ALW3HPABUHP6YQNZUFZHW</span>
-          <span className="home-key">GCQXTWFTNV4ILHREYU7OBU3SYBGPF4EXFCI2GEB47CGYENN2AWC4OOBX</span>
+          <span className="home-key">GAQFD264BREGU67VGWQ6JIBRQTGCZTGHEVL63ZV4IBWEMYHJQB7OOMID</span>
+          <span className="home-key">GBAAAUVZQQ6OAPU2IT5Z4WDQRLJ6AJFNPXL2SCZTA5TRB6FZBQMBJPV4</span>
           <div className="home-input-container">
             <MainInput />
           </div>
