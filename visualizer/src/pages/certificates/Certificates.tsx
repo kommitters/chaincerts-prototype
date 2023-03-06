@@ -10,7 +10,6 @@ import './styles.css';
 
 const Certificates = () => {
   const { state: certificates } = useLocation();
-  console.log('certificates: ', certificates);
   const carouselData: JSX.Element[] = certificates.map((certificate: IAssetInformation, index: number) => (
     <CertificateInformation key={index} id={`certificate-${index}`} assetInformation={certificate} />
   ));
