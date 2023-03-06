@@ -1,5 +1,5 @@
 import { TransactionBuilder, Keypair, xdr, Horizon } from 'stellar-sdk';
-import { NETWORK_PASSPHRASE } from '../../../configs/consts';
+import { NETWORK_PASSPHRASE } from '../../../resources/consts';
 import { getStellarServer } from './getStellarServer';
 
 export const executeTransaction = async (

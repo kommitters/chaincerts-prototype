@@ -1,8 +1,8 @@
-import { establishNonTransferableSBT } from '../../services';
-import { executeTransaction } from '../../services/helpers';
+import { establishNonTransferableSBT } from '../../operations';
+import { executeTransaction } from '../../operations/helpers';
 import { Asset, Horizon } from 'stellar-sdk';
 
-jest.mock('../../services/helpers');
+jest.mock('../../operations/helpers');
 
 describe('establishNonTransferableSBT', () => {
   const executeTransactionMock = jest.mocked(executeTransaction);

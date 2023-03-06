@@ -1,7 +1,7 @@
 import { Operation, AuthRevocableFlag, AuthClawbackEnabledFlag, AuthFlag } from 'stellar-sdk';
 import { IKeyPair } from '../interfaces';
 import { executeTransaction, getKeyPair } from './helpers';
-import { STARTING_BALANCE } from '../../configs/consts';
+import { STARTING_BALANCE } from '../../resources/consts';
 
 export const createIssuerAccount = async (
   publicStellarKey: string,

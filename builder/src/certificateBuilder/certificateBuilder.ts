@@ -3,7 +3,7 @@ import { mentorCertificateTemplate } from './certificateTemplates';
 import { validateCertificateRequest } from './validateCertificateRequest';
 import { uploadCertToIPFS } from '../ipfs';
 import { createSBT } from '../stellar';
-import { CLAWABACK_MESSAGE, FAILED_MESSAGE, SUCCESS_MESSAGE } from '../configs/consts';
+import { CLAWABACK_MESSAGE, FAILED_MESSAGE, SUCCESS_MESSAGE } from '../resources/consts';
 
 const OPTIONAL_KOMMIT_MENTOR_DATA: IOptionalRequestData = {
   mentorHours: '100'

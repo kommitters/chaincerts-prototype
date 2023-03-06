@@ -1,9 +1,9 @@
-import { createIssuerAccount } from '../../services';
-import { executeTransaction, getKeyPair } from '../../services/helpers';
+import { createIssuerAccount } from '../../operations';
+import { executeTransaction, getKeyPair } from '../../operations/helpers';
 import { Horizon } from 'stellar-sdk';
 import { IKeyPair } from '../../interfaces';
 
-jest.mock('../../services/helpers', () => ({
+jest.mock('../../operations/helpers', () => ({
   getKeyPair: jest.fn(),
   executeTransaction: jest.fn()
 }));

@@ -6,14 +6,14 @@ import {
   getClawbackHashAndXDR,
   preAuthorizeClawback,
   lockIssuerAccount
-} from '../services';
+} from '../operations';
 import { IKeyPair } from '../interfaces';
 import { createSBT } from '../index';
-import { createStellarAccount } from '../services/helpers';
+import { createStellarAccount } from '../operations/helpers';
 
 const CERTIFICATE_ASSET_CODE = 'mentorCert';
 
-jest.mock('../services', () => ({
+jest.mock('../operations', () => ({
   createIssuerAccount: jest.fn(),
   sendSBT: jest.fn(),
   saveCID: jest.fn(),
@@ -23,7 +23,7 @@ jest.mock('../services', () => ({
   lockIssuerAccount: jest.fn()
 }));
 
-jest.mock('../services/helpers', () => ({
+jest.mock('../operations/helpers', () => ({
   createStellarAccount: jest.fn()
 }));
 

@@ -1,5 +1,5 @@
 import { Operation } from 'stellar-sdk';
-import { ISSUER_DATA_NAME } from '../../configs/consts';
+import { ISSUER_DATA_NAME } from '../../resources/consts';
 import { executeTransaction } from './helpers';
 
 export const saveCID = async (sbtIssuerPublicKey: string, sbtIssuerSecretKey: string, CID: string): Promise<void> => {

@@ -1,6 +1,6 @@
 import { executeClawback } from '../index';
 import { Transaction } from './__mocks__/stellar-sdk';
-import { NETWORK_PASSPHRASE } from '../../configs/consts';
+import { NETWORK_PASSPHRASE } from '../../resources/consts';
 import { submitTransactionFn } from './__mocks__/stellar-sdk/types/server';
 
 describe('executeClawback', () => {

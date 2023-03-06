@@ -1,8 +1,8 @@
-import { preAuthorizeClawback } from '../../services';
-import { executeTransaction } from '../../services/helpers';
+import { preAuthorizeClawback } from '../../operations';
+import { executeTransaction } from '../../operations/helpers';
 import { Operation } from '../__mocks__/stellar-sdk';
 
-jest.mock('../../services/helpers');
+jest.mock('../../operations/helpers');
 
 describe('preAuthorizeClawback', () => {
   const issuerPublicKey = 'issuerPublicKey';
