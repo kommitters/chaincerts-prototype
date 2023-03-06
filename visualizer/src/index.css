@@ -3,7 +3,7 @@
 
 .app {
   background-image:
-    url('/static/images/backgroundImage.svg');
+    url('/images/backgroundImage.svg');
   background-attachment: fixed;
   background-size: cover;
   background-repeat: repeat;
@@ -26,6 +26,7 @@
   margin-right: 25vw;
   min-height: 8em;
 }
+
 @media (max-width: 700px) {
   .footer-page {
     clear: both;
