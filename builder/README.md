@@ -59,23 +59,24 @@ To obtain a certificate, please provide the following information: the beneficia
 - `certDate`: The date on which the certificate is issued.
 
 ## Pre requisites
-* A Filebase account
-* A Distributor account
-* An Issuer account
-* A Destination account
+Before proceeding with the certificate creation process, ensure that you have the following accounts set up:
 
-The builder will generate for you all of the required accounts automatically, while it executes the certificate creation process, but you will need to create the Filebase account to configure the environment file.
+* A Filebase account: You need to create a Filebase account to configure the environment file.
+* A Distributor account: This account is used to distribute the certificates to the end-users.
+* An Issuer account: This account is used to issue and sign the certificates.
+* A Destination account: This account is used to receive the clawback funds.
+Note that the builder will automatically generate the required accounts during the certificate creation process, except for the Filebase account.
 
-### Filebase Account
-1. Head over to https://filebase.com
-2. Click on the Try for Free button to set up your account.
-3. Complete the sign-up form and verify your new account via email.
-4. Log in and create a bucket with a unique name to begin uploading your files.
+### Setting up a Filebase Account
+To set up a Filebase account, follow these steps:
+
+1. Go to https://filebase.com.
+2. Click on the "Try for Free" button to create your account.
+3. Complete the sign-up form and verify your account through email.
+4. Log in to your account and create a bucket with a unique name to start uploading your files.
 5. Navigate to the Access Keys section to retrieve your Access Key and Secret.
-    * Replace IPFS_ACCESS_KEY_ID with the provided key on the env file.
-    * Replace IPFS_SECRET_ACCESS_KEY with the provided secret on the env file.
-6. With your settings in place, proceed to triggering the generation of your SBT and receive your public key for easy validation using the visualizer.
-
+6. Replace IPFS_ACCESS_KEY_ID with the provided key and IPFS_SECRET_ACCESS_KEY with the provided secret on the environment file.
+7. With your settings in place, trigger the generation of your SBT to receive your public key for easy validation using the visualizer.
 
 ## Generating a certificate
 
