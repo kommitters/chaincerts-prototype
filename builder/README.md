@@ -58,10 +58,10 @@ To obtain a certificate, please provide the following information: the beneficia
 - `certType`: Certificate type you want to generate. Currently, the only available option is `CertExample`.
 - `certDate`: The date on which the certificate is issued.
 
-## Pre requisites
-Before proceeding with the certificate creation process, you need to create a Filebase account to configure the environment file.
 
 ### Setting up a Filebase Account
+Before proceeding with the certificate creation process, you need to create a Filebase account to configure the environment file.
+
 To set up a Filebase account, follow these steps:
 
 1. Go to https://filebase.com.
