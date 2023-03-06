@@ -8,8 +8,8 @@ const propTypes = {
   id: PropTypes.string.isRequired
 };
 
-const DEFAULT_COMPONENT_WIDTH = 900;
-const DEFAULT_COMPONENT_HEIGHT = 700;
+const DEFAULT_COMPONENT_WIDTH = 700;
+const DEFAULT_COMPONENT_HEIGHT = 400;
 
 const CertificateVisualizer = ({ certificate, id }: InferProps<typeof propTypes>) => {
   useEffect(() => {

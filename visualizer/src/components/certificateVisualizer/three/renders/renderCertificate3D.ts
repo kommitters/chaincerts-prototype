@@ -35,4 +35,4 @@ export const renderCertificate3D = async (certificate: ICertificate) => {
   return certificate3D;
 };
 
-const formatCertificateAssetPath = (file: string) => `./${KM_CETIFICATE_ASSETS_PATH}/${file}`;
+const formatCertificateAssetPath = (file: string) => `/${KM_CETIFICATE_ASSETS_PATH}/${file}`;

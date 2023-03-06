@@ -5,7 +5,7 @@ import Certificates from './pages/certificates';
 import Home from './pages/home';
 import i18n from './i18n';
 
-function App() {
+const App = () => {
   return (
     <div className="app">
       <I18nextProvider i18n={i18n}>
@@ -19,6 +19,6 @@ function App() {
       </I18nextProvider>
     </div>
   );
-}
+};
 
 export default App;
