@@ -33,9 +33,9 @@ function App() {
               </Routes>
             </Router>
           </I18nextProvider>
-          <div className="footer-page">
+          <footer className="footer-page">
             <Footer />
-          </div>
+          </footer>
         </div>
       )}
     </>

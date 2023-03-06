@@ -8,7 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="nav-container">
+    <nav className="nav-container">
       <div className="logo">
         <img src={chaincertsLogo} alt="chaincerts-logo" />
       </div>
@@ -16,7 +16,7 @@ const Navbar = () => {
         <img src={leftArrowIcon} alt="left-arrow-icon" />
         <span className="text-button">{t('certificates.button.back')}</span>
       </button>
-    </div>
+    </nav>
   );
 };
 

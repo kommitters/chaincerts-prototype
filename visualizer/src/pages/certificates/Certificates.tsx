@@ -6,10 +6,11 @@ import CertificateInformation from '../../components/certificateInformation/Cert
 import { IAssetInformation } from '../../components/assetInformation/interfaces';
 import Profile from '../../components/profile';
 import Navbar from '../../components/navbar';
+import './styles.css';
 
 const Certificates = () => {
   const { state: certificates } = useLocation();
-
+  console.log('certificates: ', certificates);
   const carouselData: JSX.Element[] = certificates.map((certificate: IAssetInformation, index: number) => (
     <CertificateInformation key={index} id={`certificate-${index}`} assetInformation={certificate} />
   ));
@@ -17,17 +18,20 @@ const Certificates = () => {
   return (
     <div className="certificates-wrapper">
       <header>
-        <nav>
+        <div className="navbar-wrapper">
           <Navbar />
-        </nav>
-        <div>
-          <Profile stellarKey="adslkj" />
         </div>
-        <p>{t('certificates.description')}</p>
+        <div className="profile-wrapper">
+          <Profile stellarKey={certificates[0].destination} />
+        </div>
+        <div className="certificates-description">
+          <p>{t('certificates.description')}</p>
+        </div>
       </header>
       <main className="certificates-main">
         <Carousel carouselData={carouselData}></Carousel>
       </main>
+      <hr className="certificates-endline" />
     </div>
   );
 };

@@ -2,10 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 1.875em;
-  padding-left: 1.875em;
-  padding-right: 3.75em;
-  padding-bottom: 0.625em;
 }
 
 .logo {
