@@ -9,7 +9,9 @@ const loadCertificateFromIFPS = (CID: string, fetchCertificateJSON: Dispatch<Set
   readCertificate(CID)
     .then((certificateJSON) => fetchCertificateJSON(certificateJSON))
     .catch(() => {
-      setTimeout(() => loadCertificateFromIFPS(CID, fetchCertificateJSON), 200);
+      setTimeout(() => {
+        loadCertificateFromIFPS(CID, fetchCertificateJSON);
+      }, 200);
     });
 };
 
