@@ -1,0 +1,32 @@
+.certificates-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.certificates-main {
+  margin-top: -5%;
+  height: 1000px;
+  width: 100%;
+}
+
+.profile-wrapper {
+  margin: 5%;
+}
+
+.navbar-wrapper {
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.certificates-description {
+  max-width: 60%;
+  margin: auto;
+}
+
+.certificates-endline {
+  border: 1px solid #55447C;
+  width: 80%;
+}

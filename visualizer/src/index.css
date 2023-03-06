@@ -4,8 +4,10 @@
 .app {
   background-image:
     url('/images/backgroundImage.svg');
+  font-family: 'Hanken Grotesk', sans-serif;
   background-attachment: fixed;
   background-size: cover;
+  overflow: auto;
   background-repeat: repeat;
   background-position: center center;
   margin: 0;
@@ -16,7 +18,7 @@
   position: absolute;
   top: 0;
   left: 0;
-}
+  }
 
 .footer-page {
   clear: both;
