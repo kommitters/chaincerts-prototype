@@ -1,0 +1,17 @@
+.certificates-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.certificates-main {
+  margin-top: 10em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+}
+
+.facke-carousel {
+  width: 500px;
+  height: 500px;
+  text-align: center;
+}
