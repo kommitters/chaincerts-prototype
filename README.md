@@ -23,7 +23,7 @@ The  **Chaincerts prototype** is the code that underpins the first deliverable f
 
 This repository is a monorepo defined in order to facilitate access to the source code of the prototype.
 
-The **builder** component allows the generation of certificates based on the Soulbound Token concept on the Stellar network. Users can interact with this component through the terminal. For more information, please refer to the project's Readme.
+The **builder** component allows the generation of certificates based on the Soulbound Token concept on the Stellar network. Users can interact with this component through the terminal. For more information, please refer to the project's [Readme](https://github.com/kommitters/chaincerts-prototype/blob/main/builder/README.md).
 
 The **visualizer** component is a web page that enables users to interact with the certificates using 3D and interactive visualizations. Users can access this component by visiting https://demo.chaincerts.co.  
   
