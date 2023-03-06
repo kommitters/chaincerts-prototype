@@ -37,7 +37,7 @@ const formatAssetInformation = (assetInfo: IAssetInformation) => {
 };
 
 // TODO The asset information must be received per parameter
-function AssetInformation() {
+const AssetInformation = () => {
   const assetInformation: IAssetInformation = {
     assetCode: 'MENTOR100',
     CID: 'QmXvMfFZ4AoX6kB754RrDWWwRjpLN11ppHNidXwJNfB5TU',
@@ -56,6 +56,6 @@ function AssetInformation() {
       {formatAssetInformation(assetInformation)}
     </div>
   );
-}
+};
 
 export default AssetInformation;
