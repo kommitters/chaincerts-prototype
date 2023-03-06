@@ -13,6 +13,8 @@
 ## ⚒️ Setup Node.js
 
 - `asdf install`: Install current tools/runtime for the project
+- Install Node js version >= **18.13.0**
+
 
 You can install asdf [here](https://asdf-vm.com/guide/getting-started.html)
 
