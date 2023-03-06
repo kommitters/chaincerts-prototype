@@ -5,10 +5,8 @@ import { getAssetPayment } from './helper/getAssetPayment';
 import { fetchIssuerCID } from './fetchIssuerCID';
 import { Balance } from './interfaces/Balance';
 
-const asset = '';
-
 export const fetchStellarAccountInfo = async (publicKey: string) => {
-  const balances: Balance[] = await fetchAccountBalancesFromCode(publicKey, asset);
+  const balances: Balance[] = await fetchAccountBalancesFromCode(publicKey, CERT_ASSET);
 
   const stellarAccountInfo = balances.map(async (balance) => {
     if (balance.assetIssuer) {

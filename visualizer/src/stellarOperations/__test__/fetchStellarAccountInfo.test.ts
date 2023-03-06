@@ -19,12 +19,10 @@ describe('fetchStellarAccountInfo', () => {
       isAuthorizedToMaintainLiabilities: true,
       isClawbackEnabled: true,
       createdAt: 'CREATE_AT_DATE',
-      payment: {
-        amount: 1,
-        destination: DESTINATION_ACCOUNT,
-        issuer: ISSUER,
-        sourceAccount: SOURCE_ACCOUNT
-      }
+      amount: 1,
+      destination: DESTINATION_ACCOUNT,
+      issuer: ISSUER,
+      sourceAccount: SOURCE_ACCOUNT
     });
     expect(loadAccountFn).toHaveBeenCalledWith(PUBLIC_KEY);
   });

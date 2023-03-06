@@ -6,7 +6,7 @@ import { IAssetInformation } from '../../components/assetInformation/interfaces'
 const Certificates = () => {
   const { state: certificates } = useLocation();
 
-  const carouselData = certificates.map((certificate: IAssetInformation, index: number) => (
+  const carouselData: JSX.Element[] = certificates.map((certificate: IAssetInformation, index: number) => (
     <CertificateInformation key={index} id={`certificate-${index}`} assetInformation={certificate} />
   ));
 

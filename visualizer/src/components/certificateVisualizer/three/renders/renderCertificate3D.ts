@@ -11,7 +11,6 @@ const KM_CETIFICATE_ASSETS_PATH = 'kommit-mentor-assets';
 
 export const renderCertificate3D = async (certificate: ICertificate) => {
   const loader = new OBJLoader();
-  console.log(certificate.materialFile);
   const material = await loadMaterial(formatCertificateAssetPath(certificate.materialFile));
   loader.setMaterials(material);
 

@@ -1,20 +1,28 @@
-import PropTypes, { InferProps } from 'prop-types';
+import { Dispatch, SetStateAction, useState, useEffect } from 'react';
 import CertificateVisualizer from '../certificateVisualizer/CertificateVisualizer';
 import AssetInformation from '../assetInformation/AssetInformation';
+import { readCertificate } from '../../ipfs/readCertificate';
+import { IAssetInformation } from '../assetInformation/interfaces';
 import './styles.css';
-import { useEffect, useState } from 'react';
-import { readCertificate } from '../../utils/loadCertificate';
 
-const propTypes = {
-  id: PropTypes.string.isRequired,
-  assetInformation: PropTypes.object.isRequired
+const loadCertificateFromIFPS = (CID: string, fetchCertificateJSON: Dispatch<SetStateAction<null>>) => {
+  readCertificate(CID)
+    .then((certificateJSON) => fetchCertificateJSON(certificateJSON))
+    .catch(() => {
+      setTimeout(() => loadCertificateFromIFPS(CID, fetchCertificateJSON), 200);
+    });
 };
 
-const CertificateInformation = ({ id, assetInformation }: InferProps<typeof propTypes>) => {
+type CertificateInformationProps = {
+  id: string;
+  assetInformation: IAssetInformation;
+};
+
+const CertificateInformation = ({ id, assetInformation }: CertificateInformationProps) => {
   const [certificateJSON, fetchCertificateJSON] = useState(null);
 
   useEffect(() => {
-    readCertificate(assetInformation.CID).then((certificateJSON) => fetchCertificateJSON(certificateJSON));
+    loadCertificateFromIFPS(assetInformation.CID, fetchCertificateJSON);
   }, []);
 
   return (

@@ -1,10 +1,9 @@
 import { IAssetTitle, IAssetInformation } from './interfaces';
-import PropTypes, { InferProps } from 'prop-types';
 
 import './styles.css';
 
-const assetTitles = [
-  { title: 'Asset code:', key: 'assetCode' },
+const assetTitles: IAssetTitle[] = [
+  { key: 'assetCode', title: 'Asset code:' },
   { key: 'CID', title: 'CID:' },
   { key: 'assetIssuer', title: 'Issuer:' },
   { key: 'destination', title: 'Destination:' },
@@ -36,15 +35,15 @@ const formatAssetInformation = (assetInfo: IAssetInformation) => {
   });
 };
 
-const propTypes = {
-  assetInformation: PropTypes.object.isRequired
+type AssetInformationProps = {
+  assetInformation: IAssetInformation;
 };
 
-const AssetInformation = ({ assetInformation }: InferProps<typeof propTypes>) => {
+const AssetInformation = ({ assetInformation }: AssetInformationProps) => {
   return (
     <div className="asset-card">
       <h2 className="title">SBT information</h2>
-      {formatAssetInformation(assetInformation as IAssetInformation)}
+      {formatAssetInformation(assetInformation)}
     </div>
   );
 };
