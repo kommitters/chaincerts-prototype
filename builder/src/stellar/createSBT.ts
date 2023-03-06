@@ -11,15 +11,16 @@ import {
 } from './operations';
 import { createStellarAccount } from './operations/helpers';
 
-export const createSBT = async (CID: string, assetCode: string): Promise<string | never> => {
+export const createSBT = async (
+  recipientPublicKey: string,
+  recipientSecretKey: string,
+  CID: string,
+  assetCode: string
+): Promise<string | never> => {
   try {
     // Create distributor Account
     const { publicKey: distributorPublicKey, secretKey: distributorSecretKey } = await createStellarAccount();
     console.log(`\n🔑 Distributor Public Key ${distributorPublicKey} \n`);
-
-    // Create recipient Account
-    const { publicKey: recipientPublicKey, secretKey: recipientSecretKey } = await createStellarAccount();
-    console.log(`🔑 Recipient Public Key ${recipientPublicKey} \n`);
 
     // Create Issuer Account and set Flags to make the asset revocable
     const { publicKey: sbtIssuerPublicKey, secretKey: sbtIssuerSecretKey }: IKeyPair = await createIssuerAccount(

@@ -1,6 +1,6 @@
 import { ICertificateRequest } from '../interfaces';
 
-const certificateRequestProps = ['username', 'stellarAccount', 'certDate', 'certType'];
+const certificateRequestProps = ['username', 'certDate', 'certType'];
 
 const validCertificateTypes = ['CertExample'];
 
