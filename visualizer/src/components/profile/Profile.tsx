@@ -4,14 +4,14 @@ import avatar from '/icons/avatar.svg';
 import './styles.css';
 
 const propTypes = {
-  stellar_key: PropTypes.string.isRequired
+  stellarKey: PropTypes.string.isRequired
 };
-const Profile = ({ stellar_key }: InferProps<typeof propTypes>) => {
+const Profile = ({ stellarKey }: InferProps<typeof propTypes>) => {
   return (
     <div className="profile">
       <img className="avatar" src={avatar} alt="avatar-image" />
       <div>
-        <p>{stellar_key}</p>
+        <p>{stellarKey}</p>
         <p>{t('certificates.profile.description')}</p>
       </div>
     </div>

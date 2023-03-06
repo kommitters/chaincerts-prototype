@@ -1,7 +1,8 @@
 .footer-container {
-  background-color: transparent;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  background-color: transparent;
   gap: 0.813em;
   padding: 0.313em;
 }
