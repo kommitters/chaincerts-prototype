@@ -2,8 +2,10 @@
 .carousel {
   --carousel-height: 25em;
   --carousel-width: 40em;
-  --carousel-item-height: 27.5em;
-  --carousel-item-width: 24em;
+  --carousel-item-width: 43.75em;
+  --carousel-item-height: 25em;
+  --carousel-item-main-width: 43.75em;
+  --carousel-item-main-height: 47rem;
 
   align-items: center;
   display: flex;
@@ -11,6 +13,7 @@
   margin: 0 auto;
   max-width: var(--carousel-width);
   position: relative;
+  top: 300px;
 }
 
 .carousel-item {
@@ -37,19 +40,19 @@
 }
 
 .carousel-item-1 {
-  left: -10%;
+  left: 10%;
 }
 
 .carousel-item-2 {
-  height: calc(var(--carousel-item-height) * 1.5);
+  height: var(--carousel-item-main-height);
   opacity: 1;
   left: 50%;
-  width: calc(var(--carousel-item-width) * 1.9);
+  width: var(--carousel-item-main-width);
   z-index: 2;
 }
 
 .carousel-item-3 {
-  left: 110%;
+  left: 90%;
 }
 
 .carousel-item-4 {
@@ -82,11 +85,11 @@
 }
 
 .carousel-control-previous {
-  left: -50%;
+  left: -70%;
 }
 
 .carousel-control-next {
-  left: 135.5%;
+  left: 152%;
 }
 
 /* Error message styles */

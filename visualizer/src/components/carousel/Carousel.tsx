@@ -1,12 +1,17 @@
+import { useEffect } from 'react';
 import PropTypes, { InferProps } from 'prop-types';
 import { t } from 'i18next';
 import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
+
 import './styles.css';
 
 const propTypes = {
   carouselData: PropTypes.arrayOf(PropTypes.element).isRequired
 };
+
+const MAIN_CERTIFICATE_INDEX = 2;
+const MAIN_CERTIFICATE_CLASS = 'carousel-item-2';
 
 const Carousel = ({ carouselData }: InferProps<typeof propTypes>) => {
   const totalItems = carouselData.length;
@@ -30,9 +35,25 @@ const Carousel = ({ carouselData }: InferProps<typeof propTypes>) => {
     const items = document.querySelectorAll('.carousel-item');
     if (items.length > 1) {
       carouselInView.forEach((item, index) => {
-        items[index].className = `carousel-item carousel-item-${item}`;
+        const actualComponent = items[index];
+
+        hideAssetInformation(actualComponent);
+
+        if (item === MAIN_CERTIFICATE_INDEX) {
+          showAssetInformation(actualComponent);
+        }
+
+        actualComponent.className = `carousel-item carousel-item-${item}`;
       });
     }
+  };
+
+  const showAssetInformation = (component: Element) => {
+    component.getElementsByClassName('asset-card')[0].className = 'asset-card show';
+  };
+
+  const hideAssetInformation = (component: Element) => {
+    component.getElementsByClassName('asset-card')[0].className = 'asset-card';
   };
 
   const buildItems = () => {
@@ -57,6 +78,12 @@ const Carousel = ({ carouselData }: InferProps<typeof propTypes>) => {
       </div>
     );
   };
+
+  useEffect(() => {
+    const firstMainCertificate = document.getElementsByClassName(MAIN_CERTIFICATE_CLASS)[0];
+
+    showAssetInformation(firstMainCertificate);
+  }, []);
 
   return (
     <>
