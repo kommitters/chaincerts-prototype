@@ -4,7 +4,7 @@ import { createOrbitControl, createRenderer, createCamera, createScene, Loop, Fo
 import { ICertificate } from '../interfaces';
 
 const loader = new FontLoader();
-const FONT_ROUTE = 'fonts/helvetiker_regular.typeface.json';
+const FONT_ROUTE = '/fonts/helvetiker_regular.typeface.json';
 
 export class CertificateCanvas {
   camera: PerspectiveCamera;
@@ -13,7 +13,7 @@ export class CertificateCanvas {
   loop: Loop;
 
   constructor(container: HTMLElement, certificate: ICertificate) {
-    this.camera = createCamera();
+    this.camera = createCamera(container.offsetWidth / container.offsetHeight);
     this.scene = createScene();
     this.renderer = createRenderer(container);
 
