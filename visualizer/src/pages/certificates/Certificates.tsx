@@ -1,14 +1,16 @@
+import { useLocation } from 'react-router-dom';
 import Carousel from '../../components/carousel/Carousel';
 import CertificateInformation from '../../components/certificateInformation/CertificateInformation';
-
-const data = [
-  <CertificateInformation key={1} id={'1'} />,
-  <CertificateInformation key={2} id={'2'} />,
-  <CertificateInformation key={5} id={'5'} />
-];
+import { IAssetInformation } from '../../components/assetInformation/interfaces';
 
 const Certificates = () => {
-  return <Carousel carouselData={data}></Carousel>;
+  const { state: certificates } = useLocation();
+
+  const carouselData = certificates.map((certificate: IAssetInformation, index: number) => (
+    <CertificateInformation key={index} id={`certificate-${index}`} assetInformation={certificate} />
+  ));
+
+  return <Carousel carouselData={carouselData}></Carousel>;
 };
 
 export default Certificates;

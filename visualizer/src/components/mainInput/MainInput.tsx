@@ -16,7 +16,7 @@ const MainInput = () => {
       try {
         const accountInfo = await fetchStellarAccountInfo(publicKey.value);
         const resolvedAccountInfo = await Promise.all(accountInfo);
-        if (resolvedAccountInfo.length !== 0) {
+        if (resolvedAccountInfo.length > 0) {
           setInvalidKey(false);
           setNotFoundCertificates(false);
           navigate(`certificates/${publicKey.value}`, {

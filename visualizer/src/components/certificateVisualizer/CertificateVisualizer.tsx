@@ -12,6 +12,8 @@ const DEFAULT_COMPONENT_WIDTH = 700;
 const DEFAULT_COMPONENT_HEIGHT = 400;
 
 const CertificateVisualizer = ({ certificate, id }: InferProps<typeof propTypes>) => {
+  console.log(certificate);
+
   useEffect(() => {
     const certificateCanvas = loadCertificateCanvas();
 

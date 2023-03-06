@@ -23,12 +23,14 @@ const filterBalancesByAssetCodePattern = (
 };
 
 const formatAssets = (assets: Horizon.BalanceLineAsset<'credit_alphanum12'>[]) => {
-  return assets.map((balance: Horizon.BalanceLineAsset<'credit_alphanum12'>) => {
-    return {
-      assetCode: balance.asset_code,
-      assetIssuer: balance.asset_issuer,
-      isAuthorizedToMaintainLiabilities: balance.is_authorized_to_maintain_liabilities,
-      isClawbackEnabled: balance.is_clawback_enabled
-    };
-  });
+  return assets
+    .map((balance: Horizon.BalanceLineAsset<'credit_alphanum12'>) => {
+      return {
+        assetCode: balance.asset_code,
+        assetIssuer: balance.asset_issuer,
+        isAuthorizedToMaintainLiabilities: balance.is_authorized_to_maintain_liabilities,
+        isClawbackEnabled: balance.is_clawback_enabled
+      };
+    })
+    .filter((asset) => Boolean(asset.assetCode));
 };
