@@ -36,12 +36,8 @@ describe('createSBT', () => {
   const distribuitorPublicKey = 'distribuitor-public-key';
   const distribuitorSecretKey = 'distribuitor-secret-key';
 
-  const recipientPublicKey = 'recipient-public-key';
-  const recipientSecretKey = 'recipient-secret-key';
-
   const issuerKeyPair: IKeyPair = { publicKey: sbtIssuerPublicKey, secretKey: sbtIssuerSecretKey };
   const distribuitorKeyPair: IKeyPair = { publicKey: distribuitorPublicKey, secretKey: distribuitorSecretKey };
-  const recipientKeyPair: IKeyPair = { publicKey: recipientPublicKey, secretKey: recipientSecretKey };
 
   const mockedCreateStellarAccount = createStellarAccount as jest.MockedFunction<typeof createStellarAccount>;
   const mockedCreateIssuerAccount = createIssuerAccount as jest.MockedFunction<typeof createIssuerAccount>;
@@ -60,7 +56,7 @@ describe('createSBT', () => {
   beforeEach(() => {
     mockedGetClawbackHashAndXDR.mockResolvedValue(Promise.resolve(envelope));
     mockedCreateIssuerAccount.mockResolvedValue(issuerKeyPair);
-    mockedCreateStellarAccount.mockResolvedValueOnce(distribuitorKeyPair).mockResolvedValueOnce(recipientKeyPair);
+    mockedCreateStellarAccount.mockResolvedValueOnce(distribuitorKeyPair);
   });
 
   afterEach(() => {
@@ -68,9 +64,12 @@ describe('createSBT', () => {
   });
 
   it('should create a Stellar SBT asset', async () => {
-    const xdr = await createSBT(cid, CERTIFICATE_ASSET_CODE);
+    const recipientPublicKey = 'recipient-public-key';
+    const recipientSecretKey = 'recipient-secret-key';
 
-    expect(mockedCreateStellarAccount).toHaveBeenCalledTimes(2);
+    const xdr = await createSBT(recipientPublicKey, recipientSecretKey, cid, CERTIFICATE_ASSET_CODE);
+
+    expect(mockedCreateStellarAccount).toHaveBeenCalledTimes(1);
     expect(mockedCreateIssuerAccount).toHaveBeenCalled();
     expect(mockedSaveCID).toHaveBeenCalledWith(sbtIssuerPublicKey, sbtIssuerSecretKey, cid);
     expect(mockedSendSBT).toHaveBeenCalledWith(
@@ -103,8 +102,10 @@ describe('createSBT', () => {
   it('should show error if any of the underlying functions throw', async () => {
     const errorMessage = 'Failed saving the CID: Status: 400. Reason: tx_failed';
     mockedSaveCID.mockReturnValue(Promise.reject({ error: { message: errorMessage } }));
+    const recipientPublicKey = 'recipient-public-key';
+    const recipientSecretKey = 'recipient-secret-key';
 
-    await createSBT(cid, CERTIFICATE_ASSET_CODE).catch((error) => {
+    await createSBT(recipientPublicKey, recipientSecretKey, cid, CERTIFICATE_ASSET_CODE).catch((error) => {
       expect(error.message).toBeUndefined;
     });
   });
