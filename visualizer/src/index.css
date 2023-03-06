@@ -4,6 +4,7 @@
 .app {
   background-image:
     url('/static/images/backgroundImage.svg');
+  background-attachment: fixed;
   background-size: cover;
   background-repeat: repeat;
   background-position: center center;
@@ -15,4 +16,23 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.footer-page {
+  clear: both;
+  position: relative;
+  margin-top: 50px;
+  margin-left: 25vw;
+  margin-right: 25vw;
+  min-height: 8em;
+}
+@media (max-width: 700px) {
+  .footer-page {
+    clear: both;
+    position: relative;
+    margin-top: 50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    min-height: 8em;
+  }
 }
