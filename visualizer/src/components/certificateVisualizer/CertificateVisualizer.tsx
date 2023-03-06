@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
-import PropTypes, { InferProps } from 'prop-types';
 import { CertificateCanvas } from './three';
 import { ICertificate } from './interfaces';
 
-const propTypes = {
-  certificate: PropTypes.object.isRequired,
-  id: PropTypes.string.isRequired
+type CertificateVisualizerProps = {
+  certificate: ICertificate;
+  id: string;
 };
 
 const DEFAULT_COMPONENT_WIDTH = 700;
 const DEFAULT_COMPONENT_HEIGHT = 400;
 
-const CertificateVisualizer = ({ certificate, id }: InferProps<typeof propTypes>) => {
+const CertificateVisualizer = ({ certificate, id }: CertificateVisualizerProps) => {
   useEffect(() => {
     const certificateCanvas = loadCertificateCanvas();
 
@@ -24,7 +23,7 @@ const CertificateVisualizer = ({ certificate, id }: InferProps<typeof propTypes>
     const container = document.getElementById(id)!;
     container.innerHTML = '';
 
-    const certificateCanvas = new CertificateCanvas(container, certificate as ICertificate);
+    const certificateCanvas = new CertificateCanvas(container, certificate);
     certificateCanvas.start();
 
     return certificateCanvas;

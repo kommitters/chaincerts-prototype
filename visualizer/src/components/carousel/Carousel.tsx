@@ -1,19 +1,18 @@
 import { useEffect } from 'react';
-import PropTypes, { InferProps } from 'prop-types';
 import { t } from 'i18next';
 import { AiOutlineDoubleRight, AiOutlineDoubleLeft } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 
 import './styles.css';
 
-const propTypes = {
-  carouselData: PropTypes.arrayOf(PropTypes.element).isRequired
+type CarouselProps = {
+  carouselData: JSX.Element[];
 };
 
 const MAIN_CERTIFICATE_INDEX = 2;
 const MAIN_CERTIFICATE_CLASS = 'carousel-item-2';
 
-const Carousel = ({ carouselData }: InferProps<typeof propTypes>) => {
+const Carousel = ({ carouselData }: CarouselProps) => {
   const totalItems = carouselData.length;
   const carouselInView = [...Array(totalItems).keys()].map((x) => ++x);
 
@@ -125,7 +124,5 @@ const Carousel = ({ carouselData }: InferProps<typeof propTypes>) => {
     </>
   );
 };
-
-Carousel.propTypes = propTypes;
 
 export default Carousel;

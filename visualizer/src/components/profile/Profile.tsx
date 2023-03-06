@@ -1,12 +1,12 @@
-import PropTypes, { InferProps } from 'prop-types';
 import { t } from 'i18next';
 import avatar from '/icons/avatar.svg';
 import './styles.css';
 
-const propTypes = {
-  stellarKey: PropTypes.string.isRequired
+type ProfileProps = {
+  stellarKey: string;
 };
-const Profile = ({ stellarKey }: InferProps<typeof propTypes>) => {
+
+const Profile = ({ stellarKey }: ProfileProps) => {
   return (
     <div className="profile">
       <img className="avatar" src={avatar} alt="avatar-image" />
@@ -17,7 +17,5 @@ const Profile = ({ stellarKey }: InferProps<typeof propTypes>) => {
     </div>
   );
 };
-
-Profile.propTypes = propTypes;
 
 export default Profile;
