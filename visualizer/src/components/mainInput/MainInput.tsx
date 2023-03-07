@@ -49,6 +49,7 @@ const MainInput = () => {
           type="text"
           placeholder={placeholder}
           className="input border-none focus:outline-none bg-slave-dark w-full text-lg placeholder:opacity-100 placeholder:font-bold"
+          aria-label="key-input"
         />
         <button
           className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple rounded-t-lg text-lg normal-case"

@@ -18,6 +18,7 @@ const Navbar = () => {
             fill="none"
             viewBox="0 0 18 18"
             className="inline-block w-5 h-5 stroke-current mr-1 text-white"
+            data-testid="left-arrow-icon"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.75 16.5L1.25 9L8.75 1.5"></path>
           </svg>
