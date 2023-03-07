@@ -82,6 +82,5 @@ yarn generate-cert '{"username": "John Doe","certDate": "2022-10-01", "certType"
 
 After running the command, you should see the following output:
 
-```
-Congratulations! Your certificate has been successfully generated. To access it, simply use your Stellar public key on the Chaincerts visualizer at https://demo.chaincerts.co/.
-```
+
+![image](https://user-images.githubusercontent.com/100703669/223292012-0ef93420-ba34-4293-88dc-e64ccad7c8c8.png)
