@@ -28,6 +28,7 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "generate-cert": "yarn install && yarn build && node --no-warnings dist/index.js",
+    "clawback": "yarn install && yarn build && node --no-warnings dist/clawback.js",
     "test": "jest test",
     "test-silent": "jest test --silent",
     "dev": "nodemon src/index.ts",
