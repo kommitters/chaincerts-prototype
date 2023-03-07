@@ -18,37 +18,37 @@ export const createSBT = async (
   assetCode: string
 ): Promise<string | never> => {
   try {
-    console.log(`\nSetting up a distributor account for the delivery of the Chaincert...`);
-    const { publicKey: distributorPublicKey, secretKey: distributorSecretKey } = await createStellarAccount();
-    console.log(`🔑 Distributor Public Key: ${distributorPublicKey} \n`);
+    console.log(`\n \n 🏗️  Issuing certificate in Stellar network`);
+    console.log(`- Creating issuer accounts`);
 
-    // Create Issuer Account and set Flags to make the asset revocable
+    const { publicKey: distributorPublicKey, secretKey: distributorSecretKey } = await createStellarAccount();
+    console.log(`  - Distributor: ${distributorPublicKey}`);
+
     const { publicKey: sbtIssuerPublicKey, secretKey: sbtIssuerSecretKey }: IKeyPair = await createIssuerAccount(
       distributorPublicKey,
       distributorSecretKey
     );
-    console.log(`🔑 Issuer Public Key: ${sbtIssuerPublicKey} \n`);
+    console.log(`  - Issuer: ${sbtIssuerPublicKey}`);
 
     const SBT = new Asset(assetCode, sbtIssuerPublicKey);
 
-    // Pin the IPFS CID in the Issuer Account
-    await saveCID(sbtIssuerPublicKey, sbtIssuerSecretKey, CID);
-
-    // Send the SBT from the issuer account to the Distributor account
+    console.log(`- Founding asset: ${assetCode}`);
     await sendSBT(sbtIssuerPublicKey, sbtIssuerSecretKey, distributorPublicKey, distributorSecretKey, SBT);
 
-    // Send the SBT from the distributor account to the certificate recipient account
+    console.log(`- Attaching IPFS data to the ${assetCode} asset`);
+    await saveCID(sbtIssuerPublicKey, sbtIssuerSecretKey, CID);
+
+    console.log(`\n \n 🎓 Transferring the certificate `);
+    console.log(`- from issuing account ${distributorPublicKey} to receiving account ${recipientPublicKey}`);
     await sendSBT(distributorPublicKey, distributorSecretKey, recipientPublicKey, recipientSecretKey, SBT);
 
-    // Disable recipient ability to transfer the SBT
+    console.log(`\n \n 🔐 Configuring the certificate`);
     await establishNonTransferableSBT(sbtIssuerPublicKey, sbtIssuerSecretKey, recipientPublicKey, SBT);
 
     const { hash, xdr } = await getClawbackHashAndXDR(sbtIssuerPublicKey, recipientPublicKey, SBT);
 
-    // Create a Clawback Operation and a pre-authorized sign to execute clawback after locking the issuer account
     await preAuthorizeClawback(sbtIssuerPublicKey, sbtIssuerSecretKey, hash);
 
-    // Block the issuer account to disallow the possibility of supplying more SBTs and ensure the SBT's uniqueness.
     await lockIssuerAccount(sbtIssuerPublicKey, sbtIssuerSecretKey);
 
     return xdr;

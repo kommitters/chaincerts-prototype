@@ -20,7 +20,6 @@ export const createIssuerAccount = async (
   });
 
   try {
-    console.log('\nCreating an account for issuing Chaincerts...');
     await executeTransaction(publicStellarKey, [secretStellarKey, sbtIssuerSecretKey], [createAccountOp, setOptions]);
     return { publicKey: sbtIssuerPublicKey, secretKey: sbtIssuerSecretKey };
   } catch (error) {

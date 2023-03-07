@@ -17,7 +17,7 @@ export const establishNonTransferableSBT = async (
   });
 
   try {
-    console.log('\n🚫 Establishing Chaincert as a non-transferable asset... \n');
+    console.log(`- Setting the certificate as a non-transferable asset`);
     await executeTransaction(sbtIssuerPublicKey, sbtIssuerSecretKey, setTrustLineFlagsOp);
   } catch (error) {
     throw new Error(`Failed stablishing the SBT as a non-transferable asset: ${error.message}`);

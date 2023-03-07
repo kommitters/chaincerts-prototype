@@ -83,4 +83,4 @@ yarn generate-cert '{"username": "John Doe","certDate": "2022-10-01", "certType"
 After running the command, you should see the following output:
 
 
-![image](https://user-images.githubusercontent.com/100703669/223292012-0ef93420-ba34-4293-88dc-e64ccad7c8c8.png)
+![image](https://user-images.githubusercontent.com/100703669/223578620-12d0d269-bc40-40f1-9a89-bac957042e9a.png)
