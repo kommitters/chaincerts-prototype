@@ -1,8 +1,9 @@
+import { FiCommand } from 'react-icons/fi';
 import { t } from 'i18next';
+
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchStellarAccountInfo } from '../../stellarOperations';
-import './styles.css';
 
 const MainInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -41,21 +42,24 @@ const MainInput = () => {
   const placeholder = t('home.stellar_input.placeholder');
 
   return (
-    <>
-      <div className="form-control">
-        <label className="input-group">
-          <input type="text" ref={inputRef} placeholder={placeholder} className="input input-bordered bg-slate-800" />
-          <button
-            className="btn btn-primary bg-gradient-to-b from-hight-pink to-hight-purple"
-            onClick={handleClick}
-            disabled={loading}
-          >
-            {loading ? <span className="animate" /> : t('home.stellar_input.enter')}
-          </button>
-        </label>
+    <div className="flex flex-col gap-y-4 sm:w-[75%] sm:m-auto">
+      <div className="flex flex-row  bg-slave-dark border-4 border-solid border-low-gray py-1 pr-1 rounded-lg">
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder={placeholder}
+          className="input border-none focus:outline-none bg-slave-dark w-full text-lg placeholder:opacity-100 placeholder:font-bold"
+        />
+        <button
+          className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple rounded-t-lg text-lg normal-case"
+          onClick={handleClick}
+          disabled={loading}
+        >
+          {loading ? <FiCommand className="animate-spin stroke-white" /> : t('home.stellar_input.enter')}
+        </button>
       </div>
       {invalidKey && (
-        <div className="alert alert-error shadow-lg">
+        <div className="alert alert-error shadow-lg text-white text-lg bg-hight-red font-bold rounded-lg">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -70,12 +74,14 @@ const MainInput = () => {
                 d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <span>{t('home.stellar_input.info_title')}</span>
+            <span>
+              <strong>{t('home.stellar_input.info_title')}</strong> {t('home.stellar_input.info_message')}
+            </span>
           </div>
         </div>
       )}
       {notFoundCertificates && (
-        <div className="alert alert-warning shadow-lg">
+        <div className="alert alert-warning shadow-lg text-white text-lg bg-hight-red font-bold rounded-lg">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +100,7 @@ const MainInput = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

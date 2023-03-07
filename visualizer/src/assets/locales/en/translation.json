@@ -2,18 +2,20 @@
   "home": {
     "title": "Unlock the future of certifications",
     "info": "Access the Chaincerts prototype by clicking on any of the demo accounts below.",
+    "button_title": "Stellar account",
     "stellar_input": {
-      "placeholder": "Insert Stellar public key",
-      "enter": "Enter",
+      "placeholder": "Explore other Stellar accounts",
+      "enter": "View certificates",
       "info_title": "Something happened;",
       "info_message": "Invalid key entered. Please check and try again."
-    }
+    },
+    "separator": "or"
   },
   "footer": {
     "description": "© 2009 - 2023 kommit, All Rights Reserved - Chaincerts powered by kommit"
   },
   "certificates": {
-    "description": "The certificates displayed on this screen are 3D and interactive, you can explore and view them from different angles, as well as interact with them to obtain more information. Enjoy the experience!",
+    "description": "The certificates displayed on this screen are 3D and interactive, you can explore them from different angles. Enjoy the experience!",
     "carousel": {
       "title": "Kommit Chaincert",
       "account": "Stellar account",
