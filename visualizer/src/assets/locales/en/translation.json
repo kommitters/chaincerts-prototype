@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Access and Explore Digital Certificates",
-    "info": "Access the Chaincerts certificate display mode by utilizing any of the preconfigured Stellar account public key listed below.",
+    "title": "Unlock the future of certifications",
+    "info": "Access the Chaincerts prototype by clicking on any of the demo accounts below.",
     "stellar_input": {
       "placeholder": "Insert Stellar public key",
       "enter": "Enter",

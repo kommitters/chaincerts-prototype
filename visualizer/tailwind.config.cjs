@@ -9,7 +9,12 @@ module.exports = {
   ],
 
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        'hight-pink': '#E1429B',
+        'hight-purple': '#6C3CEA'
+      }
+    }
   },
   plugins: [require('daisyui')]
 };
