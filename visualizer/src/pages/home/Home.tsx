@@ -3,7 +3,7 @@ import { FiCommand } from 'react-icons/fi';
 import { useState } from 'react';
 import { t } from 'i18next';
 
-import chaincertsLogo from '/static/icons/chaincertsLogo.svg';
+import chaincertsLogo from '/icons/chaincertsLogo.svg';
 import MainInput from '../../components/mainInput';
 import { fetchStellarAccountInfo } from '../../stellarOperations';
 

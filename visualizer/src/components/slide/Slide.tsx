@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { readCertificate } from '../../ipfs/readCertificate';
 import CertificateVisualizer from '../certificateVisualizer';
-import { Link } from 'react-router-dom';
 
 type SlideProps = {
   certificateCID: string;

@@ -1,6 +1,6 @@
 export { FontLoader, Font } from './fontloader';
 export { TextGeometry } from './textgeometry';
-export { Loop } from './Loop';
+export { Loop } from './loop';
 export { createCamera } from './createCamera';
 export { createOrbitControl } from './createOrbitControl';
 export { createRenderer } from './createRenderer';
