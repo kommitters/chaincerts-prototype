@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .app {
   background-image:
     url('/images/backgroundImage.svg');
