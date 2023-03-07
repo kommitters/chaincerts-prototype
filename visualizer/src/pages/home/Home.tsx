@@ -25,7 +25,20 @@ const Home = () => {
       setLoadingSecondKey(state);
     }
   }
-
+  const buttonKey = (loader: boolean, publicKey: string) => {
+    return (
+      <button
+        className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple mb-5 text-lg normal-case"
+        onClick={() => handlePublicKey(publicKey)}
+      >
+        {loader ? (
+          <FiCommand className="animate-spin stroke-white" />
+        ) : (
+          `${t('home.button_title')} #1 ***${publicKey.substring(publicKey.length - SIZE_CHAR)}`
+        )}
+      </button>
+    );
+  };
   async function handlePublicKey(publicKey: string) {
     modLoadingSpinner(publicKey, true);
     try {
@@ -51,30 +64,8 @@ const Home = () => {
             <img className="w-full h-12 mb-20" src={chaincertsLogo} alt="chaincerts-logo" />
             <h1 className="text-5xl font-black mb-10 font-inter">{t('home.title')}</h1>
             <p className="py-6 mb-5 text-lg font-bold">{t('home.info')}</p>
-            <p className="mb-3">
-              <button
-                className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple mb-5 text-lg normal-case"
-                onClick={() => handlePublicKey(PUBLIC_KEY_FIRST)}
-              >
-                {loadingFirstKey ? (
-                  <FiCommand className="animate-spin stroke-white" />
-                ) : (
-                  `${t('home.button_title')} #1 ***${PUBLIC_KEY_FIRST.substring(PUBLIC_KEY_FIRST.length - SIZE_CHAR)}`
-                )}
-              </button>
-            </p>
-            <p>
-              <button
-                className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-lg normal-case"
-                onClick={() => handlePublicKey(PUBLIC_KEY_SECOND)}
-              >
-                {loadingSecondKey ? (
-                  <FiCommand className="animate-spin stroke-white" />
-                ) : (
-                  `${t('home.button_title')} #2 ***${PUBLIC_KEY_SECOND.substring(PUBLIC_KEY_SECOND.length - SIZE_CHAR)}`
-                )}
-              </button>
-            </p>
+            <p className="mb-3">{buttonKey(loadingFirstKey, PUBLIC_KEY_FIRST)}</p>
+            <p className="mb-3">{buttonKey(loadingSecondKey, PUBLIC_KEY_SECOND)}</p>
             <p className="py-6">{t('home.separator')}</p>
             <MainInput />
           </div>
