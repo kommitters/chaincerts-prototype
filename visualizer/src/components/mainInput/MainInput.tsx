@@ -23,9 +23,8 @@ const MainInput = () => {
           setInvalidKey(false);
           setNotFoundCertificates(false);
           setLoading(false);
-          navigate(`certificates/${publicKey.value}`, {
-            state: resolvedAccountInfo
-          });
+          localStorage.setItem('certificates', JSON.stringify(resolvedAccountInfo));
+          navigate(`certificates/${publicKey.value}`);
         } else {
           setLoading(false);
           setNotFoundCertificates(true);

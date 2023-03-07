@@ -11,11 +11,14 @@ export class CertificateCanvas {
   scene: Scene;
   renderer: WebGLRenderer;
   loop: Loop;
+  container: HTMLElement;
 
   constructor(container: HTMLElement, certificate: ICertificate) {
+    this.container = container;
     this.camera = createCamera(container.offsetWidth / container.offsetHeight);
     this.scene = createScene();
     this.renderer = createRenderer(container);
+    window.addEventListener('resize', () => this.resize());
 
     container.append(this.renderer.domElement);
 
@@ -47,6 +50,18 @@ export class CertificateCanvas {
   }
 
   stop() {
+    window.removeEventListener('resize', () => this.resize());
+
     this.loop.stop();
+  }
+
+  resize() {
+    const width = this.container.offsetWidth;
+    const height = this.container.offsetHeight;
+
+    this.renderer.setSize(width, height);
+
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
   }
 }

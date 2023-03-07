@@ -1,42 +1,7 @@
-.asset-card {
-  padding: 0.1rem 1rem;
-  margin-top: 25px;
-  font-family: 'Hanken Grotesk', sans-serif;
-  text-align: left;
-  font-size: 16px;
-  color: #BFBFBF;
-  background-color: #0D0D10;
-  width: 41.5rem;
-  height: 20rem;
-  display: none;
-}
-
-.info-title {
-  font-weight: 900;
-  font-size: 18px;
-  margin-right: 4px;
-  color: white;
-}
-
-.title {
-  color: white;
-}
-
-.show {
-  display: block;
-  animation: cssAnimation 0s 0.1s forwards;
-  visibility: hidden;
-}
-
-@keyframes cssAnimation {
-  to {
-    visibility: visible;
-  }
-}
-
 .colored-circle {
   display: inline-block;
   margin-bottom: -1px;
+  margin-left: 6px;
   border-radius: 50%;
   border-style: solid;
   border-width: 0.5px;
