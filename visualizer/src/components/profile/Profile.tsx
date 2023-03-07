@@ -8,13 +8,15 @@ type ProfileProps = {
 
 const Profile = ({ stellarKey }: ProfileProps) => {
   return (
-    <div className="profile">
-      <img className="avatar" src={avatar} alt="avatar-image" />
-      <div>
-        <p>{stellarKey}</p>
-        <p>{t('certificates.profile.description')}</p>
+    <>
+      <div className="flex items-center justify-center gap-x-3 bg-hight-dark h-24 w-full mx-auto p-3 rounded-lg lg:w-5/6 text-white">
+        <img src={avatar} alt="avatar-image" />
+        <div>
+          <p className="break-all">{stellarKey}</p>
+          <p>{t('certificates.profile.description')}</p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

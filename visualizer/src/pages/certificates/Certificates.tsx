@@ -3,14 +3,16 @@ import { IAssetInformation } from '../../components/assetInformation/interfaces'
 import Navbar from '../../components/navbar';
 import Slide from '../../components/slide';
 import AssetInformation from '../../components/assetInformation';
+import Profile from '../../components/profile';
 
 const Certificates = () => {
   const certificates = JSON.parse(localStorage.getItem('certificates') as string);
   const numberCertificates = certificates?.length ?? 0;
 
   return (
-    <div>
+    <div className="text-black">
       <Navbar />
+      <Profile stellarKey={certificates[0].destination} />
       <div className="flex flex-row justify-center my-4">
         <div className="alert bg-white-500 lg:basis-3/5 basis-full shadow-lg">
           <div>

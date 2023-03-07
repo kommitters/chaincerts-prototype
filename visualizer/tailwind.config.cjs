@@ -18,7 +18,8 @@ module.exports = {
         'hight-purple': '#6C3CEA',
         'slave-dark': '#120D1E',
         'low-gray': 'rgba(255, 255, 255, 0.15)',
-        'hight-red': '#FF025D'
+        'hight-red': '#FF025D',
+        'hight-dark': '#1D1429'
       }
     }
   },
