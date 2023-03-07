@@ -25,7 +25,7 @@ describe('NavBar component', () => {
   });
 
   it('should show the leftArrowIcon', () => {
-    expect(screen.getByAltText('left-arrow-icon')).toBeInTheDocument();
+    expect(screen.getByTestId('left-arrow-icon')).toBeDefined();
   });
 
   it('should redirect to home when the back button is pressed', () => {

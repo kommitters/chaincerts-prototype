@@ -21,15 +21,15 @@ describe('<MainInput />', () => {
   });
 
   it('Show the correct elements in the component', () => {
-    expect(screen.getByPlaceholderText('Insert Stellar public key')).toBeInTheDocument();
-    expect(screen.getByText('Enter')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Explore other Stellar accounts')).toBeInTheDocument();
+    expect(screen.getByText('View certificates')).toBeInTheDocument();
   });
 
   it('Redirect to Certificates component when the public key is correct and has certificates', async () => {
     const spy = jest.spyOn(fetchAccount, 'fetchStellarAccountInfo').mockImplementation(async () => accountInfo);
     const inputKey = screen.getByLabelText('key-input');
     fireEvent.change(inputKey, { target: { value: stellarPublicKey } });
-    const enterButton = screen.getByText('Enter');
+    const enterButton = screen.getByText('View certificates');
     fireEvent.click(enterButton);
 
     expect(spy).toBeCalled();
@@ -46,7 +46,7 @@ describe('<MainInput />', () => {
     const inputKey = screen.getByLabelText('key-input');
 
     fireEvent.change(inputKey, { target: { value: stellarPublicKey } });
-    const enterButton = screen.getByText('Enter');
+    const enterButton = screen.getByText('View certificates');
     fireEvent.click(enterButton);
 
     expect(spy).toBeCalled();
@@ -63,7 +63,7 @@ describe('<MainInput />', () => {
     const inputKey = screen.getByLabelText('key-input');
 
     fireEvent.change(inputKey, { target: { value: stellarPublicKey } });
-    const enterButton = screen.getByText('Enter');
+    const enterButton = screen.getByText('View certificates');
     fireEvent.click(enterButton);
 
     expect(spy).toBeCalled();

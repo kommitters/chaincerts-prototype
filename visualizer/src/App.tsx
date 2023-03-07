@@ -23,19 +23,22 @@ function App() {
   return (
     <>
       {isImageLoaded && (
-        <div className="app">
-          <I18nextProvider i18n={i18n}>
-            <Router>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/certificates/:stellar_key" element={<Certificates />} />
-                <Route path="/*" element={<Navigate replace to="/" />} />
-              </Routes>
-            </Router>
-          </I18nextProvider>
-          <footer className="footer-page">
+        <div
+          className="min-h-screen bg-cover bg-center text-white"
+          style={{ backgroundImage: `url(${URL_BACKGROUND_IMAGE})` }}
+        >
+          <div className="container mx-auto px-4">
+            <I18nextProvider i18n={i18n}>
+              <Router>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/certificates/:stellar_key" element={<Certificates />} />
+                  <Route path="/*" element={<Navigate replace to="/" />} />
+                </Routes>
+              </Router>
+            </I18nextProvider>
             <Footer />
-          </footer>
+          </div>
         </div>
       )}
     </>

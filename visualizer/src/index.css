@@ -1,28 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.app {
-  background-image:
-    url('/images/backgroundImage.svg');
-  font-family: 'Hanken Grotesk', sans-serif;
-  background-attachment: fixed;
-  background-size: cover;
-  overflow: auto;
-  background-repeat: repeat;
-  background-position: center center;
-  margin: 0;
-  color: #FFFFFF;
-  text-align: center;
-  min-height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+@layer base {
+  html {
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: medium;
   }
+}
 
 .footer-page {
   clear: both;
