@@ -1,36 +1,59 @@
-import { useLocation } from 'react-router-dom';
 import { t } from 'i18next';
-
-import Carousel from '../../components/carousel/Carousel';
-import CertificateInformation from '../../components/certificateInformation/CertificateInformation';
 import { IAssetInformation } from '../../components/assetInformation/interfaces';
-import Profile from '../../components/profile';
 import Navbar from '../../components/navbar';
-import './styles.css';
+import Slide from '../../components/slide';
+import AssetInformation from '../../components/assetInformation';
 
 const Certificates = () => {
-  const { state: certificates } = useLocation();
-  const carouselData: JSX.Element[] = certificates.map((certificate: IAssetInformation, index: number) => (
-    <CertificateInformation key={index} id={`certificate-${index}`} assetInformation={certificate} />
-  ));
+  const certificates = JSON.parse(localStorage.getItem('certificates') as string);
+
+  const numberCertificates = certificates.length;
 
   return (
-    <div className="certificates-wrapper">
-      <header>
-        <div className="navbar-wrapper">
-          <Navbar />
+    <div>
+      <Navbar />
+      <div className="flex flex-row justify-center my-4">
+        <div className="alert bg-white-500 lg:basis-3/5 basis-full shadow-lg">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="stroke-success flex-shrink-0 w-8 h-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <div>
+              <h3 className="font-bold">{numberCertificates} Certificates found.</h3>
+              <div className="text-xs">{t('certificates.description')}</div>
+            </div>
+          </div>
         </div>
-        <div className="profile-wrapper">
-          <Profile stellarKey={certificates[0].destination} />
+      </div>
+      <div className="flex flex-row justify-center">
+        <div className="carousel lg:basis-3/5 basis-full">
+          {certificates.map((certificate: IAssetInformation, index: number) => {
+            const modalID = `cert-modal-${index}`;
+            return (
+              <>
+                <Slide
+                  key={`slide-comp-${index}`}
+                  certificateCID={certificate.CID}
+                  slideIndex={index + 1}
+                  totalSlides={numberCertificates}
+                  modalID={modalID}
+                />
+                <AssetInformation key={`asset-comp-${index}`} assetInformation={certificate} modalID={modalID} />
+              </>
+            );
+          })}
         </div>
-        <div className="certificates-description">
-          <p>{t('certificates.description')}</p>
-        </div>
-      </header>
-      <main className="certificates-main">
-        <Carousel carouselData={carouselData}></Carousel>
-      </main>
-      <hr className="certificates-endline" />
+      </div>
     </div>
   );
 };

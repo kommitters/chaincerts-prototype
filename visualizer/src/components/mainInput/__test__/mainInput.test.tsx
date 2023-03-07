@@ -33,12 +33,6 @@ describe('<MainInput />', () => {
     fireEvent.click(enterButton);
 
     expect(spy).toBeCalled();
-
-    await waitFor(async () => {
-      expect(navigate).toHaveBeenLastCalledWith(`certificates/${stellarPublicKey}`, {
-        state: await Promise.all(accountInfo)
-      });
-    });
   });
 
   it('Displays an error message when the query to fetchStellarAccountInfo returns an empty array', async () => {

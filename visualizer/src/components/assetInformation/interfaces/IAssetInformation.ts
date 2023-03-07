@@ -4,7 +4,7 @@ export interface IAssetInformation {
   isAuthorizedToMaintainLiabilities: boolean;
   isClawbackEnabled: boolean;
   CID: string;
-  created_at: string;
+  createdAt: string;
   destination: string;
   sourceAccount: string;
   amount: string;

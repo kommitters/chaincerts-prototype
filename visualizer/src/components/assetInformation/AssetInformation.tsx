@@ -20,15 +20,15 @@ const formatAssetInformation = (assetInfo: IAssetInformation) => {
 
     return (
       <div key={index}>
-        <span className="info-title">{title}</span>
         {typeof assetValue === 'boolean' ? (
-          assetValue ? (
-            <span className="colored-circle green" />
-          ) : (
-            <span className="colored-circle red" />
-          )
+          <p className="text-sm">
+            {title}
+            {assetValue ? <span className="colored-circle green" /> : <span className="colored-circle red" />}
+          </p>
         ) : (
-          <span className="value">{String(assetValue)}</span>
+          <p className="text-sm">
+            {title} {String(assetValue)}
+          </p>
         )}
       </div>
     );
@@ -37,14 +37,23 @@ const formatAssetInformation = (assetInfo: IAssetInformation) => {
 
 type AssetInformationProps = {
   assetInformation: IAssetInformation;
+  modalID: string;
 };
 
-const AssetInformation = ({ assetInformation }: AssetInformationProps) => {
+const AssetInformation = ({ assetInformation, modalID }: AssetInformationProps) => {
   return (
-    <div className="asset-card">
-      <h2 className="title">SBT information</h2>
-      {formatAssetInformation(assetInformation)}
-    </div>
+    <>
+      <input type="checkbox" id={modalID} className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative w-full">
+          <label htmlFor={modalID} className="btn btn-sm btn-circle absolute right-2 top-2">
+            ✕
+          </label>
+          <h3 className="text-lg font-bold">Blockchain information:</h3>
+          <div className="py-4">{formatAssetInformation(assetInformation)}</div>
+        </div>
+      </div>
+    </>
   );
 };
 
