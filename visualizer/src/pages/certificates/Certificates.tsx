@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 
 import { IAssetInformation } from '../../components/assetInformation/interfaces';
@@ -8,18 +8,17 @@ import Slide from '../../components/slide';
 import AssetInformation from '../../components/assetInformation';
 
 const Certificates = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const isValid = location.state?.valid;
+  const certificates = JSON.parse(localStorage.getItem('certificates') as string);
+  const isValid = certificates === null;
 
   useEffect(() => {
-    if (!isValid) navigate('/');
+    if (isValid) navigate('/');
     window.scrollTo(0, 0);
   }, []);
 
-  if (!isValid) return null;
+  if (isValid) return null;
 
-  const certificates = JSON.parse(localStorage.getItem('certificates') as string);
   const numberCertificates = certificates?.length ?? 0;
 
   return (
