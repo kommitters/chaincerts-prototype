@@ -49,13 +49,16 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID }: SlideProps)
           )}
         </div>
         <div className="card-body py-5">
-          <div className="card-actions justify-between">
-            <div className="self-center">
+          <div className="flex justify-between card-actions">
+            <div className="pr-4">
               <h2 className="card-title">{t('certificates.carousel.title')}</h2>
               <p className="text-sm font-light">{certificateCID}</p>
             </div>
-            <div>
-              <label htmlFor={modalID} className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple">
+            <div className="text-right self-center">
+              <label
+                htmlFor={modalID}
+                className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-base normal-case rounded text-base"
+              >
                 {t('certificates.button_modal')}
               </label>
             </div>
