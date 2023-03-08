@@ -59,7 +59,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd Users/juanma/Downloads/chaincerts/Volumes/GTRES/kommit 2022/SOUL BOUND TOKENS/assets/svg/qr/EinerZapata-qrcode.jpg
+map_Kd logo.png
 
 newmtl SVGMat
 Ns 360.000000
