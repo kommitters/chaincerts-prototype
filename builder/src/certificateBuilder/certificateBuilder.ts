@@ -1,13 +1,13 @@
 import { ICertificate, ICertificateRequest, IOptionalRequestData } from './interfaces';
-import { mentorCertificateTemplate } from './certificateTemplates';
+import { scfAwardsTemplate } from './certificateTemplates';
 import { validateCertificateRequest } from './validateCertificateRequest';
 import { uploadCertToIPFS } from '../ipfs';
 import { createSBT } from '../stellar';
 import { FAILED_MESSAGE, SUCCESS_MESSAGE } from '../resources/consts';
 import { createStellarAccount } from '../stellar/operations/helpers';
 
-const OPTIONAL_KOMMIT_MENTOR_DATA: IOptionalRequestData = {
-  mentorHours: '100'
+const DEFAULT_SCF_AWARDS_DATA: IOptionalRequestData = {
+  certSubtitle: 'Winner of SCF#12'
 };
 
 export const generateCertificate = async (certificateRequest: ICertificateRequest): Promise<void | ICertificate> => {
@@ -25,12 +25,12 @@ export const generateCertificate = async (certificateRequest: ICertificateReques
   console.log(`- Creating a 3D model`);
   certificateRequest.stellarAccount = recipientPublicKey;
 
-  const certificate = { ...mentorCertificateTemplate };
+  const certificate: ICertificate = { ...scfAwardsTemplate };
 
   certificate.texts.forEach((certificateText) => {
     const { type, textFormatter } = certificateText;
 
-    const textValue = certificateRequest[type] ?? certificateRequest.data?.[type] ?? OPTIONAL_KOMMIT_MENTOR_DATA[type];
+    const textValue = certificateRequest[type] ?? certificateRequest.data?.[type] ?? DEFAULT_SCF_AWARDS_DATA[type];
 
     certificateText.text = textFormatter.replace('[value]', textValue as string);
   });

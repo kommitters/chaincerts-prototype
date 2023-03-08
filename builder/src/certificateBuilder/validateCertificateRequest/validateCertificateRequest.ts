@@ -15,21 +15,11 @@ export const validateCertificateRequest = (certificateRequest: ICertificateReque
     return { valid: false, error: 'The certType is not allowed' };
   }
 
-  if (certificateRequest.data?.mentorHours && !validMentorHours(certificateRequest.data.mentorHours)) {
-    return { valid: false, error: 'The mentorHours is not a valid number' };
-  }
-
   return { valid: true };
 };
 
 const getMissingProperty = (certificateRequest: ICertificateRequest) => {
   return certificateRequestProps.find((prop) => !certificateRequest[prop as keyof ICertificateRequest]);
-};
-
-const validMentorHours = (hoursStr: string) => {
-  const hours = parseInt(hoursStr);
-
-  return Number.isInteger(hours) && hours > 0 && hours <= 2000;
 };
 
 const validCertificateType = (certificateType: string) => {

@@ -38,7 +38,7 @@ export const createSBT = async (
     console.log(`- Attaching IPFS data to the ${assetCode} asset`);
     await saveCID(sbtIssuerPublicKey, sbtIssuerSecretKey, CID);
 
-    console.log(`\n\n🎓 Transferring the certificate `);
+    console.log(`\n\n🎓 Transfering the certificate `);
     console.log(`- From issuing account ${distributorPublicKey} to receiving account ${recipientPublicKey}`);
     await sendSBT(distributorPublicKey, distributorSecretKey, recipientPublicKey, recipientSecretKey, SBT);
 
