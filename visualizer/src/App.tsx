@@ -7,7 +7,7 @@ import Footer from './components/footer';
 import Home from './pages/home';
 import i18n from './i18n';
 
-const URL_BACKGROUND_IMAGE = '/images/backgroundImage.svg';
+const URL_BACKGROUND_IMAGE = '/images/backgroundImage.jpg';
 
 function App() {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
