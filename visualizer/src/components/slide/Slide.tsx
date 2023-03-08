@@ -34,21 +34,19 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID }: SlideProps)
         <div className="relative w-full h-full" style={{ height: 450 }}>
           {certificateJSON && <CertificateVisualizer certificate={certificateJSON} id={`certificate-${slideIndex}`} />}
 
-          <div className="absolute flex justify-between transform -translate-y-1/2 top-1/2 left-5 right-5">
-            {slideIndex > 1 ? (
-              <a href={`#slide${slideIndex - 1}`} className="btn btn-circle">
-                ❮
-              </a>
-            ) : (
-              <a />
-            )}
+          {slideIndex > 1 ? (
+            <a href={`#slide${slideIndex - 1}`} className="btn btn-circle absolute m-auto left-3 top-1/2">
+              ❮
+            </a>
+          ) : (
+            <a />
+          )}
 
-            {slideIndex < totalSlides && (
-              <a href={`#slide${slideIndex + 1}`} className="btn btn-circle">
-                ❯
-              </a>
-            )}
-          </div>
+          {slideIndex < totalSlides && (
+            <a href={`#slide${slideIndex + 1}`} className="btn btn-circle absolute m-auto right-3 top-1/2">
+              ❯
+            </a>
+          )}
         </div>
         <div className="card-body py-5">
           <div className="card-actions justify-between">
