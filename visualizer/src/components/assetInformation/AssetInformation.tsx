@@ -1,3 +1,5 @@
+import { t } from 'i18next';
+
 import { IAssetTitle, IAssetInformation } from './interfaces';
 
 import './styles.css';
@@ -26,8 +28,8 @@ const formatAssetInformation = (assetInfo: IAssetInformation) => {
             {assetValue ? <span className="colored-circle green" /> : <span className="colored-circle red" />}
           </p>
         ) : (
-          <p className="text-sm">
-            {title} {String(assetValue)}
+          <p className="text-sm truncate">
+            <span>{title}</span> {String(assetValue)}
           </p>
         )}
       </div>
@@ -46,10 +48,12 @@ const AssetInformation = ({ assetInformation, modalID }: AssetInformationProps) 
       <input type="checkbox" id={modalID} className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative w-full">
-          <label htmlFor={modalID} className="btn btn-sm btn-circle absolute right-2 top-2">
-            ✕
-          </label>
-          <h3 className="text-lg font-bold">Blockchain information:</h3>
+          <div className="flex items-center">
+            <label htmlFor={modalID} className="btn btn-sm btn-circle absolute right-6 ">
+              ✕
+            </label>
+            <h3 className="text-lg font-bold">{t('certificates.asset_title')}:</h3>
+          </div>
           <div className="py-4">{formatAssetInformation(assetInformation)}</div>
         </div>
       </div>

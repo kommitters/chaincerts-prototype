@@ -15,9 +15,12 @@
     "description": "© 2009 - 2023 kommit, All Rights Reserved - Chaincerts powered by kommit"
   },
   "certificates": {
+    "asset_title": "Blockchain information",
+    "button_modal": "Stellar network data",
+    "alert_title": "Certificates found.",
     "description": "The certificates displayed on this screen are 3D and interactive, you can explore them from different angles. Enjoy the experience!",
     "carousel": {
-      "title": "Kommit Chaincert",
+      "title": "Certificate",
       "account": "Stellar account",
       "created": "Created",
       "xlm": "XLM reserved",

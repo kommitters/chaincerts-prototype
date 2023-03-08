@@ -15,7 +15,13 @@ describe('<MainInput />', () => {
     i18n.changeLanguage('en');
     render(
       <I18nextProvider i18n={i18n}>
-        <MainInput />
+        <MainInput
+          enable={true}
+          setEnable={(enable: boolean) => {
+            enable;
+            return;
+          }}
+        />
       </I18nextProvider>
     );
   });

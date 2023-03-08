@@ -2,6 +2,11 @@ import { PerspectiveCamera, WebGLRenderer, Scene } from 'three';
 import { renderCertificate3D, renderText } from './renders';
 import { createOrbitControl, createRenderer, createCamera, createScene, Loop, FontLoader, Font } from './system';
 import { ICertificate } from '../interfaces';
+import {
+  DEFAULT_CAMERA_Z_POSITION_LARGE_SCREEN,
+  DEFAULT_CAMERA_Z_POSITION_SMALL_SCREEN,
+  SMALL_WIDHT
+} from '../../../utils/constants';
 
 const loader = new FontLoader();
 const FONT_ROUTE = '/fonts/helvetiker_regular.typeface.json';
@@ -15,7 +20,7 @@ export class CertificateCanvas {
 
   constructor(container: HTMLElement, certificate: ICertificate) {
     this.container = container;
-    this.camera = createCamera(container.offsetWidth / container.offsetHeight);
+    this.camera = createCamera(container.offsetWidth, container.offsetHeight);
     this.scene = createScene();
     this.renderer = createRenderer(container);
     window.addEventListener('resize', () => this.resize());
@@ -61,6 +66,10 @@ export class CertificateCanvas {
 
     this.renderer.setSize(width, height);
 
+    const positionZ =
+      width > SMALL_WIDHT ? DEFAULT_CAMERA_Z_POSITION_LARGE_SCREEN : DEFAULT_CAMERA_Z_POSITION_SMALL_SCREEN;
+
+    this.camera.position.z = positionZ;
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
   }
