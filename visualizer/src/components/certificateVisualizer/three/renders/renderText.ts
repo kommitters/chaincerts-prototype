@@ -5,7 +5,7 @@ import { ITextSettings } from '../../interfaces';
 
 const DEFAULT_TEXT_HEIGHT = 3;
 const DEFAULT_TEXT_SIZE = 10;
-const FONT_WEIGHT_BOLD = 1.1;
+const FONT_WEIGHT_BOLD = 1.13;
 const FONT_WEIGHT_NORMAL = 1;
 const NORMAL_Y_TEXT_ROTATION = 3.2;
 const VERTICAL_Y_TEXT_ROTATION = 1.5;
@@ -15,13 +15,13 @@ const FONT_DEPTH_PERCENTAGE = 0.04;
 
 export const renderText = (
   scene: Scene,
-  { text, fontSize, position, vertical = false, bold = false }: ITextSettings,
+  { text, color, fontSize, position, vertical = false, bold = false }: ITextSettings,
   font: Font
 ): void => {
   const textObj = new TextGeometry(text, { font, size: DEFAULT_TEXT_SIZE, height: DEFAULT_TEXT_HEIGHT });
 
   const material = new MeshStandardMaterial({
-    color: new Color(convertHexToInt(WHITE_IN_HEX)),
+    color: new Color(convertHexToInt(color ?? WHITE_IN_HEX)),
     side: FrontSide,
     opacity: 0.9,
     transparent: true
