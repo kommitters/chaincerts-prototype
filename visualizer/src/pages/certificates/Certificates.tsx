@@ -47,7 +47,10 @@ const Certificates = () => {
             </svg>
             <div>
               <h3 className="font-bold">
-                {numberCertificates} {t('certificates.alert_title')}
+                {numberCertificates + ' '}
+                {numberCertificates == 1
+                  ? t('certificates.alert_title_singular')
+                  : t('certificates.alert_title_plural')}
               </h3>
               <div className="text-xs">{t('certificates.description')}</div>
             </div>
@@ -64,6 +67,8 @@ const Certificates = () => {
                 <Slide
                   key={`slide-comp-${index}`}
                   certificateCID={certificate.CID}
+                  nonTransferable={certificate.isAuthorizedToMaintainLiabilities}
+                  revocable={certificate.isClawbackEnabled}
                   slideIndex={index + 1}
                   totalSlides={numberCertificates}
                   modalID={modalID}

@@ -17,7 +17,8 @@ const formatPayment = (payment: ServerApi.PaymentOperationRecord | undefined) =>
         destination: payment.to,
         issuer: payment.asset_issuer,
         sourceAccount: payment.source_account,
-        amount: payment.amount
+        amount: payment.amount,
+        transactionHash: payment.transaction_hash
       }
     : {};
 };
