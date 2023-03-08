@@ -1,4 +1,4 @@
 export interface IOptionalRequestData {
-  mentorHours: string;
+  certSubtitle: string;
   [index: string]: string;
 }

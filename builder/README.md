@@ -77,7 +77,7 @@ To set up a Filebase account, follow these steps:
 To generate a `CertExample` certificate, run the following command:
 
 ```bash
-yarn generate-cert '{"username": "John Doe","certDate": "2022-10-01", "certType": "CERTEXAMPLE"}'
+yarn generate-cert '{"username": "Chaincerts","certDate": "2023-03-08", "certType": "CERTEXAMPLE"}'
 ```
 
 After running the command, you should see the following output:

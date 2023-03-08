@@ -1,1 +1,1 @@
-export { mentorCertificateTemplate } from './mentorCertificateTemplate';
+export { scfAwardsTemplate } from './scfAwardsTemplate';

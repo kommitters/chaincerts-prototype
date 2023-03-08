@@ -1,5 +1,4 @@
 import { generateCertificate } from '../index';
-import { kommitMentorCertificate } from './factory/kommitMentorCertificate';
 import { uploadCertToIPFS } from '../../../src/ipfs';
 import { createSBT } from '../../../src/stellar';
 import { createStellarAccount } from '../../stellar/operations/helpers';
@@ -28,13 +27,10 @@ describe('generateCertificate', () => {
   const CID = 'CID';
 
   const correctCertificateRequest = {
-    username: 'John Doe',
+    username: 'Chaincerts',
     certDate: '2022-02-21',
     stellarAccount: recipientPublicKey,
-    certType: 'CERTEXAMPLE',
-    data: {
-      mentorHours: '2000'
-    }
+    certType: 'CERTEXAMPLE'
   };
 
   beforeEach(() => {
@@ -54,23 +50,9 @@ describe('generateCertificate', () => {
     expect(generateCertificate(certificateRequest as never)).rejects.toThrow('The username property is missing');
   });
 
-  it('should throw an exception if mentorHours is not a valid number', () => {
-    const certificateRequest = {
-      username: 'John Doe',
-      certDate: '2022-02-21',
-      stellarAccount: recipientPublicKey,
-      certType: 'CERTEXAMPLE',
-      data: {
-        mentorHours: 'test'
-      }
-    };
-
-    expect(generateCertificate(certificateRequest)).rejects.toThrow('The mentorHours is not a valid number');
-  });
-
   it('should throw an exception if the certType is not an allowed certificate type', () => {
     const certificateRequest = {
-      username: 'John Doe',
+      username: 'Chaincerts',
       certDate: '2022-02-21',
       stellarAccount: recipientPublicKey,
       certType: 'senior-certificate'
@@ -81,8 +63,8 @@ describe('generateCertificate', () => {
 
   it('should replace the values in the template if the certificate request is valid', async () => {
     const expectedCertificate = {
-      materialFile: 'mentor-1000h.mtl',
-      objectFile: 'mentor-1000h.obj',
+      materialFile: 'scf-awards.mtl',
+      objectFile: 'scf-awards.obj',
       modelSettings: [
         { name: 'Plane.004', texture: 'kommit_banner.png', visible: true },
         { name: 'Plane.002', texture: 'certificate_background.jpg', visible: true },
@@ -92,56 +74,46 @@ describe('generateCertificate', () => {
         {
           type: 'username',
           textFormatter: '[value]',
-          fontSize: 0.015,
+          fontSize: 0.017,
           position: { x: 2.5, y: -1.05, z: -0.7 },
           color: '0xffffff',
-          text: 'John Doe'
+          bold: true,
+          text: 'Chaincerts'
         },
         {
-          type: 'mentorHours',
-          textFormatter: '• [value] hours •',
-          fontSize: 0.01,
+          type: 'certSubtitle',
+          textFormatter: '[value]',
+          fontSize: 0.013,
           position: { x: 2.5, y: -0.5, z: -0.7 },
           color: '0xffffff',
-          text: '• 2000 hours •'
+          text: 'Winner of SCF#12'
         },
         {
           type: 'stellarAccount',
           textFormatter: 'Stellar Account: [value]',
           fontSize: 0.0063,
-          position: { x: 3.0, y: -1.87, z: 0.5 },
-          color: '0x97d4ff',
+          position: { x: 3, y: -1.87, z: 0.5 },
+          color: '0xffffff',
           vertical: true,
-          text: 'Stellar Account: ' + recipientPublicKey
+          text: 'Stellar Account: stellar_public_key'
         },
         {
           type: 'certDate',
-          textFormatter: '////////[value]',
+          textFormatter: '///////[value]',
           fontSize: 0.0149,
           position: { x: 2.5, y: -1.65, z: -0.7 },
-          color: '0x1085f3',
+          color: '0x2561c3',
           bold: true,
-          text: '////////2022-02-21'
+          text: '///////2022-02-21'
         }
       ]
     };
 
     const certificate = await generateCertificate(correctCertificateRequest);
 
+    console.log(JSON.stringify(certificate));
+
     expect(certificate).toStrictEqual(expectedCertificate);
-  });
-
-  it('should add the default mentor_hour data if it is not supplied and generate the certificate', async () => {
-    const certificateRequest = {
-      username: 'John Doe',
-      certDate: '2022-02-21',
-      stellarAccount: recipientPublicKey,
-      certType: 'CERTEXAMPLE'
-    };
-
-    const certificate = await generateCertificate(certificateRequest);
-
-    expect(certificate).toStrictEqual(kommitMentorCertificate);
   });
 
   it('Should create the SBT and return clawback XDR', async () => {

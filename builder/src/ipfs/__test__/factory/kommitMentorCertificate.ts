@@ -1,6 +1,6 @@
 export const kommitMentorCertificate = {
-  materialFile: 'mentor-1000h.mtl',
-  objectFile: 'mentor-1000h.obj',
+  materialFile: 'scf-awards.mtl',
+  objectFile: 'scf-awards.obj',
   modelSettings: [
     { name: 'Plane.004', texture: 'kommit_banner.png', visible: true },
     { name: 'Plane.002', texture: 'certificate_background.jpg', visible: true },
@@ -16,8 +16,8 @@ export const kommitMentorCertificate = {
       text: 'John Doe'
     },
     {
-      type: 'mentorHours',
-      textFormatter: '• [value] hours •',
+      type: 'certSubtitle',
+      textFormatter: '[value]',
       fontSize: 0.01,
       position: { x: 2.5, y: -0.5, z: -0.7 },
       color: '0xffffff',
