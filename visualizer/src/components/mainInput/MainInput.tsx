@@ -5,7 +5,12 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchStellarAccountInfo } from '../../stellarOperations';
 
-const MainInput = () => {
+type MainInputProps = {
+  enable: boolean;
+  setEnable: (enable: boolean) => void;
+};
+
+const MainInput = ({ enable, setEnable }: MainInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [invalidKey, setInvalidKey] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -13,8 +18,12 @@ const MainInput = () => {
   const navigate = useNavigate();
 
   const handleClick = async () => {
+    if (!enable) return;
+
     const publicKey = inputRef.current;
     setLoading(true);
+    setEnable(true);
+
     if (publicKey) {
       try {
         const accountInfo = await fetchStellarAccountInfo(publicKey.value.trim());
@@ -23,15 +32,18 @@ const MainInput = () => {
           setInvalidKey(false);
           setNotFoundCertificates(false);
           setLoading(false);
+          setEnable(false);
           localStorage.setItem('certificates', JSON.stringify(resolvedAccountInfo));
           navigate(`certificates/${publicKey.value}`);
         } else {
           setLoading(false);
+          setEnable(false);
           setNotFoundCertificates(true);
           setInvalidKey(false);
         }
       } catch (error) {
         setLoading(false);
+        setEnable(false);
         setInvalidKey(true);
         setNotFoundCertificates(false);
       }
@@ -39,6 +51,7 @@ const MainInput = () => {
   };
 
   const placeholder = t('home.stellar_input.placeholder');
+
   const alertError = (invalidKey: boolean) => {
     if (invalidKey) {
       return (
@@ -104,7 +117,6 @@ const MainInput = () => {
         <button
           className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple rounded-t-lg text-lg normal-case"
           onClick={handleClick}
-          disabled={loading}
         >
           {loading ? <FiCommand className="animate-spin stroke-white" /> : t('home.stellar_input.enter')}
         </button>

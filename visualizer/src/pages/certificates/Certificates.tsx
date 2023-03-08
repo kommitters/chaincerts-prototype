@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { t } from 'i18next';
+
 import { IAssetInformation } from '../../components/assetInformation/interfaces';
 import Navbar from '../../components/navbar';
 import Slide from '../../components/slide';
@@ -6,15 +8,19 @@ import AssetInformation from '../../components/assetInformation';
 import Profile from '../../components/profile';
 
 const Certificates = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const certificates = JSON.parse(localStorage.getItem('certificates') as string);
   const numberCertificates = certificates?.length ?? 0;
 
   return (
-    <div className="text-black">
+    <div className="text-black mb-10">
       <Navbar />
       <Profile stellarKey={certificates[0].destination} />
-      <div className="flex flex-row justify-center my-4">
-        <div className="alert bg-white-500 lg:basis-3/5 basis-full shadow-lg">
+      <div className="flex flex-row justify-center my-4 m-full">
+        <div className="alert bg-white-500 lg:basis-4/5 xl:basis-3/5 basis-full shadow-lg">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -30,18 +36,20 @@ const Certificates = () => {
               ></path>
             </svg>
             <div>
-              <h3 className="font-bold">{numberCertificates} Certificates found.</h3>
+              <h3 className="font-bold">
+                {numberCertificates} {t('certificates.alert_title')}
+              </h3>
               <div className="text-xs">{t('certificates.description')}</div>
             </div>
           </div>
         </div>
       </div>
       <div className="flex flex-row justify-center">
-        <div className="carousel lg:basis-3/5 basis-full">
+        <div className="carousel lg:basis-4/5 xl:basis-3/5 basis-full">
           {certificates?.map((certificate: IAssetInformation, index: number) => {
             const modalID = `cert-modal-${index}`;
             return (
-              <>
+              <div className="w-full h-full carousel-item relative" key={`carousel-item-${index}`}>
                 <Slide
                   key={`slide-comp-${index}`}
                   certificateCID={certificate.CID}
@@ -50,7 +58,7 @@ const Certificates = () => {
                   modalID={modalID}
                 />
                 <AssetInformation key={`asset-comp-${index}`} assetInformation={certificate} modalID={modalID} />
-              </>
+              </div>
             );
           })}
         </div>
