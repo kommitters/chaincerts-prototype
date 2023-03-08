@@ -1,4 +1,5 @@
-import { MeshMatcapMaterial, Mesh, Scene } from 'three';
+import { Mesh, Scene, Color, MeshStandardMaterial, FrontSide } from 'three';
+
 import { TextGeometry, Font } from '../system';
 import { ITextSettings } from '../../interfaces';
 
@@ -14,11 +15,18 @@ const FONT_DEPTH_PERCENTAGE = 0.04;
 
 export const renderText = (
   scene: Scene,
-  { text, fontSize, position, color = WHITE_IN_HEX, vertical = false, bold = false }: ITextSettings,
+  { text, fontSize, position, vertical = false, bold = false }: ITextSettings,
   font: Font
 ): void => {
   const textObj = new TextGeometry(text, { font, size: DEFAULT_TEXT_SIZE, height: DEFAULT_TEXT_HEIGHT });
-  const material = new MeshMatcapMaterial({ color: convertHexToInt(color) });
+
+  const material = new MeshStandardMaterial({
+    color: new Color(convertHexToInt(WHITE_IN_HEX)),
+    side: FrontSide,
+    opacity: 0.9,
+    transparent: true
+  });
+
   const mesh = new Mesh(textObj, material);
 
   const fontWeight = fontSize * (bold ? FONT_WEIGHT_BOLD : FONT_WEIGHT_NORMAL);
