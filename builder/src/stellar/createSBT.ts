@@ -18,7 +18,7 @@ export const createSBT = async (
   assetCode: string
 ): Promise<string | never> => {
   try {
-    console.log(`\n \n 🏗️  Issuing certificate in Stellar network`);
+    console.log(`\n\n🏗️  Issuing certificate in Stellar network`);
     console.log(`- Creating issuer accounts`);
 
     const { publicKey: distributorPublicKey, secretKey: distributorSecretKey } = await createStellarAccount();
@@ -38,11 +38,11 @@ export const createSBT = async (
     console.log(`- Attaching IPFS data to the ${assetCode} asset`);
     await saveCID(sbtIssuerPublicKey, sbtIssuerSecretKey, CID);
 
-    console.log(`\n \n 🎓 Transferring the certificate `);
-    console.log(`- from issuing account ${distributorPublicKey} to receiving account ${recipientPublicKey}`);
+    console.log(`\n\n🎓 Transferring the certificate `);
+    console.log(`- From issuing account ${distributorPublicKey} to receiving account ${recipientPublicKey}`);
     await sendSBT(distributorPublicKey, distributorSecretKey, recipientPublicKey, recipientSecretKey, SBT);
 
-    console.log(`\n \n 🔐 Configuring the certificate`);
+    console.log(`\n\n🔐 Configuring the certificate`);
     await establishNonTransferableSBT(sbtIssuerPublicKey, sbtIssuerSecretKey, recipientPublicKey, SBT);
 
     const { hash, xdr } = await getClawbackHashAndXDR(sbtIssuerPublicKey, recipientPublicKey, SBT);

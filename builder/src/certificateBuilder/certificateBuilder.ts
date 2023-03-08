@@ -17,11 +17,11 @@ export const generateCertificate = async (certificateRequest: ICertificateReques
     throw new Error(requestValidation.error);
   }
 
-  console.log(`\n \n 👩‍🚀 Creating a receiving account`);
+  console.log(`\n\n🚀 Creating a receiving account`);
   const { publicKey: recipientPublicKey, secretKey: recipientSecretKey } = await createStellarAccount();
   console.log(`- Account address: ${recipientPublicKey}`);
 
-  console.log(`\n \n 👨‍🎨 Creating a certificate visualization`);
+  console.log(`\n\n🎨 Creating a certificate visualization`);
   console.log(`- Creating a 3D model`);
   certificateRequest.stellarAccount = recipientPublicKey;
 
