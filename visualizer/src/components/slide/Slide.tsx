@@ -62,10 +62,16 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferab
               <p className="text-sm font-light">
                 <strong className="font-bold">{t('certificates.owner')}</strong> {stellar_key}
               </p>
-              <div className={'badge text-xs font-semibold mt-2.5 mr-0.5 ' + (nonTransferable ? 'badge-success' : 'badge-error')}>
+              <div
+                className={
+                  'badge text-xs font-semibold mt-2.5 mr-0.5 ' + (nonTransferable ? 'badge-success' : 'badge-error')
+                }
+              >
                 {t('certificates.tags.non_transferable')}
               </div>
-              <div className={'badge text-xs font-semibold mt-2.5 ml-0.5 ' + (revocable ? 'badge-success' : 'badge-error')}>
+              <div
+                className={'badge text-xs font-semibold mt-2.5 ml-0.5 ' + (revocable ? 'badge-success' : 'badge-error')}
+              >
                 {t('certificates.tags.revocable')}
               </div>
             </div>
