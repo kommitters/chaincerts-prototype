@@ -19,7 +19,7 @@ export const uploadCertToIPFS = async (certificate: ICertificate): Promise<strin
 
     const CID = fileInfo.$response.httpResponse.headers['x-amz-meta-cid'];
 
-    console.log('- The certificate is accessible in IPFS using this ID:', CID);
+    console.log('- The certificate is accessible in IPFS using this ContentID:', CID);
 
     return CID;
   } catch (error) {
