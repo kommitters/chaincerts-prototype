@@ -27,7 +27,7 @@ describe('<MainInput />', () => {
   });
 
   it('Show the correct elements in the component', () => {
-    expect(screen.getByPlaceholderText('Explore other Stellar accounts')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Explore more Stellar accounts')).toBeInTheDocument();
     expect(screen.getByText('View certificates')).toBeInTheDocument();
   });
 
@@ -52,7 +52,7 @@ describe('<MainInput />', () => {
     expect(spy).toBeCalled();
 
     await waitFor(() => {
-      expect(screen.getByText('There are no certificates associated with the user')).toBeInTheDocument();
+      expect(screen.getByText('There are no certificates associated with the Stellar account.')).toBeInTheDocument();
     });
   });
 
@@ -69,7 +69,7 @@ describe('<MainInput />', () => {
     expect(spy).toBeCalled();
 
     await waitFor(() => {
-      expect(screen.getByText('Something happened;')).toBeInTheDocument();
+      expect(screen.getByText('Invalid Stellar account. Please check and try again.')).toBeInTheDocument();
     });
   });
 });
