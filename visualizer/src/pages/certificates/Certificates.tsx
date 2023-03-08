@@ -6,8 +6,7 @@ import AssetInformation from '../../components/assetInformation';
 
 const Certificates = () => {
   const certificates = JSON.parse(localStorage.getItem('certificates') as string);
-
-  const numberCertificates = certificates.length;
+  const numberCertificates = certificates?.length ?? 0;
 
   return (
     <div>
@@ -37,7 +36,7 @@ const Certificates = () => {
       </div>
       <div className="flex flex-row justify-center">
         <div className="carousel lg:basis-3/5 basis-full">
-          {certificates.map((certificate: IAssetInformation, index: number) => {
+          {certificates?.map((certificate: IAssetInformation, index: number) => {
             const modalID = `cert-modal-${index}`;
             return (
               <>

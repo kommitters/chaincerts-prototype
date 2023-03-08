@@ -26,6 +26,7 @@ const Home = () => {
     }
   }
   const buttonKey = (loader: boolean, publicKey: string) => {
+    const accountNumber = PUBLIC_KEY_FIRST == publicKey ? 1 : 2;
     return (
       <button
         className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple mb-5 text-lg normal-case"
@@ -34,7 +35,7 @@ const Home = () => {
         {loader ? (
           <FiCommand className="animate-spin stroke-white" />
         ) : (
-          `${t('home.button_title')} #1 ***${publicKey.substring(publicKey.length - SIZE_CHAR)}`
+          `${t('home.button_title')} #${accountNumber} ***${publicKey.substring(publicKey.length - SIZE_CHAR)}`
         )}
       </button>
     );
@@ -46,6 +47,7 @@ const Home = () => {
       const resolvedAccountInfo = await Promise.all(accountInfo);
       if (resolvedAccountInfo.length > 0) {
         modLoadingSpinner(publicKey, false);
+        localStorage.setItem('certificates', JSON.stringify(resolvedAccountInfo));
         navigate(`certificates/${publicKey}`, {
           state: resolvedAccountInfo
         });
