@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { t } from 'i18next';
+
 import { readCertificate } from '../../ipfs/readCertificate';
 import CertificateVisualizer from '../certificateVisualizer';
-import { t } from 'i18next';
 
 type SlideProps = {
   certificateCID: string;

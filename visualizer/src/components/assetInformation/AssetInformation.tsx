@@ -1,3 +1,5 @@
+import { t } from 'i18next';
+
 import { IAssetTitle, IAssetInformation } from './interfaces';
 
 import './styles.css';
@@ -50,7 +52,7 @@ const AssetInformation = ({ assetInformation, modalID }: AssetInformationProps) 
             <label htmlFor={modalID} className="btn btn-sm btn-circle absolute right-6 ">
               ✕
             </label>
-            <h3 className="text-lg font-bold">Blockchain information:</h3>
+            <h3 className="text-lg font-bold">{t('certificates.asset_title')}:</h3>
           </div>
           <div className="py-4">{formatAssetInformation(assetInformation)}</div>
         </div>
