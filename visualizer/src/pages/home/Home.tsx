@@ -57,7 +57,7 @@ const Home = () => {
       if (resolvedAccountInfo.length > 0) {
         modLoadingSpinner(publicKey, false);
         localStorage.setItem('certificates', JSON.stringify(resolvedAccountInfo));
-        navigate(`certificates/${publicKey}`);
+        navigate(`certificates/${publicKey}`, { state: { valid: true } });
       } else {
         modLoadingSpinner(publicKey, false);
       }
