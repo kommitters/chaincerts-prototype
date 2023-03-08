@@ -55,7 +55,7 @@ To obtain a certificate, please provide the following information: the beneficia
 ## Available params:
 
 - `username`: The beneficiary's name.
-- `certType`: Certificate type you want to generate. Currently, the only available option is `CertExample`.
+- `certType`: Certificate type you want to generate. Currently, the only available option is `CERTEXAMPLE`.
 - `certDate`: The date on which the certificate is issued.
 
 
@@ -77,11 +77,10 @@ To set up a Filebase account, follow these steps:
 To generate a `CertExample` certificate, run the following command:
 
 ```bash
-yarn generate-cert '{"username": "John Doe","certDate": "2022-10-01", "certType": "CertExample"}'
+yarn generate-cert '{"username": "John Doe","certDate": "2022-10-01", "certType": "CERTEXAMPLE"}'
 ```
 
 After running the command, you should see the following output:
 
-```
-Congratulations! Your certificate has been successfully generated. To access it, simply use your Stellar public key on the Chaincerts visualizer at https://demo.chaincerts.co/.
-```
+
+![image](https://user-images.githubusercontent.com/84339390/223603712-1bcac86c-9210-4b5a-b85d-92f82fd18074.png)

@@ -9,7 +9,6 @@ export const saveCID = async (sbtIssuerPublicKey: string, sbtIssuerSecretKey: st
   });
 
   try {
-    console.log('Saving the CID in the Issuer Account ... ');
     await executeTransaction(sbtIssuerPublicKey, sbtIssuerSecretKey, manageDataOp);
   } catch (error) {
     throw new Error(`Failed saving the CID: ${error.message}`);

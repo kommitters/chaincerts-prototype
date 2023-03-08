@@ -3,7 +3,7 @@ import { mentorCertificateTemplate } from './certificateTemplates';
 import { validateCertificateRequest } from './validateCertificateRequest';
 import { uploadCertToIPFS } from '../ipfs';
 import { createSBT } from '../stellar';
-import { CLAWABACK_MESSAGE, FAILED_MESSAGE, SUCCESS_MESSAGE } from '../resources/consts';
+import { FAILED_MESSAGE, SUCCESS_MESSAGE } from '../resources/consts';
 import { createStellarAccount } from '../stellar/operations/helpers';
 
 const OPTIONAL_KOMMIT_MENTOR_DATA: IOptionalRequestData = {
@@ -17,10 +17,12 @@ export const generateCertificate = async (certificateRequest: ICertificateReques
     throw new Error(requestValidation.error);
   }
 
-  // Create recipient Account
+  console.log(`\n\n🚀 Creating a receiving account`);
   const { publicKey: recipientPublicKey, secretKey: recipientSecretKey } = await createStellarAccount();
-  console.log(`🔑 Recipient Public Key ${recipientPublicKey} \n`);
+  console.log(`- Account address: ${recipientPublicKey}`);
 
+  console.log(`\n\n🎨 Creating a certificate visualization`);
+  console.log(`- Creating a 3D model`);
   certificateRequest.stellarAccount = recipientPublicKey;
 
   const certificate = { ...mentorCertificateTemplate };
@@ -36,10 +38,9 @@ export const generateCertificate = async (certificateRequest: ICertificateReques
   const CID = await uploadCertToIPFS(certificate);
 
   try {
-    const XDR = await createSBT(recipientPublicKey, recipientSecretKey, CID, certificateRequest.certType);
-    console.log(CLAWABACK_MESSAGE + `${XDR} \n`);
+    await createSBT(recipientPublicKey, recipientSecretKey, CID, certificateRequest.certType);
 
-    console.log(SUCCESS_MESSAGE);
+    console.log(SUCCESS_MESSAGE + `\n \n${recipientPublicKey}. \n`);
 
     return certificate;
   } catch (error) {

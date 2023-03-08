@@ -2,7 +2,7 @@ import { S3 } from './providers';
 import { ICertificate } from '../certificateBuilder/interfaces/ICertificate';
 
 export const uploadCertToIPFS = async (certificate: ICertificate): Promise<string> => {
-  console.log('Uploading certificate to Filebase...');
+  console.log('- Uploading to IPFS');
 
   const certificateBuffer = Buffer.from(JSON.stringify(certificate));
   const fileName = generateHash();
@@ -18,7 +18,6 @@ export const uploadCertToIPFS = async (certificate: ICertificate): Promise<strin
     }).promise();
 
     const CID = fileInfo.$response.httpResponse.headers['x-amz-meta-cid'];
-    console.log(`The certificate has been successfully uploaded to Filebase with the following CID: ${CID}`);
 
     return CID;
   } catch (error) {

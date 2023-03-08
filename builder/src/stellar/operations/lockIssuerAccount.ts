@@ -7,7 +7,7 @@ export const lockIssuerAccount = async (issuerPublicKey: string, issuerSecretKey
   });
 
   try {
-    console.log('Locking the issuer account .... ');
+    console.log('- Blocking the issuing account \n');
     await executeTransaction(issuerPublicKey, issuerSecretKey, setOptionsOp);
   } catch (error) {
     throw new Error(`Failed locking the issuer account: ${error.message}`);
