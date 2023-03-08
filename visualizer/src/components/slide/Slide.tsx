@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { t } from 'i18next';
-
+import { useParams } from 'react-router-dom';
 import { readCertificate } from '../../ipfs/readCertificate';
 import CertificateVisualizer from '../certificateVisualizer';
 
@@ -9,6 +9,8 @@ type SlideProps = {
   slideIndex: number;
   totalSlides: number;
   modalID: string;
+  nonTransferable: boolean;
+  revocable: boolean;
 };
 
 const loadCertificateFromIFPS = (CID: string, fetchCertificateJSON: Dispatch<SetStateAction<null>>) => {
@@ -21,7 +23,8 @@ const loadCertificateFromIFPS = (CID: string, fetchCertificateJSON: Dispatch<Set
     });
 };
 
-const Slide = ({ certificateCID, slideIndex, totalSlides, modalID }: SlideProps) => {
+const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferable, revocable }: SlideProps) => {
+  const { stellar_key } = useParams();
   const [certificateJSON, fetchCertificateJSON] = useState(null);
 
   useEffect(() => {
@@ -49,10 +52,20 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID }: SlideProps)
           )}
         </div>
         <div className="card-body py-5">
-          <div className="flex justify-between card-actions">
-            <div className="pr-4">
-              <h2 className="card-title">{t('certificates.carousel.title')}</h2>
-              <p className="text-sm font-light">{certificateCID}</p>
+          <div className="card-actions justify-between">
+            <div className="self-center">
+              <h2 className="card-title">Certificate Information</h2>
+              <p className="text-sm font-light">
+                <strong className="font-black">Hash:</strong>{' '}
+                {Buffer.from(certificateCID).toString('base64').replaceAll('=', '')}
+              </p>
+              <p className="text-sm font-light">
+                <strong className="font-black">Owner:</strong> {stellar_key}
+              </p>
+              <div className={'badge mt-2.5 mr-0.5 ' + (nonTransferable ? 'badge-success' : 'badge-error')}>
+                Non-transferable
+              </div>
+              <div className={'badge mt-2.5 ml-0.5 ' + (revocable ? 'badge-success' : 'badge-error')}>Revocable</div>
             </div>
             <div className="text-right self-center">
               <label

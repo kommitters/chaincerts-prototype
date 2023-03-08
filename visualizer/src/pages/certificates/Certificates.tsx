@@ -64,6 +64,8 @@ const Certificates = () => {
                 <Slide
                   key={`slide-comp-${index}`}
                   certificateCID={certificate.CID}
+                  nonTransferable={certificate.isAuthorizedToMaintainLiabilities}
+                  revocable={certificate.isClawbackEnabled}
                   slideIndex={index + 1}
                   totalSlides={numberCertificates}
                   modalID={modalID}
