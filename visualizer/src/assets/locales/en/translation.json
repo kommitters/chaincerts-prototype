@@ -4,10 +4,10 @@
     "info": "Access the Chaincerts prototype by clicking on any of the demo accounts below.",
     "button_title": "Stellar account",
     "stellar_input": {
-      "placeholder": "Explore other Stellar accounts",
+      "placeholder": "Explore more Stellar accounts",
       "enter": "View certificates",
       "info_title": "Something happened;",
-      "info_message": "Invalid key entered. Please check and try again."
+      "info_message": "Invalid Stellar account. Please check and try again."
     },
     "separator": "or"
   },
@@ -26,7 +26,7 @@
       "xlm": "XLM reserved",
       "assets_and_truslines": "Assets and trustlines"
     },
-    "not_found_message": "There are no certificates associated with the user",
+    "not_found_message": "There are no certificates associated with the Stellar account.",
     "profile": {
       "description": "Stellar Public Key"
     },

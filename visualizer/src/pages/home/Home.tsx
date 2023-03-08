@@ -36,7 +36,7 @@ const Home = () => {
     const accountNumber = PUBLIC_KEY_FIRST == publicKey ? 1 : 2;
     return (
       <button
-        className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple mb-5 text-lg normal-case"
+        className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-lg normal-case rounded text-base xs:w-full w-80"
         onClick={() => handlePublicKey(publicKey)}
       >
         {loader ? (
@@ -67,15 +67,24 @@ const Home = () => {
   }
   return (
     <>
-      <div className="hero min-h-[60rem] bg-transparent">
-        <div className="hero-content text-center">
-          <div className="max-w-xs sm:max-w-4xl">
-            <img className="w-full h-12 mb-20" src={chaincertsLogo} alt="chaincerts-logo" />
-            <h1 className="text-5xl font-black mb-10 font-inter">{t('home.title')}</h1>
-            <p className="py-6 mb-5 text-lg font-bold">{t('home.info')}</p>
-            <p className="mb-3">{buttonKey(loadingFirstKey, PUBLIC_KEY_FIRST)}</p>
-            <p>{buttonKey(loadingSecondKey, PUBLIC_KEY_SECOND)}</p>
-            <p className="py-6 mb-4">{t('home.separator')}</p>
+      <div className="flex flex-row justify-center">
+        <div className="xl:basis-9/12 basis-full text-white">
+          <div className="grid grid-cols-1 w-full xl:h-56 h-40 content-center">
+            <img className="w-full xl:h-14 h-12" src={chaincertsLogo} alt="Chaincerts" />
+          </div>
+
+          <div className="w-full text-center mb-12">
+            <h1 className="text-5xl font-black">{t('home.title')}</h1>
+            <p className="mt-4 xl:text-xl text-lg font-light text-white">{t('home.info')}</p>
+          </div>
+
+          <div className="w-full text-center xl:mt-24 sm:mt-16">
+            <div>{buttonKey(loadingFirstKey, PUBLIC_KEY_FIRST)}</div>
+            <div className="mt-5">{buttonKey(loadingSecondKey, PUBLIC_KEY_SECOND)}</div>
+          </div>
+
+          <div className="w-full place-items-center">
+            <div className="text-center font-semibold my-8">{t('home.separator')}</div>
             <MainInput enable={!pressed} setEnable={setPressed} />
           </div>
         </div>
