@@ -40,7 +40,7 @@ export const generateCertificate = async (certificateRequest: ICertificateReques
   try {
     await createSBT(recipientPublicKey, recipientSecretKey, CID, certificateRequest.certType);
 
-    console.log(SUCCESS_MESSAGE + `\n \n${recipientPublicKey}. \n`);
+    console.log(SUCCESS_MESSAGE + `\n \n  ${recipientPublicKey} \n`);
 
     return certificate;
   } catch (error) {

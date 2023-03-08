@@ -1,26 +1,36 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 
 import { IAssetInformation } from '../../components/assetInformation/interfaces';
 import Navbar from '../../components/navbar';
 import Slide from '../../components/slide';
 import AssetInformation from '../../components/assetInformation';
-import Profile from '../../components/profile';
 
 const Certificates = () => {
+  const navigate = useNavigate();
+  const certificates = JSON.parse(localStorage.getItem('certificates') as string);
+  const isValid = certificates === null;
+
   useEffect(() => {
+    if (isValid) navigate('/');
     window.scrollTo(0, 0);
   }, []);
 
-  const certificates = JSON.parse(localStorage.getItem('certificates') as string);
+  if (isValid) return null;
+
   const numberCertificates = certificates?.length ?? 0;
 
   return (
-    <div className="text-black mb-10">
-      <Navbar />
-      <Profile stellarKey={certificates[0].destination} />
-      <div className="flex flex-row justify-center my-4 m-full">
-        <div className="alert bg-white-500 lg:basis-4/5 xl:basis-3/5 basis-full shadow-lg">
+    <>
+      <div className="flex justify-center">
+        <div className="lg:basis-10/12 xl:basis-9/12 basis-full">
+          <Navbar />
+        </div>
+      </div>
+
+      <div className="flex justify-center my-6">
+        <div className="lg:basis-4/5 xl:basis-3/5 basis-full alert bg-white-500 shadow-lg">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -44,12 +54,13 @@ const Certificates = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-center">
+
+      <div className="flex flex-row justify-center mb-6">
         <div className="carousel lg:basis-4/5 xl:basis-3/5 basis-full">
           {certificates?.map((certificate: IAssetInformation, index: number) => {
             const modalID = `cert-modal-${index}`;
             return (
-              <div className="w-full h-full carousel-item relative" key={`carousel-item-${index}`}>
+              <div className="w-full h-full carousel-item relative cursor-move" key={`carousel-item-${index}`}>
                 <Slide
                   key={`slide-comp-${index}`}
                   certificateCID={certificate.CID}
@@ -63,7 +74,7 @@ const Certificates = () => {
           })}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

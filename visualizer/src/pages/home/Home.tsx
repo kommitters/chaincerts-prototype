@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { FiCommand } from 'react-icons/fi';
+import { ImSpinner5 } from 'react-icons/im';
 import { useState, useEffect } from 'react';
 import { t } from 'i18next';
 
@@ -7,8 +7,8 @@ import chaincertsLogo from '/icons/chaincertsLogo.svg';
 import MainInput from '../../components/mainInput';
 import { fetchStellarAccountInfo } from '../../stellarOperations';
 
-const PUBLIC_KEY_FIRST = 'GBUGXFF4S4SEJ6BPEED3J7Z7EVDWFXWTWT5VADWNGB6O357BWVAGL3V5';
-const PUBLIC_KEY_SECOND = 'GDP2KOLZOGI6TSHWQRVFPMSRKJCVDHA3UMEJQ32LWJPUA6QXA5VMNTKE';
+const PUBLIC_KEY_FIRST = 'GD6QSURVO6RSFHD3JBQCNCYVWLIP3IB3BVW7ZS3K3F5BLTXLBZSMLHL4';
+const PUBLIC_KEY_SECOND = 'GDPZPB6KRALRO5TC36PZAQ2KZXVVPEMBEW4AM6TRSBIO6OCA5PJXBRQI';
 const SIZE_CHAR = 6;
 
 const Home = () => {
@@ -36,11 +36,11 @@ const Home = () => {
     const accountNumber = PUBLIC_KEY_FIRST == publicKey ? 1 : 2;
     return (
       <button
-        className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-lg normal-case rounded text-base xs:w-full w-80"
+        className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-lg normal-case rounded xs:w-full w-80 animate-none"
         onClick={() => handlePublicKey(publicKey)}
       >
         {loader ? (
-          <FiCommand className="animate-spin stroke-white" />
+          <ImSpinner5 className="animate-spin stroke-white" />
         ) : (
           `${t('home.button_title')} #${accountNumber} ***${publicKey.substring(publicKey.length - SIZE_CHAR)}`
         )}
@@ -83,7 +83,7 @@ const Home = () => {
             <div className="mt-5">{buttonKey(loadingSecondKey, PUBLIC_KEY_SECOND)}</div>
           </div>
 
-          <div className="w-full place-items-center">
+          <div className="w-80 m-auto sm:w-full place-items-center">
             <div className="text-center font-semibold my-8">{t('home.separator')}</div>
             <MainInput enable={!pressed} setEnable={setPressed} />
           </div>
