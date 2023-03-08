@@ -80,7 +80,6 @@ To generate a `CertExample` certificate, run the following command:
 yarn generate-cert '{"username": "John Doe","certDate": "2022-10-01", "certType": "CERTEXAMPLE"}'
 ```
 
-After running the command, you should see the following output:
+After executing the command, you should be able to get a output like this:
 
-
-![image](https://user-images.githubusercontent.com/84339390/223603712-1bcac86c-9210-4b5a-b85d-92f82fd18074.png)
+![image](https://user-images.githubusercontent.com/2568221/223825347-d4192340-4430-4c2d-8ee6-424ae3a91e6e.png)
