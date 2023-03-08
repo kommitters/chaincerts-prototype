@@ -69,8 +69,10 @@ To set up a Filebase account, follow these steps:
 3. Complete the sign-up form and verify your account through email.
 4. Log in to your account and create a bucket with a unique name to start uploading your files.
 5. Navigate to the Access Keys section to retrieve your Access Key and Secret.
-6. Replace IPFS_ACCESS_KEY_ID with the provided key and IPFS_SECRET_ACCESS_KEY with the provided secret on the environment file.
-7. With your settings in place, trigger the generation of your SBT to receive your public key for easy validation using the visualizer.
+6. In the root of the builder project, create an environment file by copying the example file: cp .env.example .env.
+7. In the environment file, replace IPFS_ACCESS_KEY_ID with the provided Access Key and IPFS_SECRET_ACCESS_KEY with the provided Secret.
+8. Replace IPFS_CERTS_BUCKET_NAME with a unique name in kebab case (e.g., chaincerts-bucket).
+9. With your settings in place, trigger the generation of your SBT to receive your public key for easy validation using the visualizer.
 
 ## Generating a certificate
 
@@ -83,4 +85,4 @@ yarn generate-cert '{"username": "Chaincerts","certDate": "2023-03-08", "certTyp
 After running the command, you should see the following output:
 
 
-![image](https://user-images.githubusercontent.com/84339390/223603712-1bcac86c-9210-4b5a-b85d-92f82fd18074.png)
+![image](https://user-images.githubusercontent.com/84339390/223868060-e4b94107-7629-409b-b20e-4e3a118c2422.png)
