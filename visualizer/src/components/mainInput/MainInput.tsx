@@ -55,7 +55,7 @@ const MainInput = ({ enable, setEnable }: MainInputProps) => {
   const alertError = (invalidKey: boolean) => {
     if (invalidKey) {
       return (
-        <div className="alert alert-error shadow-lg text-white text-lg bg-hight-red font-bold rounded-lg">
+        <div className="alert alert-error shadow-lg text-white bg-hight-red rounded-lg -mt-4">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -70,9 +70,7 @@ const MainInput = ({ enable, setEnable }: MainInputProps) => {
                 d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <span>
-              <strong>{t('home.stellar_input.info_title')}</strong> {t('home.stellar_input.info_message')}
-            </span>
+            <span>{t('home.stellar_input.info_message')}</span>
           </div>
         </div>
       );
@@ -82,7 +80,7 @@ const MainInput = ({ enable, setEnable }: MainInputProps) => {
   const alertWarning = (notFoundCertificates: boolean) => {
     if (notFoundCertificates) {
       return (
-        <div className="alert alert-warning shadow-lg text-white text-lg bg-hight-red font-bold rounded-lg">
+        <div className="alert alert-error shadow-lg text-white bg-hight-red rounded-lg -mt-4">
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -106,16 +104,16 @@ const MainInput = ({ enable, setEnable }: MainInputProps) => {
 
   return (
     <div className="flex flex-col gap-y-4 sm:w-[75%] sm:m-auto">
-      <div className="flex flex-row  bg-slave-dark border-4 border-solid border-low-gray py-1 pr-1 rounded-lg">
+      <div className="flex flex-row bg-slave-dark border-4 border-solid border-low-gray py-1 pr-1 rounded-lg">
         <input
           ref={inputRef}
           type="text"
           placeholder={placeholder}
-          className="input border-none focus:outline-none bg-slave-dark w-full text-lg placeholder:opacity-100 placeholder:font-bold"
+          className="input border-none focus:outline-none bg-slave-dark w-full text-lg placeholder:opacity-100 placeholder:text-lg"
           aria-label="key-input"
         />
         <button
-          className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple rounded-t-lg text-lg normal-case"
+          className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple rounded normal-case text-base"
           onClick={handleClick}
         >
           {loading ? <FiCommand className="animate-spin stroke-white" /> : t('home.stellar_input.enter')}

@@ -10,12 +10,12 @@ const URL_BACKGROUND_IMAGE = '/images/backgroundImage.jpg';
 
 function App() {
   return (
-    <>
-      <div
-        className="min-h-screen bg-cover bg-center text-white"
-        style={{ backgroundImage: `url(${URL_BACKGROUND_IMAGE})` }}
-      >
-        <div className="container mx-auto px-4">
+    <div
+      className="min-h-screen bg-cover bg-center font-inter"
+      style={{ backgroundImage: `url(${URL_BACKGROUND_IMAGE})` }}
+    >
+      <div className="container mx-auto px-4 xs:px-8">
+        <div className="flex flex-col min-h-screen justify-between">
           <I18nextProvider i18n={i18n}>
             <Router>
               <Routes>
@@ -28,7 +28,7 @@ function App() {
           <Footer />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
