@@ -10,14 +10,14 @@ import AssetInformation from '../../components/assetInformation';
 const Certificates = () => {
   const navigate = useNavigate();
   const certificates = JSON.parse(localStorage.getItem('certificates') as string);
-  const isValid = certificates === null;
+  const isValid = !(certificates === null);
 
   useEffect(() => {
-    if (isValid) navigate('/');
+    if (!isValid) navigate('/');
     window.scrollTo(0, 0);
   }, []);
 
-  if (isValid) return null;
+  if (!isValid) return null;
 
   const numberCertificates = certificates?.length ?? 0;
 
