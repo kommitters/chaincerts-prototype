@@ -45,11 +45,18 @@ const Certificates = () => {
         </div>
       </div>
       <div className="flex flex-row justify-center">
-        <div className="carousel lg:basis-4/5 xl:basis-3/5 basis-full">
+        <div
+          className="carousel lg:basis-4/5 xl:basis-3/5 basis-full overscroll-none overscroll-y-none overscroll-x-none"
+          style={{ scrollSnapType: 'none', scrollBehavior: 'unset' }}
+        >
           {certificates?.map((certificate: IAssetInformation, index: number) => {
             const modalID = `cert-modal-${index}`;
             return (
-              <div className="w-full h-full carousel-item relative" key={`carousel-item-${index}`}>
+              <div
+                className="w-full h-full carousel-item relative focus:outline-none overscroll-none overscroll-y-none overscroll-x-none"
+                style={{ scrollSnapAlign: 'none', scrollSnapType: 'none', scrollBehavior: 'unset' }}
+                key={`carousel-item-${index}`}
+              >
                 <Slide
                   key={`slide-comp-${index}`}
                   certificateCID={certificate.CID}

@@ -36,7 +36,11 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID }: SlideProps)
 
           <div className="absolute flex justify-between transform -translate-y-1/2 top-1/2 left-5 right-5">
             {slideIndex > 1 ? (
-              <a href={`#slide${slideIndex - 1}`} className="btn btn-circle">
+              <a
+                href={`#slide${slideIndex - 1}`}
+                className="btn btn-circle"
+                style={{ scrollSnapType: 'none', scrollBehavior: 'unset' }}
+              >
                 ❮
               </a>
             ) : (
@@ -44,7 +48,11 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID }: SlideProps)
             )}
 
             {slideIndex < totalSlides && (
-              <a href={`#slide${slideIndex + 1}`} className="btn btn-circle">
+              <a
+                href={`#slide${slideIndex + 1}`}
+                className="btn btn-circle"
+                style={{ scrollSnapType: 'none', scrollBehavior: 'unset' }}
+              >
                 ❯
               </a>
             )}
