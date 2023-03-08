@@ -1,5 +1,4 @@
 import { t } from 'i18next';
-
 import { IAssetTitle, IAssetInformation } from './interfaces';
 
 import './styles.css';
@@ -26,7 +25,7 @@ const formatAssetInformation = (assetInfo: IAssetInformation, assetTitles: IAsse
     return (
       <div key={index}>
         <>
-          <div className="text-base font-bold">{title}</div>
+          <div className="text-sm font-semibold">{title}</div>
           <div className="text-xs">{String(assetValue).toUpperCase()}</div>
         </>
       </div>
@@ -48,11 +47,11 @@ const AssetInformation = ({ assetInformation, modalID }: AssetInformationProps) 
           <label htmlFor={modalID} className="btn btn-sm btn-circle absolute right-2 top-2">
             ✕
           </label>
-          <h3 className="text-lg font-bold">Transaction Information:</h3>
+          <h3 className="text-lg font-bold">{t('certificates.stellar_data_modal.transaction_title')}</h3>
           <div className="py-4">{formatAssetInformation(assetInformation, transactionTitles)}</div>
-          <h3 className="text-lg font-bold">Soulbound Token Information:</h3>
+          <h3 className="text-lg font-bold">{t('certificates.stellar_data_modal.soulbound_token_title')}</h3>
           <div className="py-4">{formatAssetInformation(assetInformation, balanceTitles)}</div>
-          <h3 className="text-lg font-bold">IPFS Information:</h3>
+          <h3 className="text-lg font-bold">{t('certificates.stellar_data_modal.IPFS_title')}</h3>
           <div className="py-4">{formatAssetInformation(assetInformation, IPFSTitles)}</div>
         </div>
       </div>

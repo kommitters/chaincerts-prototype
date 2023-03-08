@@ -15,10 +15,16 @@
     "description": "© 2009 - 2023 kommit, All Rights Reserved - Chaincerts powered by kommit"
   },
   "certificates": {
-    "asset_title": "Blockchain information",
+    "info": "Certificate Information",
+    "hash": "Hash:",
+    "owner": "Owner:",
     "button_modal": "Stellar network data",
     "alert_title": "Certificates found.",
     "description": "The certificates displayed on this screen are 3D and interactive, you can explore them from different angles. Enjoy the experience!",
+    "tags" : {
+      "non_transferable": "Non-transferable",
+      "revocable": "Revocable"
+    },
     "carousel": {
       "title": "Certificate",
       "account": "Stellar account",
@@ -32,6 +38,11 @@
     },
     "button": {
       "back": "back"
+    },
+    "stellar_data_modal": {
+      "transaction_title": "Transaction Information:",
+      "soulbound_token_title": "Soulbound Token Information:",
+      "IPFS_title": "IPFS Information:"
     }
   }
 }

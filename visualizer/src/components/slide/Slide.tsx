@@ -54,18 +54,20 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferab
         <div className="card-body py-5">
           <div className="card-actions justify-between">
             <div className="self-center">
-              <h2 className="card-title">Certificate Information</h2>
+              <h2 className="card-title">{t('certificates.info')}</h2>
               <p className="text-sm font-light">
-                <strong className="font-black">Hash:</strong>{' '}
+                <strong className="font-black">{t('certificates.hash')}</strong>{' '}
                 {Buffer.from(certificateCID).toString('base64').replaceAll('=', '')}
               </p>
               <p className="text-sm font-light">
-                <strong className="font-black">Owner:</strong> {stellar_key}
+                <strong className="font-black">{t('certificates.owner')}</strong> {stellar_key}
               </p>
               <div className={'badge mt-2.5 mr-0.5 ' + (nonTransferable ? 'badge-success' : 'badge-error')}>
-                Non-transferable
+                {t('certificates.tags.non_transferable')}
               </div>
-              <div className={'badge mt-2.5 ml-0.5 ' + (revocable ? 'badge-success' : 'badge-error')}>Revocable</div>
+              <div className={'badge mt-2.5 ml-0.5 ' + (revocable ? 'badge-success' : 'badge-error')}>
+                {t('certificates.tags.revocable')}
+              </div>
             </div>
             <div className="text-right self-center">
               <label
