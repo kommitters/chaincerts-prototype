@@ -19,7 +19,8 @@
     "hash": "Hash:",
     "owner": "Owner:",
     "button_modal": "Stellar network data",
-    "alert_title": "Certificates found.",
+    "alert_title_plural": "Certificates found.",
+    "alert_title_singular": "Certificate found.",
     "description": "The certificates displayed on this screen are 3D and interactive, you can explore them from different angles. Enjoy the experience!",
     "tags" : {
       "non_transferable": "Non-transferable",

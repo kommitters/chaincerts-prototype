@@ -47,7 +47,10 @@ const Certificates = () => {
             </svg>
             <div>
               <h3 className="font-bold">
-                {numberCertificates} {t('certificates.alert_title')}
+                {numberCertificates + ' '}
+                {numberCertificates == 1
+                  ? t('certificates.alert_title_singular')
+                  : t('certificates.alert_title_plural')}
               </h3>
               <div className="text-xs">{t('certificates.description')}</div>
             </div>
