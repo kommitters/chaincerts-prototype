@@ -26,9 +26,7 @@ const CertificateVisualizer = ({ certificate, id }: CertificateVisualizerProps) 
 
   useEffect(() => {
     if (showing) {
-      const actualCanvasWidth = document.getElementById(id)!.offsetWidth;
-
-      certificateCanvasRef.current.restartCamaraPosition(actualCanvasWidth);
+      certificateCanvasRef.current.restartCamaraPosition();
     }
   }, [showing]);
 

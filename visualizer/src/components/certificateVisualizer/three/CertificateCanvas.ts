@@ -32,7 +32,7 @@ export class CertificateCanvas {
 
     this.loop.updatables.push(orbitControl);
     this.init(certificate);
-    this.restartCamaraPosition(container.offsetWidth);
+    this.restartCamaraPosition();
 
     window.addEventListener('resize', () => this.resize());
     container.append(this.renderer.domElement);
@@ -53,7 +53,9 @@ export class CertificateCanvas {
     this.renderer.render(this.scene, this.camera);
   }
 
-  restartCamaraPosition(width: number) {
+  restartCamaraPosition() {
+    const width = this.container.offsetWidth;
+
     const positionZ =
       width > SMALL_WIDHT ? DEFAULT_CAMERA_Z_POSITION_LARGE_SCREEN : DEFAULT_CAMERA_Z_POSITION_SMALL_SCREEN;
 
