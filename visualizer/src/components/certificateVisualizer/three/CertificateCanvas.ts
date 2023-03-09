@@ -5,8 +5,11 @@ import { ICertificate } from '../interfaces';
 import {
   DEFAULT_CAMERA_Z_POSITION_LARGE_SCREEN,
   DEFAULT_CAMERA_Z_POSITION_SMALL_SCREEN,
+  DEFAULT_CAMERA_Y_POSITION,
   SMALL_WIDHT
 } from '../../../utils/constants';
+
+const DEFAULT_CAMERA_X_POSITION = -3;
 
 const loader = new FontLoader();
 const FONT_ROUTE = '/fonts/helvetiker_regular.typeface.json';
@@ -23,16 +26,16 @@ export class CertificateCanvas {
     this.camera = createCamera(container.offsetWidth, container.offsetHeight);
     this.scene = createScene();
     this.renderer = createRenderer(container);
-    window.addEventListener('resize', () => this.resize());
-
-    container.append(this.renderer.domElement);
+    this.loop = new Loop(this.camera, this.scene, this.renderer);
 
     const orbitControl = createOrbitControl(this.camera, this.renderer.domElement);
 
-    this.loop = new Loop(this.camera, this.scene, this.renderer);
     this.loop.updatables.push(orbitControl);
-
     this.init(certificate);
+    this.restartCamaraPosition(container.offsetWidth);
+
+    window.addEventListener('resize', () => this.resize());
+    container.append(this.renderer.domElement);
   }
 
   async init(certificate: ICertificate) {
@@ -48,6 +51,15 @@ export class CertificateCanvas {
 
   render() {
     this.renderer.render(this.scene, this.camera);
+  }
+
+  restartCamaraPosition(width: number) {
+    const positionZ =
+      width > SMALL_WIDHT ? DEFAULT_CAMERA_Z_POSITION_LARGE_SCREEN : DEFAULT_CAMERA_Z_POSITION_SMALL_SCREEN;
+
+    this.camera.position.z = positionZ;
+    this.camera.position.x = DEFAULT_CAMERA_X_POSITION;
+    this.camera.position.y = DEFAULT_CAMERA_Y_POSITION;
   }
 
   start() {
