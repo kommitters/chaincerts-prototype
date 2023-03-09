@@ -17,7 +17,7 @@
   "certificates": {
     "info": "Certificate Information",
     "hash": "CertificateID:",
-    "owner": "Owner account:",
+    "owner": "OwnerAccount:",
     "button_modal": "Stellar network data",
     "alert_title_plural": "Certificates found.",
     "alert_title_singular": "Certificate found.",
