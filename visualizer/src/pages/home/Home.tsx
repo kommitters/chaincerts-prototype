@@ -32,8 +32,8 @@ const Home = () => {
 
     setPressed(state);
   }
-  const buttonKey = (loader: boolean, publicKey: string) => {
-    const accountNumber = PUBLIC_KEY_JANE == publicKey ? 1 : 2;
+
+  const buttonKey = (name: name, loader: boolean, publicKey: string) => {
     return (
       <button
         className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-lg normal-case rounded xs:w-full w-80 animate-none"
@@ -42,11 +42,12 @@ const Home = () => {
         {loader ? (
           <ImSpinner5 className="animate-spin stroke-white" />
         ) : (
-          `${t('home.button_title')} #${accountNumber} ***${publicKey.substring(publicKey.length - SIZE_CHAR)}`
+          name
         )}
       </button>
     );
   };
+
   async function handlePublicKey(publicKey: string) {
     if (pressed) return;
 
@@ -65,6 +66,7 @@ const Home = () => {
       modLoadingSpinner(publicKey, false);
     }
   }
+
   return (
     <>
       <div className="flex flex-row justify-center">
@@ -79,8 +81,8 @@ const Home = () => {
           </div>
 
           <div className="w-full text-center xl:mt-24 sm:mt-16">
-            <div>{buttonKey(loadingFirstKey, PUBLIC_KEY_JANE)}</div>
-            <div className="mt-5">{buttonKey(loadingSecondKey, PUBLIC_KEY_JOHN)}</div>
+            <div>{buttonKey('jane.doe*chaincherts.co', loadingFirstKey, PUBLIC_KEY_JANE)}</div>
+            <div className="mt-5">{buttonKey('john.doe*chaincherts.co', loadingSecondKey, PUBLIC_KEY_JOHN)}</div>
           </div>
 
           <div className="w-80 m-auto sm:w-full place-items-center">

@@ -59,17 +59,32 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferab
             </a>
           )}
         </div>
+
         <div className="card-body py-5">
-          <div className="card-actions justify-between">
-            <div className="self-center">
-              {showTitle && <h1 className="text-2xl font-bold mb-6">{title}</h1>}
-              <h2 className="text-lg font-bold">{t('certificates.info')}</h2>
+          <div className="card-actions">
+            <div className="lg:flex flex-row justify-between justify-items-end">
+              <div className="lg:basis-8/12 basis-6/12">
+                {showTitle && <h1 className="lg:text-3xl text-2xl font-bold mb-6">{title}</h1>}
+              </div>
+
+              <div className="lg:basis-4/12 basis-6/12 text-right">
+                <label
+                  htmlFor={modalID}
+                  className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-base normal-case rounded lg:sm-auto w-full"
+                >
+                  {t('certificates.button_modal')}
+                </label>
+              </div>
+            </div>
+
+            <div>
               <p className="text-sm font-light">
-                <strong className="font-black">{t('certificates.hash')}</strong>{' '}
-                {Buffer.from(certificateCID).toString('base64').replaceAll('=', '')}
+                <span className="font-bold">{t('certificates.hash')}</span>{' '}
+                <span>{Buffer.from(certificateCID).toString('base64').replaceAll('=', '')}</span>
               </p>
+
               <p className="text-sm font-light">
-                <strong className="font-bold">{t('certificates.owner')}</strong> {stellarKey}
+                <span className="font-bold">{t('certificates.owner')}</span> {stellarKey}
               </p>
               <div
                 className={
@@ -83,14 +98,6 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferab
               >
                 {t('certificates.tags.revocable')}
               </div>
-            </div>
-            <div className="max-[660px]:w-full lg:text-right lg:self-center">
-              <label
-                htmlFor={modalID}
-                className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-base normal-case rounded w-full"
-              >
-                {t('certificates.button_modal')}
-              </label>
             </div>
           </div>
         </div>
