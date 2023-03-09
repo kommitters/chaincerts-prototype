@@ -25,7 +25,7 @@ const CertificateVisualizer = ({ certificate, id }: CertificateVisualizerProps) 
     return certificateCanvas;
   };
 
-  return <div id={id} className="w-full h-full" />;
+  return <div id={id} className="w-full h-full cursor-move" />;
 };
 
 export default CertificateVisualizer;
