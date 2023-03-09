@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState, RefObject } from 'react';
 import { t } from 'i18next';
 import { useParams } from 'react-router-dom';
 import { readCertificate } from '../../ipfs/readCertificate';
@@ -15,7 +15,7 @@ type SlideProps = {
   modalID: string;
   nonTransferable: boolean;
   revocable: boolean;
-  refParent: React.RefObject<HTMLElement>;
+  refParent: RefObject<HTMLElement>;
 };
 
 const loadCertificateFromIFPS = (CID: string, fetchCertificateJSON: Dispatch<SetStateAction<null>>) => {
