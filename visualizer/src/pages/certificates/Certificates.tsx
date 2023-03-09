@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 
@@ -11,6 +11,8 @@ const Certificates = () => {
   const navigate = useNavigate();
   const certificates = JSON.parse(localStorage.getItem('certificates') as string);
   const isValid = !(certificates === null);
+
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isValid) navigate('/');
@@ -59,11 +61,11 @@ const Certificates = () => {
       </div>
 
       <div className="flex flex-row justify-center mb-6">
-        <div className="carousel lg:basis-4/5 xl:basis-3/5 basis-full">
+        <div className="carousel lg:basis-4/5 xl:basis-3/5 basis-full" ref={carouselRef}>
           {certificates?.map((certificate: IAssetInformation, index: number) => {
             const modalID = `cert-modal-${index}`;
             return (
-              <div className="w-full h-full carousel-item relative cursor-move" key={`carousel-item-${index}`}>
+              <React.Fragment key={`carousel-item-${index}`}>
                 <Slide
                   key={`slide-comp-${index}`}
                   certificateCID={certificate.CID}
@@ -72,9 +74,10 @@ const Certificates = () => {
                   slideIndex={index + 1}
                   totalSlides={numberCertificates}
                   modalID={modalID}
+                  refParent={carouselRef}
                 />
                 <AssetInformation key={`asset-comp-${index}`} assetInformation={certificate} modalID={modalID} />
-              </div>
+              </React.Fragment>
             );
           })}
         </div>

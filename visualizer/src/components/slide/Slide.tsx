@@ -15,6 +15,7 @@ type SlideProps = {
   modalID: string;
   nonTransferable: boolean;
   revocable: boolean;
+  refParent: React.RefObject<HTMLElement>;
 };
 
 const loadCertificateFromIFPS = (CID: string, fetchCertificateJSON: Dispatch<SetStateAction<null>>) => {
@@ -27,7 +28,15 @@ const loadCertificateFromIFPS = (CID: string, fetchCertificateJSON: Dispatch<Set
     });
 };
 
-const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferable, revocable }: SlideProps) => {
+const Slide = ({
+  certificateCID,
+  slideIndex,
+  totalSlides,
+  modalID,
+  nonTransferable,
+  revocable,
+  refParent
+}: SlideProps) => {
   const { stellar_key: stellarKey } = useParams();
   const [certificateJSON, fetchCertificateJSON] = useState(null);
 
@@ -35,18 +44,34 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferab
     loadCertificateFromIFPS(certificateCID, fetchCertificateJSON);
   }, []);
 
+  const handleAnchorClick = (event: React.MouseEvent<Element, MouseEvent>, slideIndex: number) => {
+    event.preventDefault();
+    const carousel = refParent.current as HTMLElement;
+    const slide = carousel.querySelector(`#slide${slideIndex}`) as HTMLElement;
+    const scrollLeft = slide.offsetLeft - carousel.offsetLeft;
+    carousel.scrollTo({
+      left: scrollLeft,
+      behavior: 'smooth',
+      top: 0
+    });
+  };
+
   const showTitle = stellarKey === PUBLIC_KEY_JANE || stellarKey === PUBLIC_KEY_JOHN;
   const name = stellarKey === PUBLIC_KEY_JANE ? JANE : JONH;
   const title = CERTS_TITLES[slideIndex - 1].replace('{NAME}', name);
 
   return (
-    <div id={`slide${slideIndex}`} className="w-full">
+    <div id={`slide${slideIndex}`} className="w-full h-full carousel-item relative cursor-move">
       <div className="card bg-base-100 shadow-xl w-full">
         <div className="relative w-full h-full" style={{ height: 450 }}>
           {certificateJSON && <CertificateVisualizer certificate={certificateJSON} id={`certificate-${slideIndex}`} />}
 
           {slideIndex > 1 ? (
-            <a href={`#slide${slideIndex - 1}`} className="btn btn-circle absolute m-auto left-3 top-1/2">
+            <a
+              href={`#slide${slideIndex - 1}`}
+              className="btn btn-circle absolute m-auto left-3 top-1/2"
+              onClick={(e) => handleAnchorClick(e, slideIndex - 1)}
+            >
               ❮
             </a>
           ) : (
@@ -54,7 +79,11 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferab
           )}
 
           {slideIndex < totalSlides && (
-            <a href={`#slide${slideIndex + 1}`} className="btn btn-circle absolute m-auto right-3 top-1/2">
+            <a
+              href={`#slide${slideIndex + 1}`}
+              className="btn btn-circle absolute m-auto right-3 top-1/2"
+              onClick={(e) => handleAnchorClick(e, slideIndex + 1)}
+            >
               ❯
             </a>
           )}
@@ -78,12 +107,12 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferab
             </div>
 
             <div>
-              <p className="text-sm font-light">
+              <p className="text-sm font-light break-all">
                 <span className="font-bold">{t('certificates.hash')}</span>{' '}
                 <span>{Buffer.from(certificateCID).toString('base64').replaceAll('=', '')}</span>
               </p>
 
-              <p className="text-sm font-light">
+              <p className="text-sm font-light break-all">
                 <span className="font-bold">{t('certificates.owner')}</span> {stellarKey}
               </p>
               <div
