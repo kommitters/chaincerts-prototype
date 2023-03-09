@@ -3,7 +3,7 @@ import { t } from 'i18next';
 import { useParams } from 'react-router-dom';
 import { readCertificate } from '../../ipfs/readCertificate';
 import CertificateVisualizer from '../certificateVisualizer';
-import { PUBLIC_KEY_JANE, PUBLIC_KEY_JOHN, CERTS_TITLES } from '../../utils/constants';
+import { PUBLIC_KEY_JANE, PUBLIC_KEY_JOHN, CERTS_TITLES, DEFAULT_CERT_TITLE } from '../../utils/constants';
 
 const JANE = 'Jane';
 const JONH = 'John';
@@ -61,7 +61,7 @@ const Slide = ({
   const title = CERTS_TITLES[slideIndex - 1].replace('{NAME}', name);
 
   return (
-    <div id={`slide${slideIndex}`} className="w-full h-full carousel-item relative cursor-move">
+    <div id={`slide${slideIndex}`} className="w-full h-full carousel-item relative">
       <div className="card bg-base-100 shadow-xl w-full">
         <div className="relative w-full h-full" style={{ height: 450 }}>
           {certificateJSON && <CertificateVisualizer certificate={certificateJSON} id={`certificate-${slideIndex}`} />}
@@ -93,7 +93,7 @@ const Slide = ({
           <div className="card-actions">
             <div className="lg:flex flex-row justify-between justify-items-end">
               <div className="lg:basis-8/12 basis-6/12">
-                {showTitle && <h1 className="lg:text-3xl text-2xl font-bold mb-6">{title}</h1>}
+                <h1 className="lg:text-3xl text-2xl font-bold mb-6">{showTitle ? title : DEFAULT_CERT_TITLE}</h1>
               </div>
 
               <div className="lg:basis-4/12 basis-6/12 text-right">

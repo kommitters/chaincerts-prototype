@@ -1,5 +1,6 @@
 import { t } from 'i18next';
 import { IAssetTitle, IAssetInformation } from './interfaces';
+import { IPFS_EXPLORE_URL, EXPERT_ACCOUNT_URL } from '../../utils/constants';
 
 import './styles.css';
 
@@ -19,6 +20,22 @@ const transactionTitles: IAssetTitle[] = [
 
 const IPFSTitles: IAssetTitle[] = [{ key: 'CID', title: 'CID:' }];
 
+const referenceUrl = {
+  destination: EXPERT_ACCOUNT_URL,
+  CID: IPFS_EXPLORE_URL
+};
+
+const formatAssetValue = (key: string, assetValue: string | boolean) => {
+  if (key == 'destination' || key == 'CID') {
+    return (
+      <a href={`${referenceUrl[key]}/${assetValue}`} className="text-blue-600 hover:underline">
+        {String(assetValue).toUpperCase()}
+      </a>
+    );
+  }
+  return String(assetValue).toUpperCase();
+};
+
 const formatAssetInformation = (assetInfo: IAssetInformation, assetTitles: IAssetTitle[]) => {
   return assetTitles.map(({ key, title }, index) => {
     const assetValue = assetInfo[key];
@@ -26,7 +43,7 @@ const formatAssetInformation = (assetInfo: IAssetInformation, assetTitles: IAsse
       <div key={index}>
         <>
           <div className="text-sm font-semibold">{title}</div>
-          <div className="text-xs">{String(assetValue).toUpperCase()}</div>
+          <div className="text-xs">{formatAssetValue(key, assetValue)}</div>
         </>
       </div>
     );
