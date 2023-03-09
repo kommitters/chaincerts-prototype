@@ -1,0 +1,26 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footer-page {
+  clear: both;
+  position: relative;
+  margin-top: 50px;
+  margin-left: 25vw;
+  margin-right: 25vw;
+  min-height: 8em;
+}
+
+@media (max-width: 700px) {
+  .footer-page {
+    clear: both;
+    position: relative;
+    margin-top: 50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    min-height: 8em;
+  }
+}

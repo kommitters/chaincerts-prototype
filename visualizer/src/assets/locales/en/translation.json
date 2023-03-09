@@ -1,0 +1,49 @@
+{
+  "home": {
+    "title": "Unlock the future of certifications",
+    "info": "Access the Chaincerts prototype by clicking on any of the demo accounts below.",
+    "button_title": "Stellar account",
+    "stellar_input": {
+      "placeholder": "Explore more Stellar accounts",
+      "enter": "View certificates",
+      "info_title": "Something happened;",
+      "info_message": "Invalid Stellar account. Please check and try again."
+    },
+    "separator": "or"
+  },
+  "footer": {
+    "description": "© 2009 - 2023 kommit, All Rights Reserved - Chaincerts powered by kommit"
+  },
+  "certificates": {
+    "info": "Certificate Information",
+    "hash": "CertificateID:",
+    "owner": "OwnerAccount:",
+    "button_modal": "Stellar network data",
+    "alert_title_plural": "Certificates found.",
+    "alert_title_singular": "Certificate found.",
+    "description": "The certificates displayed on this screen are 3D and interactive, you can explore them from different angles. Enjoy the experience!",
+    "tags" : {
+      "non_transferable": "Non-transferable",
+      "revocable": "Revocable"
+    },
+    "carousel": {
+      "title": "Certificate",
+      "account": "Stellar account",
+      "created": "Created",
+      "xlm": "XLM reserved",
+      "assets_and_truslines": "Assets and trustlines"
+    },
+    "not_found_message": "There are no certificates associated with the Stellar account.",
+    "profile": {
+      "description": "Stellar Public Key"
+    },
+    "button": {
+      "back": "back"
+    },
+    "stellar_data_modal": {
+      "transaction_title": "Transaction Information:",
+      "soulbound_token_title": "Soulbound Token Information:",
+      "IPFS_title": "IPFS Information:"
+    }
+  }
+}

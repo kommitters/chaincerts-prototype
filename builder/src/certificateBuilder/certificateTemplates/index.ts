@@ -1,0 +1,1 @@
+export { scfAwardsTemplate } from './scfAwardsTemplate';
