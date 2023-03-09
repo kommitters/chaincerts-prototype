@@ -1,6 +1,6 @@
 import { t } from 'i18next';
 import { IAssetTitle, IAssetInformation } from './interfaces';
-import { IPFS_EXPLORE_URL, EXPERT_ACCOUNT_URL } from '../../utils/constants';
+import { IPFS_EXPLORE_URL, EXPERT_ACCOUNT_URL, STELLAR_TRANSACTION_URL } from '../../utils/constants';
 
 import './styles.css';
 
@@ -22,14 +22,20 @@ const IPFSTitles: IAssetTitle[] = [{ key: 'CID', title: 'CID:' }];
 
 const referenceUrl = {
   destination: EXPERT_ACCOUNT_URL,
-  CID: IPFS_EXPLORE_URL
+  CID: IPFS_EXPLORE_URL,
+  transactionHash: STELLAR_TRANSACTION_URL
 };
 
 const formatAssetValue = (key: string, assetValue: string | boolean) => {
-  if (key == 'destination' || key == 'CID') {
+  if (key === 'destination' || key === 'CID' || key === 'transactionHash') {
     return (
-      <a href={`${referenceUrl[key]}/${assetValue}`} className="text-blue-600 hover:underline">
-        {String(assetValue).toUpperCase()}
+      <a
+        href={`${referenceUrl[key]}/${assetValue}`}
+        target="_blank"
+        className="text-blue-600 hover:underline"
+        rel="noreferrer"
+      >
+        {assetValue}
       </a>
     );
   }
