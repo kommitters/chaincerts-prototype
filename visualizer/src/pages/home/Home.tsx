@@ -7,8 +7,8 @@ import chaincertsLogo from '/icons/chaincertsLogo.svg';
 import MainInput from '../../components/mainInput';
 import { fetchStellarAccountInfo } from '../../stellarOperations';
 
-const PUBLIC_KEY_FIRST = 'GBAUDP62XLJAE65MHGHPHKGTVN7GICVCFSPYCONVLB7Y357T5NKKYN3P';
-const PUBLIC_KEY_SECOND = 'GB2HN7F6422JSYTQJ7VMABYSG22QPBEVA25XIKAPGREKK2PSMF4D5F7V';
+import { PUBLIC_KEY_JANE, PUBLIC_KEY_JOHN } from '../../utils/constants';
+
 const SIZE_CHAR = 6;
 
 const Home = () => {
@@ -23,17 +23,17 @@ const Home = () => {
   const navigate = useNavigate();
 
   function modLoadingSpinner(publicKey: string, state: boolean) {
-    if (PUBLIC_KEY_FIRST === publicKey) {
+    if (PUBLIC_KEY_JANE === publicKey) {
       setLoadingFirstKey(state);
     }
-    if (PUBLIC_KEY_SECOND === publicKey) {
+    if (PUBLIC_KEY_JOHN === publicKey) {
       setLoadingSecondKey(state);
     }
 
     setPressed(state);
   }
   const buttonKey = (loader: boolean, publicKey: string) => {
-    const accountNumber = PUBLIC_KEY_FIRST == publicKey ? 1 : 2;
+    const accountNumber = PUBLIC_KEY_JANE == publicKey ? 1 : 2;
     return (
       <button
         className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-lg normal-case rounded xs:w-full w-80 animate-none"
@@ -79,8 +79,8 @@ const Home = () => {
           </div>
 
           <div className="w-full text-center xl:mt-24 sm:mt-16">
-            <div>{buttonKey(loadingFirstKey, PUBLIC_KEY_FIRST)}</div>
-            <div className="mt-5">{buttonKey(loadingSecondKey, PUBLIC_KEY_SECOND)}</div>
+            <div>{buttonKey(loadingFirstKey, PUBLIC_KEY_JANE)}</div>
+            <div className="mt-5">{buttonKey(loadingSecondKey, PUBLIC_KEY_JOHN)}</div>
           </div>
 
           <div className="w-80 m-auto sm:w-full place-items-center">

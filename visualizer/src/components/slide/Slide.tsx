@@ -3,6 +3,10 @@ import { t } from 'i18next';
 import { useParams } from 'react-router-dom';
 import { readCertificate } from '../../ipfs/readCertificate';
 import CertificateVisualizer from '../certificateVisualizer';
+import { PUBLIC_KEY_JANE, PUBLIC_KEY_JOHN, CERTS_TITLES } from '../../utils/constants';
+
+const JANE = 'Jane';
+const JONH = 'John';
 
 type SlideProps = {
   certificateCID: string;
@@ -24,12 +28,16 @@ const loadCertificateFromIFPS = (CID: string, fetchCertificateJSON: Dispatch<Set
 };
 
 const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferable, revocable }: SlideProps) => {
-  const { stellar_key } = useParams();
+  const { stellar_key: stellarKey } = useParams();
   const [certificateJSON, fetchCertificateJSON] = useState(null);
 
   useEffect(() => {
     loadCertificateFromIFPS(certificateCID, fetchCertificateJSON);
   }, []);
+
+  const showTitle = stellarKey === PUBLIC_KEY_JANE || stellarKey === PUBLIC_KEY_JOHN;
+  const name = stellarKey === PUBLIC_KEY_JANE ? JANE : JONH;
+  const title = CERTS_TITLES[slideIndex - 1].replace('{NAME}', name);
 
   return (
     <div id={`slide${slideIndex}`} className="w-full">
@@ -53,14 +61,15 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferab
         </div>
         <div className="card-body py-5">
           <div className="card-actions justify-between">
-            <div className="self-center break-all">
-              <h2 className="card-title font-bold">{t('certificates.info')}</h2>
+            <div className="self-center">
+              {showTitle && <h1 className="text-2xl font-bold mb-6">{title}</h1>}
+              <h2 className="text-lg font-bold">{t('certificates.info')}</h2>
               <p className="text-sm font-light">
                 <strong className="font-black">{t('certificates.hash')}</strong>{' '}
                 {Buffer.from(certificateCID).toString('base64').replaceAll('=', '')}
               </p>
               <p className="text-sm font-light">
-                <strong className="font-bold">{t('certificates.owner')}</strong> {stellar_key}
+                <strong className="font-bold">{t('certificates.owner')}</strong> {stellarKey}
               </p>
               <div
                 className={
