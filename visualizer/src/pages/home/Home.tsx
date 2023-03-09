@@ -9,8 +9,6 @@ import { fetchStellarAccountInfo } from '../../stellarOperations';
 
 import { PUBLIC_KEY_JANE, PUBLIC_KEY_JOHN } from '../../utils/constants';
 
-const SIZE_CHAR = 6;
-
 const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,11 +37,7 @@ const Home = () => {
         className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-lg normal-case rounded xs:w-full w-80 animate-none"
         onClick={() => handlePublicKey(publicKey)}
       >
-        {loader ? (
-          <ImSpinner5 className="animate-spin stroke-white" />
-        ) : (
-          name
-        )}
+        {loader ? <ImSpinner5 className="animate-spin stroke-white" /> : name}
       </button>
     );
   };
