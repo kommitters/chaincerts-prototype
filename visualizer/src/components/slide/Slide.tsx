@@ -53,7 +53,7 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferab
         </div>
         <div className="card-body py-5">
           <div className="card-actions justify-between">
-            <div className="self-center">
+            <div className="self-center break-all">
               <h2 className="card-title font-bold">{t('certificates.info')}</h2>
               <p className="text-sm font-light">
                 <strong className="font-black">{t('certificates.hash')}</strong>{' '}
@@ -75,10 +75,10 @@ const Slide = ({ certificateCID, slideIndex, totalSlides, modalID, nonTransferab
                 {t('certificates.tags.revocable')}
               </div>
             </div>
-            <div className="text-right self-center">
+            <div className="max-[660px]:w-full lg:text-right lg:self-center">
               <label
                 htmlFor={modalID}
-                className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-base normal-case rounded text-base"
+                className="btn border-none bg-gradient-to-b from-hight-pink to-hight-purple text-base normal-case rounded w-full"
               >
                 {t('certificates.button_modal')}
               </label>

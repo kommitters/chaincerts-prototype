@@ -42,7 +42,7 @@ const AssetInformation = ({ assetInformation, modalID }: AssetInformationProps) 
   return (
     <>
       <input type="checkbox" id={modalID} className="modal-toggle" />
-      <div className="modal">
+      <div className="modal break-all">
         <div className="modal-box relative w-full">
           <label htmlFor={modalID} className="btn btn-sm btn-circle absolute right-2 top-2">
             ✕
