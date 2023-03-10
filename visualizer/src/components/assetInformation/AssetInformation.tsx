@@ -1,6 +1,6 @@
 import { t } from 'i18next';
-import { IAssetTitle, IAssetInformation } from './interfaces';
-import { IPFS_EXPLORE_URL, EXPERT_ACCOUNT_URL, STELLAR_TRANSACTION_URL } from '../../utils/constants';
+import { Domains, IAssetTitle, IAssetInformation } from './interfaces';
+import { IPFS_EXPLORE_URL, EXPERT_ACCOUNT_URL, STELLAR_TRANSACTION_URL, EXPERT_ASSET_URL } from '../../utils/constants';
 
 import './styles.css';
 
@@ -20,36 +20,52 @@ const transactionTitles: IAssetTitle[] = [
 
 const IPFSTitles: IAssetTitle[] = [{ key: 'CID', title: 'CID:' }];
 
-const referenceUrl = {
-  destination: EXPERT_ACCOUNT_URL,
+const referenceDomains: Domains = {
   CID: IPFS_EXPLORE_URL,
-  transactionHash: STELLAR_TRANSACTION_URL
+  transactionHash: STELLAR_TRANSACTION_URL,
+  destination: EXPERT_ACCOUNT_URL,
+  assetIssuer: EXPERT_ACCOUNT_URL,
+  assetCode: EXPERT_ASSET_URL
 };
 
-const formatAssetValue = (key: string, assetValue: string | boolean) => {
-  if (key === 'destination' || key === 'CID' || key === 'transactionHash') {
-    return (
-      <a
-        href={`${referenceUrl[key]}/${assetValue}`}
-        target="_blank"
-        className="text-blue-600 hover:underline"
-        rel="noreferrer"
-      >
-        {assetValue}
-      </a>
-    );
-  }
-  return String(assetValue).toUpperCase();
+const getAssetDomainRoute = (key: string, assetInfo: IAssetInformation) => {
+  return key === 'assetCode' ? `${assetInfo['assetCode']}-${assetInfo['assetIssuer']}-2` : assetInfo[key];
+};
+
+const getAssetInfoValueUrl = (
+  domain: string,
+  assetInfoValue: string | boolean,
+  key: string,
+  assetInfo: IAssetInformation
+) => {
+  const assetDomainRoute = getAssetDomainRoute(key, assetInfo);
+
+  return (
+    <a
+      href={`${domain}/${assetDomainRoute}`}
+      target="_blank"
+      className="text-blue-600 hover:underline"
+      rel="noreferrer"
+    >
+      {assetInfoValue}
+    </a>
+  );
 };
 
 const formatAssetInformation = (assetInfo: IAssetInformation, assetTitles: IAssetTitle[]) => {
   return assetTitles.map(({ key, title }, index) => {
-    const assetValue = assetInfo[key];
+    const assetInfoDomain = referenceDomains[key];
+    const assetInfoValue = assetInfo[key];
+
     return (
       <div key={index}>
         <>
           <div className="text-sm font-semibold">{title}</div>
-          <div className="text-xs">{formatAssetValue(key, assetValue)}</div>
+          <div className="text-xs">
+            {assetInfoDomain
+              ? getAssetInfoValueUrl(assetInfoDomain, assetInfoValue, key, assetInfo)
+              : String(assetInfoValue).toUpperCase()}
+          </div>
         </>
       </div>
     );
