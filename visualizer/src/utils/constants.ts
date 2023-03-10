@@ -17,3 +17,4 @@ export const CERTS_TITLES = [
 
 export const IPFS_EXPLORE_URL = 'https://explore.ipld.io/#/explore';
 export const EXPERT_ACCOUNT_URL = 'https://stellar.expert/explorer/testnet/account';
+export const STELLAR_TRANSACTION_URL = 'https://stellar.expert/explorer/testnet/tx';
